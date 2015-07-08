@@ -129,6 +129,5 @@ if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb=
 endif
 
-set nowrap
 set tw=0
 set wrapmargin=0
