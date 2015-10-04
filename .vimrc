@@ -1,6 +1,6 @@
 " Vim Configurations by tamlok
 set nocompatible
-colorscheme evening
+colorscheme torte
 set encoding=utf-8
 
 " GUI
@@ -59,11 +59,11 @@ filetype plugin on
 
 set showmode	" Display current mode in the message line
 "set relativenumber	" Display line number relative to current line
-"set number	" Display absolute line number
+set number	" Display absolute line number
 set hlsearch
 set incsearch
 "set list lcs=tab:\|\ 	" Display Tab indent
-set cc=80	" Highlight the 80th column
+set cc=81	" Highlight the 80th column
 
 set tags=./tags;/
 set autochdir
@@ -131,3 +131,6 @@ endif
 
 set tw=0
 set wrapmargin=0
+
+set cursorline
+set foldcolumn=2
