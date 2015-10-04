@@ -3,6 +3,43 @@ set nocompatible
 colorscheme torte
 set encoding=utf-8
 
+" Short tab line for vim
+function ShortTabLine()
+    let ret = ''
+    for i in range(tabpagenr('$'))
+        " select the color group for highlighting active tab
+        if i + 1 == tabpagenr()
+            let ret .= '%#errorMsg#'
+        else
+            let ret .= '%#TabLine#'
+        endif
+
+        " find the buffername for the tablabel
+        let buflist = tabpagebuflist(i+1)
+        let winnr = tabpagewinnr(i+1)
+        let buffername = bufname(buflist[winnr - 1])
+        let filename = fnamemodify(buffername, ':t')
+        " check if there is no name
+        if filename == ''
+            let filename = 'noname'
+        endif
+        let ret .= '['.filename.']'
+    endfor
+
+    " after the last tab fill with TabLineFill and reset tab page #
+    let ret .= '%#TabLineFill#%T'
+    return ret
+endfunction
+
+" Short tab line for gvim
+function ShortTabLabel()
+    let bufnrlist = tabpagebuflist(v:lnum)
+    let label = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
+    let filename = fnamemodify(label, ':t')
+    let ret = filename
+    return ret
+endfunction
+
 " GUI
 if has("gui_running")
     source $VIMRUNTIME/vimrc_example.vim
@@ -23,6 +60,8 @@ if has("gui_running")
     set guifont=Consolas:h11
     colorscheme desert
 
+    set guitablabel=%{ShortTabLabel()}
+
     " Map <Ctrl+F2> to toggle the menu and toolbar
     map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
                             \set guioptions-=T <Bar>
@@ -31,6 +70,8 @@ if has("gui_running")
                             \set guioptions+=T <Bar>
                             \set guioptions+=m <Bar>
                         \endif<CR>
+else
+    set tabline=%!ShortTabLine()
 endif
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
@@ -112,7 +153,7 @@ set statusline+=%P	" Percentage in the file
 
 " Key mapping
 " Ctrl-c to open the definition in a new tab
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " Alt-] to open the definition in a vertical split window
 " map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -143,3 +184,9 @@ set wrapmargin=0
 
 set cursorline
 set foldcolumn=2
+
+
+" Key mapping and Abbreviation
+" Abbr to change to expanding tab with 4 spaces
+cabbr extab set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab
+cabbr noextab set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab
