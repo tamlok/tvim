@@ -22,6 +22,15 @@ if has("gui_running")
     set guifontset=
     set guifont=Consolas:h11
     colorscheme desert
+
+    " Map <Ctrl+F2> to toggle the menu and toolbar
+    map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
+                            \set guioptions-=T <Bar>
+                            \set guioptions-=m <Bar>
+                        \else <Bar>
+                            \set guioptions+=T <Bar>
+                            \set guioptions+=m <Bar>
+                        \endif<CR>
 endif
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
