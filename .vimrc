@@ -190,3 +190,6 @@ set foldcolumn=2
 " Abbr to change to expanding tab with 4 spaces
 cabbr extab set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab
 cabbr noextab set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab
+
+map <C-down> <ESC>:bn<CR>
+map <C-up> <ESC>:bp<CR>
