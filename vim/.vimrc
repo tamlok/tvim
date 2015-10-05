@@ -44,11 +44,9 @@ endfunction
 if has("gui_running")
     source $VIMRUNTIME/vimrc_example.vim
 
-    set langmenu=zh_CN.UTF-8
     set imcmdline
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
-    language message zh_CN.UTF-8
 
     au GUIEnter * simalt ~x	" 窗口启动时自动最大化
     set guioptions-=m	" 隐藏菜单栏
@@ -56,8 +54,6 @@ if has("gui_running")
     set guioptions-=L	" 隐藏左侧滚动条
     set guioptions-=r	" 隐藏右侧滚动条
     set guioptions-=b	" 隐藏底部滚动条
-    set guifontset=
-    set guifont=Consolas:h11
     colorscheme desert
 
     set guitablabel=%{ShortTabLabel()}
@@ -70,6 +66,26 @@ if has("gui_running")
                             \set guioptions+=T <Bar>
                             \set guioptions+=m <Bar>
                         \endif<CR>
+
+    if has("win16") || has("win32") || has("win64") || has("win95")
+        set langmenu=zh_CN.UTF-8
+        language message zh_CN.UTF-8
+        set guifontset=
+        set guifont=Consolas:h11
+    elseif has("unix")
+        set guifontset=
+        set guifont=Liberation\ Mono\ 11
+    endif
+
+    set gcr=a:block
+    " mode aware cursors, change the color of the cursor based on current mode
+    set gcr+=o:hor50-Cursor
+    set gcr+=n:Cursor
+    set gcr+=i-ci-sm:InsertCursor
+    set gcr+=r-cr:ReplaceCursor-hor20
+    set gcr+=c:CommandCursor
+    set gcr+=v-ve:VisualCursor
+    set gcr+=a:blinkon0
 else
     set tabline=%!ShortTabLine()
 endif
@@ -157,18 +173,6 @@ set statusline+=%P	" Percentage in the file
 " Alt-] to open the definition in a vertical split window
 " map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-set gcr=a:block
-
-" mode aware cursors, change the color of the cursor based on current mode
-set gcr+=o:hor50-Cursor
-set gcr+=n:Cursor
-set gcr+=i-ci-sm:InsertCursor
-set gcr+=r-cr:ReplaceCursor-hor20
-set gcr+=c:CommandCursor
-set gcr+=v-ve:VisualCursor
-
-set gcr+=a:blinkon0
-
 hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
 hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
 hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
@@ -182,9 +186,12 @@ endif
 set tw=0
 set wrapmargin=0
 
-set cursorline
 set foldcolumn=2
 
+set cursorline
+if !has("gui_running")
+    hi CursorLine    term=NONE cterm=NONE ctermbg=238
+endif
 
 " Key mapping and Abbreviation
 " Abbr to change to expanding tab with 4 spaces
