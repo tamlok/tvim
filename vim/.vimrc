@@ -173,11 +173,6 @@ set statusline+=%P	" Percentage in the file
 " Alt-] to open the definition in a vertical split window
 " map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
-hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
-hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
-hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
-
 set noerrorbells visualbell t_vb=
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb=
@@ -185,18 +180,40 @@ endif
 
 set tw=0
 set wrapmargin=0
-
+set foldenable
 set foldcolumn=2
 
 set cursorline
+
+" Section about changing color
 if !has("gui_running")
     hi CursorLine    term=NONE cterm=NONE ctermbg=238
+    hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
+    hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
+    hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
+    hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
 endif
 
-" Key mapping and Abbreviation
+" Section about functions
+" Diff the file in current buffer with the file last saved
+function DiffWithFileFromDisk()
+    let filename=expand('%')
+    let diffname=filename.'.fileFromBuffer'
+    exec 'saveas! '.diffname
+    diffthis
+    vsplit
+    exec 'edit '.filename
+    diffthis
+endfunction
+
+" Section about Key mapping and Abbreviation
 " Abbr to change to expanding tab with 4 spaces
 cabbr extab set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab
 cabbr noextab set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab
+cabbr fms set foldmethod=syntax
 
 map <C-down> <ESC>:bn<CR>
 map <C-up> <ESC>:bp<CR>
+nnoremap <space> za
+nmap <F7> :call DiffWithFileFromDisk()<cr>
+nmap <F8> :set paste!<CR>
