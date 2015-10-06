@@ -1,5 +1,18 @@
 " Vim Configurations by tamlok
 set nocompatible
+
+" Vundle
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'gtags.vim'
+call vundle#end()
+
+filetype plugin indent on
+
 colorscheme torte
 set encoding=utf-8
 
@@ -100,8 +113,6 @@ endif
 
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    "have Vim load indentation rules and plugins according to the detected filetype
-    filetype plugin indent on
 endif
 
 set ruler	" Display the ruler
@@ -115,9 +126,6 @@ set tabstop=8
 set softtabstop=8
 set shiftwidth=8
 set noexpandtab
-
-filetype on
-filetype plugin on
 
 " Display tabs and trailing spaces
 " set list
