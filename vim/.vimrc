@@ -19,7 +19,6 @@ filetype plugin indent on
 
 set background=dark
 set t_Co=256
-colorscheme torte
 set encoding=utf-8
 
 " Short tab line for vim
@@ -86,6 +85,10 @@ if has("gui_running")
                             \set guioptions+=m <Bar>
                         \endif<CR>
 
+    if has('autocmd')
+        autocmd GUIEnter * set visualbell t_vb=
+    endif
+
     if has("win16") || has("win32") || has("win64") || has("win95")
         set langmenu=zh_CN.UTF-8
         language message zh_CN.UTF-8
@@ -106,6 +109,7 @@ if has("gui_running")
     set gcr+=v-ve:VisualCursor
     set gcr+=a:blinkon0
 else
+    colorscheme torte
     set tabline=%!ShortTabLine()
 endif
 
@@ -188,9 +192,6 @@ set statusline+=%P	" Percentage in the file
 " map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 set noerrorbells visualbell t_vb=
-if has('autocmd')
-	autocmd GUIEnter * set visualbell t_vb=
-endif
 
 set tw=0
 set wrapmargin=0
@@ -246,7 +247,9 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " End lookupfile
 
 " Section about changing color
-if !has("gui_running")
+if has("gui_running")
+    hi LineNr guifg=DarkKhaki
+else
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
     hi StatusLine ctermfg=16 ctermbg=144 cterm=NONE
