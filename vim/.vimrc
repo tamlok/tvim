@@ -249,6 +249,16 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 if !has("gui_running")
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
+    hi StatusLine ctermfg=16 ctermbg=144 cterm=NONE
+    hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
+    hi Comment term=bold ctermfg=74 " 117
+    hi Constant term=underline ctermfg=217
+    hi LineNr term=underline ctermfg=143
+    hi Folded ctermfg=220
+    hi FoldColumn ctermfg=220
+    hi Special ctermfg=214
+    hi NonText ctermfg=152 ctermbg=239
+    hi Visual ctermfg=186 ctermbg=64 cterm=NONE
 endif
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
 hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
