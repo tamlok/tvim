@@ -17,6 +17,8 @@ endif
 
 filetype plugin indent on
 
+set background=dark
+set t_Co=256
 colorscheme torte
 set encoding=utf-8
 
