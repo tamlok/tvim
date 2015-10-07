@@ -9,6 +9,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'gtags.vim'
+Plugin 'genutils'
+Plugin 'lookupfile'
 call vundle#end()
 
 filetype plugin indent on
@@ -190,8 +192,51 @@ set tw=0
 set wrapmargin=0
 set foldenable
 set foldcolumn=2
-
 set cursorline
+
+" GNU GLOBAL or cscope
+" Let cscope replace ctags
+" set cscopetag
+" let CtagsCscope_Auto_Map=1
+if has("unix") && filereadable("/usr/bin/gtags-cscope")
+    set csprg=gtags-cscope
+    cs add GTAGS $PWD
+    let GtagsCscope_Auto_Load=1
+    let GtagsCscope_Quiet=1
+endif
+
+" Lookupfile
+let g:LookupFile_MinPatLength=2
+let g:LookupFile_PreserveLastPattern=0
+let g:LookupFile_PreservePatternHistory=1
+let g:LookupFile_AlwaysAcceptFirst=1
+let g:LookupFile_AllowNewFiles=0
+
+" .filetags can be generated using scripts/genfiletags.sh
+if filereadable("./.filetags")
+    let g:LookupFile_TagExpr='"./.filetags"'
+endif
+
+" Case insensitive search
+function! LookupFile_IgnoreCaseFunc(pattern)
+    let _tags=&tags
+    try
+        let &tags=eval(g:LookupFile_TagExpr)
+        let newpattern='\c'.a:pattern
+        let tags=taglist(newpattern)
+    catch
+        echohl ErrorMsg | echo "Exception: ".v:exception | echohl NONE
+        return ""
+    finally
+        let &tags=_tags
+    endtry
+
+    " Show the matches for what is typed so far
+    let files=map(tags, 'v:val["filename"]')
+    return files
+endfunction
+let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
+" End lookupfile
 
 " Section about changing color
 if !has("gui_running")
@@ -219,9 +264,22 @@ endfunction
 cabbr extab set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab
 cabbr noextab set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab
 cabbr fms set foldmethod=syntax
+cabbr gta Gtags
+cabbr gtr Gtags -r
+cabbr csf cs find
+cabbr luf LookupFile
+cabbr lub LUBufs
+cabbr luw LUWalk
 
 map <C-down> <ESC>:bn<CR>
 map <C-up> <ESC>:bp<CR>
 nnoremap <space> za
 nmap <F7> :call DiffWithFileFromDisk()<cr>
 nmap <F8> :set paste!<CR>
+" Quickfix list navigation
+nmap <C-n> :cn<CR>
+nmap <C-p> :cp<CR>
+" Close Quickfix list
+nmap <C-x> :cclose<CR>
+nmap <C-k> :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-j> :cs find c <C-R>=expand("<cword>")<CR><CR>
