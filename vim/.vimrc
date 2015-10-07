@@ -1,17 +1,19 @@
 " Vim Configurations by tamlok
 set nocompatible
 
-" Vundle
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-filetype off
+if has("unix")
+    " Vundle
+    " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'gtags.vim'
-Plugin 'genutils'
-Plugin 'lookupfile'
-call vundle#end()
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'gtags.vim'
+    Plugin 'genutils'
+    Plugin 'lookupfile'
+    call vundle#end()
+endif
 
 filetype plugin indent on
 
@@ -194,6 +196,9 @@ set foldenable
 set foldcolumn=2
 set cursorline
 
+" find command
+set path+=$PWD/**
+
 " GNU GLOBAL or cscope
 " Let cscope replace ctags
 " set cscopetag
@@ -240,12 +245,19 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 
 " Section about changing color
 if !has("gui_running")
-    hi CursorLine    term=NONE cterm=NONE ctermbg=238
-    hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
-    hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
-    hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
-    hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
+    hi CursorLine term=NONE cterm=NONE ctermbg=238
+    hi Search term=reverse ctermfg=229 ctermbg=136
 endif
+hi ExtraWhitespace ctermbg=202 guibg=orangered1
+hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
+hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
+hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
+hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
+
+" Highlihgt extra space
+:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+:autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+:autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Section about functions
 " Diff the file in current buffer with the file last saved
