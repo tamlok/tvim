@@ -28,7 +28,8 @@ function ShortTabLine()
     let ret = ''
     for i in range(tabpagenr('$'))
         " Select the color group for highlighting active tab
-        hi TabLineSelCus ctermfg=16 ctermbg=230 cterm=NONE
+	" Or ctermbg=230
+        hi TabLineSelCus ctermfg=16 ctermbg=179 cterm=NONE
         if i + 1 == tabpagenr()
             let ret .= '%#TabLineSelCus#'
         else
@@ -278,11 +279,11 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 if current_color == "desert"
     hi LineNr guifg=DarkKhaki
     " Or guibg=NavajoWhite1
-    hi StatusLine guifg=black guibg=Cornsilk1
+    hi StatusLine guifg=black guibg=LightGoldenrod3
 elseif current_color == "torte"
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
-    hi StatusLine ctermfg=16 ctermbg=230 cterm=NONE
+    hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE
     hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
     hi Comment term=bold ctermfg=74
     hi Constant term=underline ctermfg=217
