@@ -15,7 +15,9 @@ if has("unix")
     call vundle#end()
 endif
 
-filetype plugin indent on
+filetype on
+filetype plugin on
+filetype indent on
 
 set background=dark
 set t_Co=256
@@ -117,7 +119,7 @@ set fileencodings=UCS-BOM,UTF-8,Chinese
 set termencoding=UTF-8
 
 if has("syntax")
-    syntax enable
+    syntax enable " Enable syntax processing
     syntax on
 endif
 
@@ -125,37 +127,47 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-set ruler	" Display the ruler
-set showcmd	" Show the input command
-set scrolloff=3	" Scroll 3 lines offset when cursor is near the buttom or the top
+set ruler       " Display the ruler
+set showcmd     " Show the input command
+set scrolloff=3 " Scroll 3 lines offset when cursor is near the buttom or the top
 set autoindent
 set cindent
 set smartindent
 
-set tabstop=8
-set softtabstop=8
+set tabstop=8       " Number of visual spaces per TAB
+set softtabstop=8   " Number of spaces in tab when editing
 set shiftwidth=8
-set noexpandtab
+set noexpandtab     " Do not convert tabs to spaces
+
+set wildmenu        " Visual autocomplete for command menu
+set wildmode=list:longest " Complete only up to the point of ambiguity
+set lazyredraw      " Redraw only when we need to
+
+set title           " Set the terminal title
+
+" Store temp files in a central spot. Should mkdir ~/.vim_tmp
+set backupdir=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Display tabs and trailing spaces
 " set list
 " set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
-set showmode	" Display current mode in the message line
+set showmode	    " Display current mode in the message line
 "set relativenumber	" Display line number relative to current line
-set number	" Display absolute line number
-set hlsearch
-set incsearch
-"set list lcs=tab:\|\ 	" Display Tab indent
-set cc=81	" Highlight the 80th column
+set number	        " Display absolute line number
+set hlsearch        " Highlight matches
+set incsearch       " Search as characters are entered
+"set list lcs=tab:\|\   " Display Tab indent
+set cc=81               " Highlight the 80th column
 
 set tags=./tags;/
 set autochdir
 
-set confirm	" Ask for confirmation when handling unsaved or read-only files
+set confirm     " Ask for confirmation when handling unsaved or read-only files
 set report=0
-set showmatch	" Highlight matched parentheses
-set matchtime=5	" Time for highlighting matched parentheses
+set showmatch   " Highlight matched parentheses
+set matchtime=5 " Time for highlighting matched parentheses
 
 set textwidth=0	" Disable auto wrapping of long lines
 set wrapmargin=0
@@ -185,19 +197,16 @@ set statusline+=%=	" Left/right separator
 set statusline+=%-14.(%l/%L,%c%V%)\ 
 set statusline+=%P	" Percentage in the file
 
-" Key mapping
-" Ctrl-c to open the definition in a new tab
-" map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-" Alt-] to open the definition in a vertical split window
-" map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
 set noerrorbells visualbell t_vb=
 
 set tw=0
 set wrapmargin=0
-set foldenable
+set foldenable      " Enable folding
 set foldcolumn=2
-set cursorline
+set foldlevelstart=10   " Open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent   " Fold based on indent level
+set cursorline      " Highlight current line
 
 " find command
 set path+=$PWD/**
@@ -263,13 +272,13 @@ else
     hi NonText ctermfg=152 ctermbg=239
     hi Visual ctermfg=186 ctermbg=64 cterm=NONE
 endif
-hi ExtraWhitespace ctermbg=202 guibg=orangered1
 hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
 hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
 hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
 hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
 
 " Highlihgt extra space
+hi ExtraWhitespace ctermbg=202 guibg=orangered1
 :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 :autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 :autocmd InsertLeave * match ExtraWhitespace /\s\+$/
@@ -298,9 +307,9 @@ cabbr luf LookupFile
 cabbr lub LUBufs
 cabbr luw LUWalk
 
+map <space> <leader>
 map <C-down> <ESC>:bn<CR>
 map <C-up> <ESC>:bp<CR>
-nnoremap <space> za
 nmap <F7> :call DiffWithFileFromDisk()<cr>
 nmap <F8> :set paste!<CR>
 " Quickfix list navigation
@@ -308,5 +317,25 @@ nmap <C-n> :cn<CR>
 nmap <C-p> :cp<CR>
 " Close Quickfix list
 nmap <C-x> :cclose<CR>
-nmap <C-k> :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-j> :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>r :cs find c <C-R>=expand("<cword>")<CR><CR>
+" Write to file
+nnoremap <leader>w :w<CR>
+" Copy/paste to/from system clipboard
+vmap <leader>y "+y
+nmap <leader>y "+y
+nmap <leader>p "+p
+nmap <leader>P "+P
+" n<Enter> to go to line n
+nnoremap <CR> G
+" Turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+" Select the text that was just pasted
+nnoremap <leader>v V`]
+" jj to Esc
+inoremap jj <ESC>
+" Split window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
