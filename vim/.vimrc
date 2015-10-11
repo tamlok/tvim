@@ -27,23 +27,37 @@ set encoding=utf-8
 function ShortTabLine()
     let ret = ''
     for i in range(tabpagenr('$'))
-        " select the color group for highlighting active tab
+        " Select the color group for highlighting active tab
+        hi TabLineSelCus ctermfg=16 ctermbg=230 cterm=NONE
         if i + 1 == tabpagenr()
-            let ret .= '%#errorMsg#'
+            let ret .= '%#TabLineSelCus#'
         else
             let ret .= '%#TabLine#'
         endif
 
-        " find the buffername for the tablabel
+        " Add the tab number
+        let tabnum = i + 1
+
+        " Find the buffername for the tablabel
         let buflist = tabpagebuflist(i+1)
         let winnr = tabpagewinnr(i+1)
         let buffername = bufname(buflist[winnr - 1])
         let filename = fnamemodify(buffername, ':t')
+
+        " Find if any file is modified
+        let modifier = ''
+        for bufnr in buflist
+            if getbufvar(bufnr, "&modified")
+                let modifier = ' +'
+                break
+            endif
+        endfor
+
         " check if there is no name
         if filename == ''
-            let filename = 'noname'
+            let filename = 'No Name'
         endif
-        let ret .= '['.filename.']'
+        let ret .= '['.tabnum.'. '.filename.modifier.']'
     endfor
 
     " after the last tab fill with TabLineFill and reset tab page #
@@ -63,7 +77,7 @@ function ShortTabLabel()
 
     for bufnr in bufnrlist
         if getbufvar(bufnr, "&modified")
-            let ret .= ' *'
+            let ret .= ' +'
             break
         endif
     endfor
@@ -176,6 +190,9 @@ set matchtime=5 " Time for highlighting matched parentheses
 set textwidth=0	" Disable auto wrapping of long lines
 set wrapmargin=0
 
+" Allow modified buffer to be hidden
+set hidden
+
 "set formatoptions-=cro	" Disable auto inserting comment leader
 autocmd FileType * setlocal formatoptions-=ro
 
@@ -260,11 +277,12 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " Section about changing color
 if current_color == "desert"
     hi LineNr guifg=DarkKhaki
-    hi StatusLine guifg=black guibg=NavajoWhite1
+    " Or guibg=NavajoWhite1
+    hi StatusLine guifg=black guibg=Cornsilk1
 elseif current_color == "torte"
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
-    hi StatusLine ctermfg=16 ctermbg=223 cterm=NONE
+    hi StatusLine ctermfg=16 ctermbg=230 cterm=NONE
     hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
     hi Comment term=bold ctermfg=74
     hi Constant term=underline ctermfg=217
