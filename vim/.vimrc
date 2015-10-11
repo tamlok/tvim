@@ -146,7 +146,6 @@ set noexpandtab     " Do not convert tabs to spaces
 
 set wildmenu        " Visual autocomplete for command menu
 set wildmode=list:longest " Complete only up to the point of ambiguity
-set lazyredraw      " Redraw only when we need to
 
 set title           " Set the terminal title
 
@@ -204,8 +203,6 @@ set statusline+=%P	" Percentage in the file
 
 set noerrorbells visualbell t_vb=
 
-set tw=0
-set wrapmargin=0
 set foldenable      " Enable folding
 set foldcolumn=2
 set foldlevelstart=10   " Open most folds by default
