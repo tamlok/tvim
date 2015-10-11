@@ -60,6 +60,8 @@ function ShortTabLabel()
     return ret
 endfunction
 
+let current_color = ""
+
 " GUI
 if has("gui_running")
     source $VIMRUNTIME/vimrc_example.vim
@@ -68,13 +70,15 @@ if has("gui_running")
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
 
-    au GUIEnter * simalt ~x	" 窗口启动时自动最大化
-    set guioptions-=m	" 隐藏菜单栏
-    set guioptions-=T	" 隐藏工具栏
-    set guioptions-=L	" 隐藏左侧滚动条
-    set guioptions-=r	" 隐藏右侧滚动条
-    set guioptions-=b	" 隐藏底部滚动条
+    au GUIEnter * simalt ~x " Maximize the window at startup
+    set guioptions-=m       " Hide menu bar
+    set guioptions-=T       " Hide tool bar
+    set guioptions-=L       " Hide leftside scroll bar
+    set guioptions-=r       " Hide rightside scroll bar
+    set guioptions-=b       " Hide bottom scroll bar
+
     colorscheme desert
+    let current_color = "desert"
 
     set guitablabel=%{ShortTabLabel()}
 
@@ -100,18 +104,9 @@ if has("gui_running")
         set guifontset=
         set guifont=Liberation\ Mono\ 11
     endif
-
-    set gcr=a:block
-    " mode aware cursors, change the color of the cursor based on current mode
-    set gcr+=o:hor50-Cursor
-    set gcr+=n:Cursor
-    set gcr+=i-ci-sm:InsertCursor
-    set gcr+=r-cr:ReplaceCursor-hor20
-    set gcr+=c:CommandCursor
-    set gcr+=v-ve:VisualCursor
-    set gcr+=a:blinkon0
 else
     colorscheme torte
+    let current_color = "torte"
     set tabline=%!ShortTabLine()
 endif
 
@@ -256,9 +251,9 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " End lookupfile
 
 " Section about changing color
-if has("gui_running")
+if current_color == "desert"
     hi LineNr guifg=DarkKhaki
-else
+elseif current_color == "torte"
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
     hi StatusLine ctermfg=16 ctermbg=144 cterm=NONE
@@ -272,10 +267,22 @@ else
     hi NonText ctermfg=152 ctermbg=239
     hi Visual ctermfg=186 ctermbg=64 cterm=NONE
 endif
-hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
-hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
-hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
-hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
+
+if has("gui_running")
+    set gcr=a:block
+    " mode aware cursors, change the color of the cursor based on current mode
+    set gcr+=o:hor50-Cursor
+    set gcr+=n:Cursor
+    set gcr+=i-ci-sm:InsertCursor
+    set gcr+=r-cr:ReplaceCursor-hor20
+    set gcr+=c:CommandCursor
+    set gcr+=v-ve:VisualCursor
+    set gcr+=a:blinkon0
+    hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
+    hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
+    hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
+    hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
+endif
 
 " Highlihgt extra space
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
