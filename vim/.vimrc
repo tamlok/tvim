@@ -56,7 +56,17 @@ function ShortTabLabel()
     let bufnrlist = tabpagebuflist(v:lnum)
     let label = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
     let filename = fnamemodify(label, ':t')
-    let ret = filename
+    if filename == ''
+        let filename = 'No Name'
+    endif
+    let ret = v:lnum.'. '.filename
+
+    for bufnr in bufnrlist
+        if getbufvar(bufnr, "&modified")
+            let ret .= ' *'
+            break
+        endif
+    endfor
     return ret
 endfunction
 
