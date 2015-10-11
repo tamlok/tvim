@@ -149,7 +149,7 @@ set directory=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
 set showmode	    " Display current mode in the message line
-"set relativenumber	" Display line number relative to current line
+set relativenumber	" Display line number relative to current line
 set number	        " Display absolute line number
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
@@ -253,10 +253,11 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " Section about changing color
 if current_color == "desert"
     hi LineNr guifg=DarkKhaki
+    hi StatusLine guifg=black guibg=LightPink1
 elseif current_color == "torte"
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
-    hi StatusLine ctermfg=16 ctermbg=144 cterm=NONE
+    hi StatusLine ctermfg=16 ctermbg=217 cterm=NONE
     hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
     hi Comment term=bold ctermfg=74 " 117
     hi Constant term=underline ctermfg=217
