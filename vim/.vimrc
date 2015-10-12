@@ -214,7 +214,8 @@ set statusline+=%*
 
 set statusline+=%h%m%r	" Help file flag, modified flag, read-only flag
 
-set statusline+=%=	" Left/right separator
+" set statusline+=%=	" Left/right separator
+set statusline+=\ \     " Two spaces
 " Cursor line / total lines Current column number and virtual column number
 set statusline+=%-14.(%l/%L,%c%V%)\ 
 set statusline+=%P	" Percentage in the file
