@@ -363,6 +363,8 @@ nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>r :cs find c <C-R>=expand("<cword>")<CR><CR>
 " Write to file
 nnoremap <leader>w :w<CR>
+" Quit window
+nnoremap <leader>q :q<CR>
 " Copy/paste to/from system clipboard
 vmap <leader>y "+y
 nmap <leader>y "+y
