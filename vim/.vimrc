@@ -283,6 +283,9 @@ if current_color == "desert"
     hi LineNr guifg=DarkKhaki
     " Or guibg=NavajoWhite1
     hi StatusLine guifg=black guibg=LightGoldenrod3
+    hi PmenuSel guifg=black guibg=LightGoldenrod3
+    " Or guibg=Plum3
+    hi Pmenu guifg=black guibg=RosyBrown
 elseif current_color == "torte"
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
@@ -296,6 +299,7 @@ elseif current_color == "torte"
     hi Special ctermfg=214
     hi NonText ctermfg=152 ctermbg=239
     hi Visual ctermfg=186 ctermbg=64 cterm=NONE
+    hi PmenuSel ctermfg=16 ctermbg=179 cterm=NONE
 endif
 
 if has("gui_running")
