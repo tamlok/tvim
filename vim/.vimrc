@@ -300,6 +300,7 @@ elseif current_color == "torte"
     hi NonText ctermfg=152 ctermbg=239
     hi Visual ctermfg=186 ctermbg=64 cterm=NONE
     hi PmenuSel ctermfg=16 ctermbg=179 cterm=NONE
+    hi Pmenu ctermfg=16 ctermbg=138
 endif
 
 if has("gui_running")
