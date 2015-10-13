@@ -165,8 +165,10 @@ set wildmode=list:longest " Complete only up to the point of ambiguity
 set title           " Set the terminal title
 
 " Store temp files in a central spot. Should mkdir ~/.vim_tmp
-set backupdir=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+if has("unix")
+    set backupdir=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+    set directory=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+endif
 
 " Display tabs and trailing spaces
 " set list
@@ -368,7 +370,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Select the text that was just pasted
 nnoremap <leader>v V`]
 " jj to Esc
-inoremap jj <ESC>
+" inoremap jj <ESC>
 " Split window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
