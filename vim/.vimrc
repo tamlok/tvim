@@ -286,6 +286,7 @@ if current_color == "desert"
     hi PmenuSel guifg=black guibg=LightGoldenrod3
     " Or guibg=Plum3
     hi Pmenu guifg=black guibg=RosyBrown
+    hi CursorLine guibg=Grey27
 elseif current_color == "torte"
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
