@@ -1,7 +1,7 @@
 " Vim Configurations by tamlok
 set nocompatible
 
-if has("unix")
+if isdirectory($HOME."/.vim/bundle/Vundle.vim")
     " Vundle
     " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     filetype off
