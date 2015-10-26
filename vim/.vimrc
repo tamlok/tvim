@@ -219,7 +219,7 @@ set statusline+=%h%m%r	" Help file flag, modified flag, read-only flag
 " set statusline+=%=	" Left/right separator
 set statusline+=\ \     " Two spaces
 " Cursor line / total lines Current column number and virtual column number
-set statusline+=%-14.(%l/%L,%c%V%)\ 
+set statusline+=%-14.(%l/%L,%c%V%)\  " Trailing space
 set statusline+=%P	" Percentage in the file
 
 set noerrorbells visualbell t_vb=
@@ -233,6 +233,8 @@ set cursorline      " Highlight current line
 
 " find command
 set path+=$PWD/**
+
+set history=200
 
 " GNU GLOBAL or cscope
 " Let cscope replace ctags
