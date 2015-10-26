@@ -353,15 +353,24 @@ cabbr lub LUBufs
 cabbr luw LUWalk
 
 map <space> <leader>
-map <C-down> <ESC>:bn<CR>
-map <C-up> <ESC>:bp<CR>
+
+" Buffers navigation
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+
 nmap <F7> :call DiffWithFileFromDisk()<cr>
 nmap <F8> :set paste!<CR>
+
 " Quickfix list navigation
-nmap <C-n> :cn<CR>
-nmap <C-p> :cp<CR>
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
 " Close Quickfix list
 nmap <C-x> :cclose<CR>
+
+" Tags list navigation
+nnoremap <silent> [t :tprevious<CR>
+nnoremap <silent> ]t :tnext<CR>
+
 nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>r :cs find c <C-R>=expand("<cword>")<CR><CR>
 " Write to file
