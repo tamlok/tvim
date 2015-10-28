@@ -160,7 +160,7 @@ set shiftwidth=8
 set noexpandtab     " Do not convert tabs to spaces
 
 set wildmenu        " Visual autocomplete for command menu
-set wildmode=list:longest " Complete only up to the point of ambiguity
+set wildmode=list:longest,full " Complete only up to the point of ambiguity
 
 set title           " Set the terminal title
 
