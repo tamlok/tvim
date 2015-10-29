@@ -12,6 +12,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim")
     Plugin 'gtags.vim'
     Plugin 'genutils'
     Plugin 'lookupfile'
+    Plugin 'tpope/vim-surround'
     call vundle#end()
 endif
 
