@@ -243,7 +243,7 @@ if has("unix")
 endif
 
 " let vim to source local .vimrc file with secure on
-set exrc
+" set exrc
 set secure
 
 " GNU GLOBAL or cscope
