@@ -246,6 +246,9 @@ endif
 " set exrc
 set secure
 
+" Enable matchit plugin to enable % to jump between keyword like if/end
+runtime macros/matchit.vim
+
 " GNU GLOBAL or cscope
 " Let cscope replace ctags
 " set cscopetag
