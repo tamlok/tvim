@@ -242,6 +242,10 @@ if has("unix")
     set ttymouse=xterm2
 endif
 
+" let vim to source local .vimrc file with secure on
+set exrc
+set secure
+
 " GNU GLOBAL or cscope
 " Let cscope replace ctags
 " set cscopetag
