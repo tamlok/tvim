@@ -236,6 +236,12 @@ set path+=$PWD/**
 
 set history=200
 
+" Enable mouse for both terminal and gui
+set mouse=nvc
+if has("unix")
+    set ttymouse=xterm2
+endif
+
 " GNU GLOBAL or cscope
 " Let cscope replace ctags
 " set cscopetag
