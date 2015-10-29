@@ -232,7 +232,7 @@ set foldmethod=indent   " Fold based on indent level
 set cursorline      " Highlight current line
 
 " find command
-set path+=$PWD/**
+execute "set path+=".getcwd()."/**"
 
 set history=200
 
