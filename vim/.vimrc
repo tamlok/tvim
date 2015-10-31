@@ -411,3 +411,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" For AutoClose plugin, insert an empty line before {}
+inoremap {<CR> {<CR>}<C-o>O
+function RecoverCR()
+    imap {<CR> {<CR>
+endfunction
+cabbr noclo call RecoverCR() \| AutoCloseOff
