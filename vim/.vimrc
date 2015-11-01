@@ -387,6 +387,10 @@ nmap <C-x> :cclose<CR>
 nnoremap <silent> [t :tprevious<CR>
 nnoremap <silent> ]t :tnext<CR>
 
+" Location list navigation
+nnoremap <silent> [l :lprevious<CR>
+nnoremap <silent> ]l :lnext<CR>
+
 nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>r :cs find c <C-R>=expand("<cword>")<CR><CR>
 " Write to file
