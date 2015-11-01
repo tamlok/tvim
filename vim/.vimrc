@@ -200,7 +200,9 @@ set wrapmargin=0
 set hidden
 
 "set formatoptions-=cro	" Disable auto inserting comment leader
-autocmd FileType * setlocal formatoptions-=ro
+if has("autocmd")
+    autocmd FileType * setlocal formatoptions-=ro
+endif
 
 " Statusline
 set laststatus=2	" Always display the statusline
@@ -340,9 +342,11 @@ endif
 
 " Highlihgt extra space
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
-:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-:autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-:autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+if has("autocmd")
+    :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    :autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    :autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+endif
 
 " Section about functions
 " Diff the file in current buffer with the file last saved
