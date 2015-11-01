@@ -31,7 +31,7 @@ function! ShortTabLine()
     let ret = ''
     for i in range(tabpagenr('$'))
         " Select the color group for highlighting active tab
-	" Or ctermbg=230
+        " Or ctermbg=230
         hi TabLineSelCus ctermfg=16 ctermbg=179 cterm=NONE
         if i + 1 == tabpagenr()
             let ret .= '%#TabLineSelCus#'
@@ -177,9 +177,9 @@ endif
 " set list
 " set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
-set showmode	    " Display current mode in the message line
-set relativenumber	" Display line number relative to current line
-set number	        " Display absolute line number
+set showmode        " Display current mode in the message line
+set relativenumber  " Display line number relative to current line
+set number          " Display absolute line number
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
 "set list lcs=tab:\|\   " Display Tab indent
@@ -193,24 +193,24 @@ set report=0
 set showmatch   " Highlight matched parentheses
 set matchtime=5 " Time for highlighting matched parentheses
 
-set textwidth=0	" Disable auto wrapping of long lines
+set textwidth=0 " Disable auto wrapping of long lines
 set wrapmargin=0
 
 " Allow modified buffer to be hidden
 set hidden
 
-"set formatoptions-=cro	" Disable auto inserting comment leader
+"set formatoptions-=cro " Disable auto inserting comment leader
 if has("autocmd")
     autocmd FileType * setlocal formatoptions-=ro
 endif
 
 " Statusline
-set laststatus=2	" Always display the statusline
-"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P	" The default status line
+set laststatus=2    " Always display the statusline
+"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P   " The default status line
 set statusline=
 set statusline+=%<
-set statusline+=[%n]\ 	" Buffer number
-set statusline+=%F\ 	" Full file path
+set statusline+=[%n]\   " Buffer number
+set statusline+=%F\     " Full file path
 
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
 
@@ -219,13 +219,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{&ff!='unix'?'['.&ff.']':''}
 set statusline+=%*
 
-set statusline+=%h%m%r	" Help file flag, modified flag, read-only flag
+set statusline+=%h%m%r  " Help file flag, modified flag, read-only flag
 
-" set statusline+=%=	" Left/right separator
+" set statusline+=%=    " Left/right separator
 set statusline+=\ \     " Two spaces
 " Cursor line / total lines Current column number and virtual column number
 set statusline+=%-14.(%l/%L,%c%V%)\  " Trailing space
-set statusline+=%P	" Percentage in the file
+set statusline+=%P      " Percentage in the file
 
 set noerrorbells visualbell t_vb=
 
