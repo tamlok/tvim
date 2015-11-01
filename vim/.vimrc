@@ -27,7 +27,7 @@ set t_Co=256
 set encoding=utf-8
 
 " Short tab line for vim
-function ShortTabLine()
+function! ShortTabLine()
     let ret = ''
     for i in range(tabpagenr('$'))
         " Select the color group for highlighting active tab
@@ -70,7 +70,7 @@ function ShortTabLine()
 endfunction
 
 " Short tab line for gvim
-function ShortTabLabel()
+function! ShortTabLabel()
     let bufnrlist = tabpagebuflist(v:lnum)
     let label = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
     let filename = fnamemodify(label, ':t')
@@ -350,7 +350,7 @@ endif
 
 " Section about functions
 " Diff the file in current buffer with the file last saved
-function DiffWithFileFromDisk()
+function! DiffWithFileFromDisk()
     let filename=expand('%')
     let diffname=filename.'.fileFromBuffer'
     exec 'saveas! '.diffname
@@ -422,7 +422,7 @@ nnoremap <C-l> <C-w>l
 
 " For AutoClose plugin, insert an empty line before {}
 inoremap {<CR> {<CR>}<C-o>O
-function RecoverCR()
+function! RecoverCR()
     imap {<CR> {<CR>
 endfunction
 " cabbr noclo call RecoverCR() \| AutoCloseOff
