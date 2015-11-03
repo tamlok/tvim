@@ -92,18 +92,15 @@ let current_color = ""
 
 " GUI
 if has("gui_running")
-    source $VIMRUNTIME/vimrc_example.vim
-
     set imcmdline
-    source $VIMRUNTIME/delmenu.vim
-    source $VIMRUNTIME/menu.vim
 
-    au GUIEnter * simalt ~x " Maximize the window at startup
     set guioptions-=m       " Hide menu bar
     set guioptions-=T       " Hide tool bar
     set guioptions-=L       " Hide leftside scroll bar
     set guioptions-=r       " Hide rightside scroll bar
     set guioptions-=b       " Hide bottom scroll bar
+
+    set gcr=a:block
 
     colorscheme desert
     let current_color = "desert"
@@ -242,9 +239,11 @@ execute "set path+=".getcwd()."/**"
 set history=200
 
 " Enable mouse for both terminal and gui
-set mouse=nvc
-if has("unix")
-    set ttymouse=xterm2
+if has("mouse")
+    set mouse=nvc
+    if has("unix")
+        set ttymouse=xterm2
+    endif
 endif
 
 " let vim to source local .vimrc file with secure on
@@ -325,7 +324,6 @@ elseif current_color == "torte"
 endif
 
 if has("gui_running")
-    set gcr=a:block
     " mode aware cursors, change the color of the cursor based on current mode
     set gcr+=o:hor50-Cursor
     set gcr+=n:Cursor
