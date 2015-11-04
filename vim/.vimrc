@@ -235,7 +235,7 @@ set foldmethod=indent   " Fold based on indent level
 set cursorline      " Highlight current line
 
 " find command
-execute "set path+=".getcwd()."/**"
+execute "set path+=".fnameescape(getcwd()."/**")
 
 set history=200
 
