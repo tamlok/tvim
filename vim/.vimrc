@@ -100,7 +100,8 @@ if has("gui_running")
     set guioptions-=r       " Hide rightside scroll bar
     set guioptions-=b       " Hide bottom scroll bar
 
-    set gcr=a:block
+    set guicursor=a:block
+    set guicursor=a:blinkon0
 
     colorscheme desert
     let current_color = "desert"
@@ -252,6 +253,9 @@ set secure
 
 " Enable matchit plugin to enable % to jump between keyword like if/end
 runtime macros/matchit.vim
+
+" Let backspace behave well in insert mode
+set backspace=indent,eol,start
 
 " GNU GLOBAL or cscope
 " Let cscope replace ctags
