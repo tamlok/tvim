@@ -338,7 +338,7 @@ function! InsertStatuslineColor(mode)
     if a:mode == 'r'
         hi StatusLine ctermbg=141 guibg=#af87ff
     else
-        hi StatusLine ctermbg=38 guibg=#5fafff
+        hi StatusLine ctermbg=43 guibg=#00d7af
     endif
 endfunction
 
