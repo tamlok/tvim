@@ -213,11 +213,12 @@ set statusline+=%F\     " Full file path
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
 
 " Display a warning if file format isn't unix
-set statusline+=%#warningmsg#
+set statusline+=%#StatuslineWarning#
 set statusline+=%{&ff!='unix'?'['.&ff.']':''}
 set statusline+=%*
 
-set statusline+=%h%m%r  " Help file flag, modified flag, read-only flag
+" Help file flag, modified flag, read-only flag
+set statusline+=%h%#Modifier#%m%*%r
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\ \     " Two spaces
@@ -325,7 +326,13 @@ elseif current_color == "torte"
     hi Visual ctermfg=186 ctermbg=64 cterm=NONE
     hi PmenuSel ctermfg=16 ctermbg=179 cterm=NONE
     hi Pmenu ctermfg=16 ctermbg=138
+    hi ColorColumn ctermbg=88
+    hi WarningMsg ctermfg=202
+    hi ErrorMsg ctermfg=15 ctermbg=160
+    hi Error ctermfg=15 ctermbg=160
 endif
+hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
+hi StatuslineWarning cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
 
 " Highlihgt extra space
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
