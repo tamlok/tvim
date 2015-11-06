@@ -305,8 +305,6 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " Section about changing color
 if current_color == "desert"
     hi LineNr guifg=DarkKhaki
-    " Or guibg=NavajoWhite1
-    hi StatusLine guifg=black guibg=LightGoldenrod3
     hi PmenuSel guifg=black guibg=LightGoldenrod3
     " Or guibg=Plum3
     hi Pmenu guifg=black guibg=RosyBrown
@@ -314,7 +312,6 @@ if current_color == "desert"
 elseif current_color == "torte"
     hi CursorLine term=NONE cterm=NONE ctermbg=238
     hi Search term=reverse ctermfg=229 ctermbg=136
-    hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE
     hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
     hi Comment term=bold ctermfg=74
     hi Constant term=underline ctermfg=217
@@ -333,6 +330,23 @@ elseif current_color == "torte"
 endif
 hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
 hi StatuslineWarning cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
+" Or guibg=NavajoWhite1
+hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE guifg=black guibg=LightGoldenrod3
+
+" Change StatueLine color according to the mode
+function! InsertStatuslineColor(mode)
+    if a:mode == 'r'
+        hi StatusLine ctermbg=141 guibg=#af87ff
+    else
+        hi StatusLine ctermbg=75 guibg=#5fafff
+    endif
+endfunction
+
+if has("autocmd")
+    au InsertEnter * call InsertStatuslineColor(v:insertmode)
+    au InsertChange * call InsertStatuslineColor(v:insertmode)
+    au InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
+endif
 
 " Highlihgt extra space
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
