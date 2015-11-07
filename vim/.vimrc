@@ -182,7 +182,9 @@ set number          " Display absolute line number
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
 "set list lcs=tab:\|\   " Display Tab indent
-set cc=81               " Highlight the 80th column
+" set cc=81               " Highlight the 81th column
+" Use -1 instead of 100 to let any matching to replace this matching
+call matchadd('ColorColumn', '\%81v', 100)
 
 set tags=./tags;/
 set autochdir
