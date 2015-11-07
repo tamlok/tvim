@@ -15,6 +15,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim")
     Plugin 'tpope/vim-surround'
     " Plugin 'Townk/vim-autoclose'
     Plugin 'closetag.vim'
+    Plugin 'terryma/vim-smooth-scroll'
     call vundle#end()
 endif
 
@@ -445,3 +446,11 @@ function! s:VSetSearch()
     let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
     let @s = temp
 endfunction
+
+" For smooth-scroll plugin
+if isdirectory($HOME."/.vim/bundle/vim-smooth-scroll")
+    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 10, 1)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 10, 1)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up(&scroll * 2 - 1, 10, 2)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down(&scroll * 2 - 1, 0, 2)<CR>
+endif
