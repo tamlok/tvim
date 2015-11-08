@@ -306,35 +306,37 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " End lookupfile
 
 " Section about changing color
-if current_color == "desert"
-    hi LineNr guifg=DarkKhaki
-    hi PmenuSel guifg=black guibg=LightGoldenrod3
-    " Or guibg=Plum3
-    hi Pmenu guifg=black guibg=RosyBrown
-    hi CursorLine guibg=Grey27
-elseif current_color == "torte"
-    hi CursorLine term=NONE cterm=NONE ctermbg=238
-    hi Search term=reverse ctermfg=229 ctermbg=136
-    hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
-    hi Comment term=bold ctermfg=74
-    hi Constant term=underline ctermfg=217
-    hi LineNr term=underline ctermfg=143
-    hi Folded ctermfg=220
-    hi FoldColumn ctermfg=220
-    hi Special ctermfg=214
-    hi NonText ctermfg=152 ctermbg=239
-    hi Visual ctermfg=186 ctermbg=64 cterm=NONE
-    hi PmenuSel ctermfg=16 ctermbg=179 cterm=NONE
-    hi Pmenu ctermfg=16 ctermbg=138
-    hi ColorColumn ctermbg=88
-    hi WarningMsg ctermfg=202
-    hi ErrorMsg ctermfg=15 ctermbg=160
-    hi Error ctermfg=15 ctermbg=160
-endif
-hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
-hi StatuslineWarning cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
-" Or guibg=NavajoWhite1
-hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE guifg=black guibg=LightGoldenrod3
+function! SetHighlight(current_color)
+    if a:current_color == "desert"
+        hi LineNr guifg=DarkKhaki
+        hi PmenuSel guifg=black guibg=LightGoldenrod3
+        " Or guibg=Plum3
+        hi Pmenu guifg=black guibg=RosyBrown
+        hi CursorLine guibg=Grey27
+    elseif a:current_color == "torte"
+        hi CursorLine term=NONE cterm=NONE ctermbg=238
+        hi Search term=reverse ctermfg=229 ctermbg=136
+        hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
+        hi Comment term=bold ctermfg=74
+        hi Constant term=underline ctermfg=217
+        hi LineNr term=underline ctermfg=143
+        hi Folded ctermfg=220
+        hi FoldColumn ctermfg=220
+        hi Special ctermfg=214
+        hi NonText ctermfg=152 ctermbg=239
+        hi Visual ctermfg=186 ctermbg=64 cterm=NONE
+        hi PmenuSel ctermfg=16 ctermbg=179 cterm=NONE
+        hi Pmenu ctermfg=16 ctermbg=138
+        hi ColorColumn ctermbg=88
+        hi WarningMsg ctermfg=202
+        hi ErrorMsg ctermfg=15 ctermbg=160
+        hi Error ctermfg=15 ctermbg=160
+    endif
+    hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
+    hi StatuslineWarning cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
+    " Or guibg=NavajoWhite1
+    hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE guifg=black guibg=LightGoldenrod3
+endfunction
 
 " Change StatueLine color according to the mode
 function! InsertStatuslineColor(mode)
@@ -349,6 +351,8 @@ if has("autocmd")
     au InsertEnter * call InsertStatuslineColor(v:insertmode)
     au InsertChange * call InsertStatuslineColor(v:insertmode)
     au InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
+    au VimEnter * call SetHighlight(current_color)
+    au SessionLoadPost * call SetHighlight(current_color)
 endif
 
 " Highlihgt extra space
