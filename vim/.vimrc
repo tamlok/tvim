@@ -350,6 +350,8 @@ function! SetHighlight(current_color)
         hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
         hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
     endif
+
+    hi WhiteOnRed ctermfg=white ctermbg=red guifg=white guibg=red
 endfunction
 
 " Change StatueLine color according to the mode
@@ -452,6 +454,20 @@ nnoremap <C-l> <C-w>l
 " Swap ; and :
 nnoremap ; :
 nnoremap : ;
+
+" Highlight matches when jumping to next
+nnoremap <silent> n   n:call HLNext(0.2)<CR>
+nnoremap <silent> N   N:call HLNext(0.2)<CR>
+function! HLNext(blinktime)
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#\%('.@/.'\)'
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
 
 " For AutoClose plugin, insert an empty line before {}
 inoremap {<CR> {<CR>}<C-o>O
