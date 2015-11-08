@@ -102,13 +102,13 @@ if has("gui_running")
     set guioptions-=b       " Hide bottom scroll bar
 
     set guicursor=a:block
-    set guicursor+=a:blinkon0
     set gcr+=o:hor50-Cursor
     set gcr+=n:Cursor
     set gcr+=i-ci-sm:InsertCursor
     set gcr+=r-cr:ReplaceCursor-hor20
     set gcr+=c:CommandCursor
     set gcr+=v-ve:VisualCursor
+    set guicursor+=a:blinkon0
 
     colorscheme desert
     let current_color = "desert"
