@@ -355,9 +355,9 @@ endfunction
 " Change StatueLine color according to the mode
 function! InsertStatuslineColor(mode)
     if a:mode == 'r'
-        hi StatusLine ctermbg=141 guibg=#af87ff
+        hi StatusLine ctermbg=139 guibg=#af87af
     else
-        hi StatusLine ctermbg=116 guibg=#87d7d7
+        hi StatusLine ctermbg=71 guibg=#5faf5f
     endif
 endfunction
 
