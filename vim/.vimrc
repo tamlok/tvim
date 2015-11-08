@@ -1,7 +1,7 @@
 " Vim Configurations by tamlok
 set nocompatible
 
-if isdirectory($HOME."/.vim/bundle/Vundle.vim")
+if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/plugin/Vundle.vim")
     " Vundle
     " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     filetype off
@@ -484,7 +484,7 @@ function! s:VSetSearch()
 endfunction
 
 " For smooth-scroll plugin
-if isdirectory($HOME."/.vim/bundle/vim-smooth-scroll")
+if isdirectory($HOME."/.vim/bundle/vim-smooth-scroll") || isdirectory($HOME."/vimfiles/plugin/vim-smooth-scroll")
     noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 10, 1)<CR>
     noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 10, 1)<CR>
     noremap <silent> <c-b> :call smooth_scroll#up(&scroll * 2 - 1, 10, 2)<CR>
