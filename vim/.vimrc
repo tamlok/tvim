@@ -89,8 +89,6 @@ function! ShortTabLabel()
     return ret
 endfunction
 
-let current_color = ""
-
 " GUI
 if has("gui_running")
     set imcmdline
@@ -111,7 +109,6 @@ if has("gui_running")
     set guicursor+=a:blinkon0
 
     colorscheme desert
-    let current_color = "desert"
 
     set guitablabel=%{ShortTabLabel()}
 
@@ -139,7 +136,6 @@ if has("gui_running")
     endif
 else
     colorscheme torte
-    let current_color = "torte"
     set tabline=%!ShortTabLine()
 endif
 
@@ -312,14 +308,14 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " End lookupfile
 
 " Section about changing color
-function! SetHighlight(current_color)
-    if a:current_color == "desert"
+function! SetHighlight()
+    if g:colors_name == "desert"
         hi LineNr guifg=DarkKhaki
         hi PmenuSel guifg=black guibg=LightGoldenrod3
         " Or guibg=Plum3
         hi Pmenu guifg=black guibg=RosyBrown
         hi CursorLine guibg=Grey27
-    elseif a:current_color == "torte"
+    elseif g:colors_name == "torte"
         hi CursorLine term=NONE cterm=NONE ctermbg=238
         hi Search term=reverse ctermfg=229 ctermbg=136
         hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
@@ -367,10 +363,10 @@ if has("autocmd")
     au InsertEnter * call InsertStatuslineColor(v:insertmode)
     au InsertChange * call InsertStatuslineColor(v:insertmode)
     au InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
-    au VimEnter * call SetHighlight(current_color)
-    au SessionLoadPost * call SetHighlight(current_color)
+    au VimEnter * call SetHighlight()
+    au SessionLoadPost * call SetHighlight()
 endif
-call SetHighlight(current_color)
+call SetHighlight()
 
 " Highlihgt extra space
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
