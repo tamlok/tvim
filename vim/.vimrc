@@ -158,10 +158,10 @@ set autoindent
 set cindent
 set smartindent
 
-set tabstop=8       " Number of visual spaces per TAB
-set softtabstop=8   " Number of spaces in tab when editing
-set shiftwidth=8
-set noexpandtab     " Do not convert tabs to spaces
+set tabstop=4       " Number of visual spaces per TAB
+set softtabstop=4   " Number of spaces in tab when editing
+set shiftwidth=4
+set expandtab     " convert tabs to spaces
 
 set wildmenu        " Visual autocomplete for command menu
 set wildmode=list:longest,full " Complete only up to the point of ambiguity
@@ -254,7 +254,7 @@ if has("mouse")
 endif
 
 " let vim to source local .vimrc file with secure on
-" set exrc
+set exrc
 set secure
 
 " Enable matchit plugin to enable % to jump between keyword like if/end
