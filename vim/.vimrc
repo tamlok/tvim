@@ -108,8 +108,6 @@ if has("gui_running")
     set gcr+=v-ve:VisualCursor
     set guicursor+=a:blinkon0
 
-    colorscheme desert
-
     set guitablabel=%{ShortTabLabel()}
 
     " Map <Ctrl+F2> to toggle the menu and toolbar
@@ -135,9 +133,19 @@ if has("gui_running")
         set guifont=Liberation\ Mono\ 11
     endif
 else
-    colorscheme torte
     set tabline=%!ShortTabLine()
 endif
+
+" Colorscheme
+try
+    colorscheme detorte
+catch /^Vim\%((\a\+)\)\=:E185/
+    if has("gui_running")
+        colorscheme desert
+    else
+        colorscheme torte
+    endif
+endtry
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
 set termencoding=UTF-8
@@ -308,8 +316,11 @@ let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " End lookupfile
 
 " Section about changing color
+" Notice: these highlights maybe obsolete, please use detorte scheme instead.
 function! SetHighlight()
-    if g:colors_name == "desert"
+    if g:colors_name == "detorte"
+        return
+    elseif g:colors_name == "desert"
         hi LineNr guifg=DarkKhaki
         hi PmenuSel guifg=black guibg=LightGoldenrod3
         " Or guibg=Plum3
