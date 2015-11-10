@@ -220,7 +220,9 @@ set laststatus=2    " Always display the statusline
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P   " The default status line
 set statusline=
 set statusline+=%<
-set statusline+=[%n]\   " Buffer number
+set statusline+=%#StatuslineBufNum#
+set statusline+=\ #%n\    " Buffer number
+set statusline+=%*
 set statusline+=%F\     " Full file path
 
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
@@ -349,6 +351,7 @@ function! SetHighlight()
     hi StatuslineWarning cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
     " Or guibg=NavajoWhite1
     hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE guifg=black guibg=LightGoldenrod3
+    hi StatuslineBufNum ctermbg=242 ctermfg=15 cterm=bold guibg=#6c6c6c guifg=#ffffff gui=bold
 
     " Mode-aware gui cursor highlight
     if has("gui_running")
