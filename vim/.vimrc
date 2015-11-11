@@ -350,7 +350,7 @@ function! SetHighlight()
     hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
     hi StatuslineWarning cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
     " Or guibg=NavajoWhite1
-    hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE guifg=black guibg=LightGoldenrod3
+    hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE guifg=black guibg=LightGoldenrod3 gui=none
     hi StatuslineBufNum ctermbg=242 ctermfg=15 cterm=bold guibg=#6c6c6c guifg=#ffffff gui=bold
 
     " Mode-aware gui cursor highlight
@@ -379,6 +379,7 @@ if has("autocmd")
     au InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
     au VimEnter * call SetHighlight()
     au SessionLoadPost * call SetHighlight()
+    au ColorScheme * call SetHighlight()
 endif
 call SetHighlight()
 
