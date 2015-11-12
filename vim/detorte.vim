@@ -30,7 +30,7 @@ hi StatusLine   guibg=LightGoldenrod3 guifg=black gui=none ctermbg=179 ctermfg=1
 hi StatusLineNC guibg=#c2bfa5 guifg=#262626 gui=none ctermbg=144 ctermfg=235 cterm=none
 hi Title    guifg=IndianRed ctermfg=167
 hi Visual   gui=none guifg=#ffffff guibg=olivedrab cterm=none ctermfg=15 ctermbg=64
-hi WarningMsg   guifg=#ff5f00 ctermfg=202
+hi WarningMsg   guifg=#ff5f87 ctermfg=204
 hi CursorLine   term=NONE cterm=NONE ctermbg=238 gui=none guibg=Grey27
 hi CursorLineNr term=bold cterm=bold ctermfg=226 gui=bold guifg=#ffff00
 hi PmenuSel ctermfg=16 ctermbg=220 cterm=NONE guifg=Black guibg=#ffdf00 gui=none
@@ -42,6 +42,7 @@ hi Error    guifg=White guibg=#d70000 ctermfg=15 ctermbg=160
 hi ColorColumn  ctermbg=240 guibg=#585858
 hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
 hi StatuslineWarning    cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
+hi StatuslineBufNum ctermbg=242 ctermfg=15 cterm=bold guibg=#6c6c6c guifg=#ffffff gui=bold
 hi Directory    ctermfg=50 guifg=#00eeee
 
 " Mode-aware cursor color
@@ -56,10 +57,10 @@ hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
 " Syntax highlights
 hi Special  ctermfg=214 guifg=#ffaf00
 hi Comment  term=bold ctermfg=80 guifg=#5fd7d7
-hi Constant term=underline ctermfg=217 guifg=#ffafaf
-hi Identifier   guifg=#00ffff ctermfg=14
-hi Statement    guifg=#ffff00 ctermfg=226
-hi PreProc  guifg=#ff87ff ctermfg=213
-hi Type	    guifg=#00ff5f gui=bold ctermfg=47 cterm=bold
-hi Todo	    ctermfg=16 ctermbg=11 guifg=#000000 guibg=#ffff00
+hi Constant term=underline ctermfg=210 guifg=#ff8787
+hi Identifier   guifg=#00d7ff gui=none ctermfg=45 cterm=none
+hi Statement    guifg=#ffdf5f ctermfg=221
+hi PreProc  guifg=#ff5fdf ctermfg=206
+hi Type	    guifg=#00d787 gui=bold ctermfg=42 cterm=bold
+hi Todo	    ctermfg=118 ctermbg=124 cterm=bold guifg=#87ff00 guibg=#af0000 gui=bold
 
