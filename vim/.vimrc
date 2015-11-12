@@ -462,9 +462,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" Swap ; and :
-nnoremap ; :
-nnoremap : ;
 
 " For AutoClose plugin, insert an empty line before {}
 inoremap {<CR> {<CR>}<C-o>O
