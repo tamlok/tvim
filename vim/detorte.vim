@@ -56,9 +56,9 @@ hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
 
 " Syntax highlights
 hi Special  ctermfg=214 guifg=#ffaf00
-hi Comment  term=bold ctermfg=80 guifg=#5fd7d7
+hi Comment  term=bold ctermfg=101 guifg=#87875f
 hi Constant term=underline ctermfg=210 guifg=#ff8787
-hi Identifier   guifg=#00d7ff gui=none ctermfg=45 cterm=none
+hi Identifier   guifg=#00ffff gui=none ctermfg=51 cterm=none
 hi Statement    guifg=#ffdf5f ctermfg=221
 hi PreProc  guifg=#ff5fdf ctermfg=206
 hi Type	    guifg=#00d787 gui=bold ctermfg=42 cterm=bold
