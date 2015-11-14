@@ -24,7 +24,6 @@ filetype plugin on
 filetype indent on
 
 set background=dark
-set t_Co=256
 set encoding=utf-8
 
 " Short tab line for vim
