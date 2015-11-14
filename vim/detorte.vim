@@ -56,10 +56,10 @@ hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
 
 " Syntax highlights
 hi Special  ctermfg=214 guifg=#ffaf00
-hi Comment  term=bold ctermfg=101 guifg=#87875f
+hi Comment  term=bold ctermfg=143 guifg=#afaf5f
 hi Constant term=underline ctermfg=210 guifg=#ff8787
 hi Identifier   guifg=#00ffff gui=none ctermfg=51 cterm=none
-hi Statement    guifg=#ffdf5f ctermfg=221
+hi Statement    guifg=#ffdf5f gui=bold ctermfg=221 cterm=bold
 hi PreProc  guifg=#ff5fdf ctermfg=206
 hi Type	    guifg=#00d787 gui=bold ctermfg=42 cterm=bold
 hi Todo	    ctermfg=118 ctermbg=124 cterm=bold guifg=#87ff00 guibg=#af0000 gui=bold
