@@ -452,7 +452,7 @@ nmap <leader>y "+y
 nmap <leader>p "+p
 nmap <leader>P "+P
 " n<Enter> to go to line n
-nnoremap <CR> G
+" nnoremap <CR> G
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " Select the text that was just pasted
