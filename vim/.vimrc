@@ -446,6 +446,9 @@ nmap <leader>r :cs find c <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>w :w<CR>
 " Quit window
 nnoremap <leader>q :q<CR>
+" Reload current file
+nnoremap <leader>e :e<CR>
+
 " Copy/paste to/from system clipboard
 vmap <leader>y "+y
 nmap <leader>y "+y
