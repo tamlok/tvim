@@ -199,7 +199,10 @@ set cc=81               " Highlight the 81th column
 " call matchadd('ColorColumn', '\%81v', 100)
 
 set tags=./tags;/
-set autochdir
+
+" Automatically change current working directory when opening file or
+" switching buffers.
+" set autochdir
 
 set confirm     " Ask for confirmation when handling unsaved or read-only files
 set report=0
