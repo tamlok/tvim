@@ -97,6 +97,7 @@ if has("gui_running")
     set guioptions-=L       " Hide leftside scroll bar
     set guioptions-=r       " Hide rightside scroll bar
     set guioptions-=b       " Hide bottom scroll bar
+    set guioptions+=c       " Use console dialog
 
     set guicursor=a:block
     set gcr+=o:hor50-Cursor
@@ -451,6 +452,12 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 " Reload current file
 nnoremap <leader>e :e<CR>
+" LookupFile
+nnoremap <leader>f :LookupFile<CR>
+" Redraw the screen
+nnoremap <leader>l :redraw<CR>
+" Open a new tab
+nnoremap <leader>t :tabedit<CR>
 
 " Copy/paste to/from system clipboard
 vmap <leader>y "+y
