@@ -505,3 +505,9 @@ if isdirectory($HOME."/.vim/bundle/vim-smooth-scroll") || isdirectory($HOME."/vi
     noremap <silent> <c-b> :call smooth_scroll#up(&scroll * 2 - 1, 10, 2)<CR>
     noremap <silent> <c-f> :call smooth_scroll#down(&scroll * 2 - 1, 0, 2)<CR>
 endif
+
+" Alternate between current and the last-active tabs
+let g:lasttab = 1
+nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
