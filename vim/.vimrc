@@ -15,7 +15,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'tpope/vim-surround'
     " Plugin 'Townk/vim-autoclose'
     Plugin 'closetag.vim'
-    Plugin 'terryma/vim-smooth-scroll'
+    " Plugin 'terryma/vim-smooth-scroll'
     Plugin 'majutsushi/tagbar'
     call vundle#end()
 endif
@@ -501,14 +501,6 @@ function! s:VSetSearch()
     let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
     let @s = temp
 endfunction
-
-" For smooth-scroll plugin
-if isdirectory($HOME."/.vim/bundle/vim-smooth-scroll") || isdirectory($HOME."/vimfiles/plugin/vim-smooth-scroll")
-    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 10, 1)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 10, 1)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up(&scroll * 2 - 1, 10, 2)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down(&scroll * 2 - 1, 0, 2)<CR>
-endif
 
 " Alternate between current and the last-active tabs
 let g:lasttab = 1
