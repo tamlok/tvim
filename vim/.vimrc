@@ -10,6 +10,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gtags.vim'
+    "Needed by Lookupfile plugin
     Plugin 'genutils'
     Plugin 'lookupfile'
     Plugin 'tpope/vim-surround'
@@ -418,9 +419,11 @@ cabbr fms set foldmethod=syntax
 cabbr gta Gtags
 cabbr gtr Gtags -r
 cabbr csf cs find
-cabbr luf LookupFile
+
+" For Lookupfile plugin
 cabbr lub LUBufs
 cabbr luw LUWalk
+
 " For Tagbar plugin
 cabbr tbt TagbarToggle
 cabbr tboa TagbarOpenAutoClose
@@ -456,8 +459,10 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 " Reload current file
 nnoremap <leader>e :e<CR>
-" LookupFile
+
+" For LookupFile plugin
 nnoremap <leader>f :LookupFile<CR>
+
 " Redraw the screen
 nnoremap <leader>l :redraw<CR>
 " Open a new tab
