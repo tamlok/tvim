@@ -16,6 +16,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     " Plugin 'Townk/vim-autoclose'
     Plugin 'closetag.vim'
     Plugin 'terryma/vim-smooth-scroll'
+    Plugin 'majutsushi/tagbar'
     call vundle#end()
 endif
 
@@ -420,6 +421,9 @@ cabbr csf cs find
 cabbr luf LookupFile
 cabbr lub LUBufs
 cabbr luw LUWalk
+" For Tagbar plugin
+cabbr tbt TagbarToggle
+cabbr tboa TagbarOpenAutoClose
 
 map <space> <leader>
 
@@ -511,3 +515,5 @@ let g:lasttab = 1
 nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
+" For Tagbar plugin
+nnoremap <leader>ct :TagbarCurrentTag s<CR>
