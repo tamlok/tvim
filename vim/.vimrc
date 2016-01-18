@@ -18,6 +18,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'closetag.vim'
     " Plugin 'terryma/vim-smooth-scroll'
     Plugin 'majutsushi/tagbar'
+    Plugin 'Yggdroot/LeaderF'
     call vundle#end()
 endif
 
@@ -421,6 +422,7 @@ cabbr gtr Gtags -r
 cabbr csf cs find
 
 " For Lookupfile plugin
+cabbr luf LookupFile
 cabbr lub LUBufs
 cabbr luw LUWalk
 
@@ -459,9 +461,6 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 " Reload current file
 nnoremap <leader>e :e<CR>
-
-" For LookupFile plugin
-nnoremap <leader>f :LookupFile<CR>
 
 " Redraw the screen
 nnoremap <leader>l :redraw<CR>
