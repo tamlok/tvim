@@ -258,6 +258,7 @@ set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " Fold based on indent level
 set cursorline      " Highlight current line
+set cursorcolumn    " Highlight current column
 
 " find command
 execute "set path+=".fnameescape(getcwd()."/**")
@@ -412,6 +413,13 @@ function! DiffWithFileFromDisk()
     diffthis
 endfunction
 
+" Change highlights to a darker mode
+function! ChangeDarkHighlightMode()
+    hi Normal guifg=White guibg=#262626 ctermfg=255 ctermbg=235
+    hi CursorColumn ctermbg=236 guibg=#303030
+    hi CursorLine term=NONE cterm=NONE ctermbg=237 gui=none guibg=#3a3a3a
+endfunction
+
 " Section about Key mapping and Abbreviation
 " Abbr to change to expanding tab with 4 spaces
 cabbr extab set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab
@@ -420,6 +428,7 @@ cabbr fms set foldmethod=syntax
 cabbr gta Gtags
 cabbr gtr Gtags -r
 cabbr csf cs find
+cabbr hidark call ChangeDarkHighlightMode()
 
 " For Lookupfile plugin
 cabbr luf LookupFile

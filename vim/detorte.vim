@@ -12,7 +12,7 @@ endif
 
 let g:colors_name = "detorte"
 
-hi Normal   guifg=White guibg=#262626 ctermfg=255 ctermbg=235
+hi Normal   guifg=White guibg=#303030 ctermfg=255 ctermbg=236
 
 hi Cursor   guibg=#ffff87 guifg=#005f5f ctermbg=228 ctermfg=23
 hi VertSplit    guibg=#c2bfa5 guifg=grey50 gui=none
@@ -31,7 +31,7 @@ hi StatusLineNC guibg=#c2bfa5 guifg=#262626 gui=none ctermbg=144 ctermfg=235 cte
 hi Title    guifg=IndianRed ctermfg=167
 hi Visual   gui=none guifg=#ffffff guibg=olivedrab cterm=none ctermfg=15 ctermbg=64
 hi WarningMsg   guifg=#ff5f87 ctermfg=204
-hi CursorLine   term=NONE cterm=NONE ctermbg=237 gui=none guibg=#3a3a3a
+hi CursorLine   term=NONE cterm=NONE ctermbg=238 gui=none guibg=#444444
 hi CursorLineNr term=bold cterm=bold ctermfg=226 gui=bold guifg=#ffff00
 hi PmenuSel ctermfg=16 ctermbg=220 cterm=NONE guifg=Black guibg=#ffdf00 gui=none
 hi Pmenu    ctermfg=16 ctermbg=250 guifg=Black guibg=#bcbcbc
@@ -44,6 +44,7 @@ hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
 hi StatuslineWarning    cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
 hi StatuslineBufNum ctermbg=242 ctermfg=15 cterm=bold guibg=#6c6c6c guifg=#ffffff gui=bold
 hi Directory    ctermfg=50 guifg=#00eeee
+hi CursorColumn ctermbg=237 guibg=#3a3a3a
 
 " Mode-aware cursor color
 hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
