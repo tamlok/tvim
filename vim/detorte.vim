@@ -52,7 +52,6 @@ hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
 hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
 hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
 
-hi WhiteOnRed ctermfg=White ctermbg=Red guifg=white guibg=red
 hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
 
 " Syntax highlights

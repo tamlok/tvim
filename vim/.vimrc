@@ -370,8 +370,6 @@ function! SetHighlight()
         hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
         hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
     endif
-
-    hi WhiteOnRed ctermfg=white ctermbg=red guifg=white guibg=red
 endfunction
 
 " Change StatueLine color according to the mode
