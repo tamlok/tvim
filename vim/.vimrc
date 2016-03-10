@@ -420,24 +420,30 @@ function! ChangeDarkHighlightMode()
     hi CursorLine term=NONE cterm=NONE ctermbg=237 gui=none guibg=#3a3a3a
 endfunction
 
+" Define abbr for only ':' command mode
+function! CommandAbbr(abbr, cmd)
+    exec "cabbr <expr> " . a:abbr . " getcmdtype() == ':' ? '" . a:cmd . "' : '" . a:abbr . "'"
+endfunction
+
 " Section about Key mapping and Abbreviation
 " Abbr to change to expanding tab with 4 spaces
-cabbr extab set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab
-cabbr noextab set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab
-cabbr fms set foldmethod=syntax
-cabbr gta Gtags
-cabbr gtr Gtags -r
-cabbr csf cs find
-cabbr hidark call ChangeDarkHighlightMode()
+call CommandAbbr('extab', 'set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab')
+call CommandAbbr('noextab', 'set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab')
+
+call CommandAbbr('fms', 'set foldmethod=syntax')
+call CommandAbbr('gta', 'Gtags')
+call CommandAbbr('gtr', 'Gtags -r')
+call CommandAbbr('csf', 'cscope find')
+call CommandAbbr('hidark', 'call ChangeDarkHighlightMode()')
 
 " For Lookupfile plugin
-cabbr luf LookupFile
-cabbr lub LUBufs
-cabbr luw LUWalk
+call CommandAbbr('luf', 'LookupFile')
+call CommandAbbr('lub', 'LUBufs')
+call CommandAbbr('luw', 'LUWalk')
 
 " For Tagbar plugin
-cabbr tbt TagbarToggle
-cabbr tboa TagbarOpenAutoClose
+call CommandAbbr('tbt', 'TagbarToggle')
+call CommandAbbr('tboa', 'TagbarOpenAutoClose')
 
 map <space> <leader>
 
@@ -497,13 +503,12 @@ nnoremap <C-l> <C-w>l
 " Set current split to 100 line width, like Zooming
 nnoremap <leader>z 100<C-w>\|
 
-" For AutoClose plugin, insert an empty line before {}
+" Insert an empty line before {}
 inoremap {<CR> {<CR>}<C-o>O
 function! RecoverCR()
     imap {<CR> {<CR>
 endfunction
-" cabbr noclo call RecoverCR() \| AutoCloseOff
-cabbr noclo call RecoverCR()
+call CommandAbbr('noclo', 'call RecoverCR()')
 
 " Search for selected text
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
