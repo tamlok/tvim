@@ -418,6 +418,7 @@ function! ChangeDarkHighlightMode()
     hi Normal guifg=White guibg=#262626 ctermfg=255 ctermbg=235
     hi CursorColumn ctermbg=236 guibg=#303030
     hi CursorLine term=NONE cterm=NONE ctermbg=237 gui=none guibg=#3a3a3a
+    hi ColorColumn ctermbg=238 guibg=#444444
 endfunction
 
 " Define abbr for only ':' command mode
