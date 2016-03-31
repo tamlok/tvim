@@ -327,51 +327,6 @@ endfunction
 let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
 " End lookupfile
 
-" Section about changing color
-" Notice: these highlights maybe obsolete, please use detorte scheme instead.
-function! SetHighlight()
-    if g:colors_name == "detorte"
-        return
-    elseif g:colors_name == "desert"
-        hi LineNr guifg=DarkKhaki
-        hi PmenuSel guifg=black guibg=LightGoldenrod3
-        " Or guibg=Plum3
-        hi Pmenu guifg=black guibg=RosyBrown
-        hi CursorLine guibg=Grey27
-    elseif g:colors_name == "torte"
-        hi CursorLine term=NONE cterm=NONE ctermbg=238
-        hi Search term=reverse ctermfg=229 ctermbg=136
-        hi StatusLineNC ctermfg=244 ctermbg=144 cterm=NONE
-        hi Comment term=bold ctermfg=74
-        hi Constant term=underline ctermfg=217
-        hi LineNr term=underline ctermfg=143
-        hi Folded ctermfg=220
-        hi FoldColumn ctermfg=220
-        hi Special ctermfg=214
-        hi NonText ctermfg=152 ctermbg=239
-        hi Visual ctermfg=186 ctermbg=64 cterm=NONE
-        hi PmenuSel ctermfg=16 ctermbg=179 cterm=NONE
-        hi Pmenu ctermfg=16 ctermbg=138
-        hi WarningMsg ctermfg=202
-        hi ErrorMsg ctermfg=15 ctermbg=160
-        hi Error ctermfg=15 ctermbg=160
-    endif
-    hi ColorColumn ctermbg=240 guibg=#585858
-    hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
-    hi StatuslineWarning cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
-    " Or guibg=NavajoWhite1
-    hi StatusLine ctermfg=16 ctermbg=179 cterm=NONE guifg=black guibg=LightGoldenrod3 gui=none
-    hi StatuslineBufNum ctermbg=242 ctermfg=15 cterm=bold guibg=#6c6c6c guifg=#ffffff gui=bold
-
-    " Mode-aware gui cursor highlight
-    if has("gui_running")
-        hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
-        hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
-        hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
-        hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
-    endif
-endfunction
-
 " Change StatueLine color according to the mode
 function! InsertStatuslineColor(mode)
     if a:mode == 'r'
@@ -385,11 +340,7 @@ if has("autocmd")
     au InsertEnter * call InsertStatuslineColor(v:insertmode)
     au InsertChange * call InsertStatuslineColor(v:insertmode)
     au InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
-    au VimEnter * call SetHighlight()
-    au SessionLoadPost * call SetHighlight()
-    au ColorScheme * call SetHighlight()
 endif
-call SetHighlight()
 
 " Highlihgt extra space
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
