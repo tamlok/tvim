@@ -193,7 +193,7 @@ endif
 " set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
 set showmode        " Display current mode in the message line
-set relativenumber  " Display line number relative to current line
+" set relativenumber  " Display line number relative to current line
 set number          " Display absolute line number
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
@@ -258,7 +258,9 @@ set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " Fold based on indent level
 set cursorline      " Highlight current line
-set cursorcolumn    " Highlight current column
+" set cursorcolumn    " Highlight current column
+
+set ttyfast             " Indicates a fast terminal connection
 
 " find command
 execute "set path+=".fnameescape(getcwd()."/**")
