@@ -143,15 +143,17 @@ else
 endif
 
 " Colorscheme
-try
-    colorscheme detorte
-catch /^Vim\%((\a\+)\)\=:E185/
-    if has("gui_running")
-        colorscheme desert
-    else
-        colorscheme torte
-    endif
-endtry
+if &t_Co >= 256 || has("gui_running")
+    try
+        colorscheme detorte
+    catch /^Vim\%((\a\+)\)\=:E185/
+        if has("gui_running")
+            colorscheme desert
+        else
+            colorscheme torte
+        endif
+    endtry
+endif
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
 set termencoding=UTF-8
@@ -477,7 +479,9 @@ endfunction
 " Alternate between current and the last-active tabs
 let g:lasttab = 1
 nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
+if has('autocmd')
+    au TabLeave * let g:lasttab = tabpagenr()
+endif
 
 " For Tagbar plugin
 nnoremap <leader>ct :TagbarCurrentTag s<CR>
