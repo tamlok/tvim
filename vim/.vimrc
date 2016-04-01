@@ -202,6 +202,8 @@ set cc=81               " Highlight the 81th column
 " Use -1 instead of 100 to let any matching to replace this matching
 " call matchadd('ColorColumn', '\%81v', 100)
 
+set complete-=i     " Do not scan included files in completion
+
 set tags=./tags;/
 
 " Automatically change current working directory when opening file or
