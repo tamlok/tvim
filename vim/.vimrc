@@ -407,8 +407,8 @@ map <space> <leader>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 
-nmap <F7> :call DiffWithFileFromDisk()<cr>
-nmap <F8> :set paste!<CR>
+nmap <F2> :call DiffWithFileFromDisk()<cr>
+nmap <F3> :set paste!<CR>
 
 " Quickfix list navigation
 nnoremap <silent> [q :cprevious<CR>
