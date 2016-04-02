@@ -356,32 +356,11 @@ if has("autocmd")
     :autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 endif
 
-" Section about functions
-" Diff the file in current buffer with the file last saved
-function! DiffWithFileFromDisk()
-    let filename=expand('%')
-    let diffname=filename.'.fileFromBuffer'
-    exec 'saveas! '.diffname
-    diffthis
-    vsplit
-    exec 'edit '.filename
-    diffthis
-endfunction
-
-" Change highlights to a darker mode
-function! ChangeDarkHighlightMode()
-    hi Normal guifg=White guibg=#262626 ctermfg=255 ctermbg=235
-    hi CursorColumn ctermbg=236 guibg=#303030
-    hi CursorLine term=NONE cterm=NONE ctermbg=237 gui=none guibg=#3a3a3a
-    hi ColorColumn ctermbg=238 guibg=#444444
-endfunction
-
 " Define abbr for only ':' command mode
 function! CommandAbbr(abbr, cmd)
     exec "cabbr <expr> " . a:abbr . " getcmdtype() == ':' ? '" . a:cmd . "' : '" . a:abbr . "'"
 endfunction
 
-" Section about Key mapping and Abbreviation
 " Abbr to change to expanding tab with 4 spaces
 call CommandAbbr('extab', 'set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab')
 call CommandAbbr('noextab', 'set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab')
@@ -390,6 +369,14 @@ call CommandAbbr('fms', 'set foldmethod=syntax')
 call CommandAbbr('gta', 'Gtags')
 call CommandAbbr('gtr', 'Gtags -r')
 call CommandAbbr('csf', 'cscope find')
+
+" Change highlights to a darker mode
+function! ChangeDarkHighlightMode()
+    hi Normal guifg=White guibg=#262626 ctermfg=255 ctermbg=235
+    hi CursorColumn ctermbg=236 guibg=#303030
+    hi CursorLine term=NONE cterm=NONE ctermbg=237 gui=none guibg=#3a3a3a
+    hi ColorColumn ctermbg=238 guibg=#444444
+endfunction
 call CommandAbbr('hidark', 'call ChangeDarkHighlightMode()')
 
 " For Lookupfile plugin
@@ -407,6 +394,16 @@ map <space> <leader>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 
+" Diff the file in current buffer with the file last saved
+function! DiffWithFileFromDisk()
+    let filename=expand('%')
+    let diffname=filename.'.fileFromBuffer'
+    exec 'saveas! '.diffname
+    diffthis
+    vsplit
+    exec 'edit '.filename
+    diffthis
+endfunction
 nmap <F2> :call DiffWithFileFromDisk()<cr>
 nmap <F3> :set paste!<CR>
 
@@ -467,14 +464,14 @@ endfunction
 call CommandAbbr('noclo', 'call RecoverCR()')
 
 " Search for selected text
-xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 function! s:VSetSearch()
     let temp = @s
     norm! gv"sy
     let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
     let @s = temp
 endfunction
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 
 " Alternate between current and the last-active tabs
 let g:lasttab = 1
