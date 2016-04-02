@@ -407,6 +407,23 @@ endfunction
 nmap <F2> :call DiffWithFileFromDisk()<cr>
 nmap <F3> :set paste!<CR>
 
+let s:mouse_setting = &mouse
+" Toggle mouse mode
+function! ToggleMouse()
+    if !has("mouse")
+        return
+    endif
+
+    if &mouse == ""
+        let &mouse = s:mouse_setting
+        echo "Using mouse for Vim"
+    else
+        set mouse=
+        echo "Using mouse for system"
+    endif
+endfunction
+nmap <F4> :call ToggleMouse()<cr>
+
 " Quickfix list navigation
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
