@@ -379,6 +379,8 @@ function! ChangeDarkHighlightMode()
 endfunction
 call CommandAbbr('hidark', 'call ChangeDarkHighlightMode()')
 
+map <space> <leader>
+
 " For Lookupfile plugin
 call CommandAbbr('luf', 'LookupFile')
 call CommandAbbr('lub', 'LUBufs')
@@ -387,8 +389,7 @@ call CommandAbbr('luw', 'LUWalk')
 " For Tagbar plugin
 call CommandAbbr('tbt', 'TagbarToggle')
 call CommandAbbr('tboa', 'TagbarOpenAutoClose')
-
-map <space> <leader>
+nnoremap <leader>tc :TagbarCurrentTag s<CR>
 
 " Buffers navigation
 nnoremap <silent> [b :bprevious<CR>
@@ -438,33 +439,36 @@ nnoremap <silent> ]t :tnext<CR>
 nnoremap <silent> [l :lprevious<CR>
 nnoremap <silent> ]l :lnext<CR>
 
-nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>r :cs find c <C-R>=expand("<cword>")<CR><CR>
+" Cscope keybindings
+nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+
 " Write to file
 nnoremap <leader>w :w<CR>
 " Quit window
 nnoremap <leader>q :q<CR>
 " Reload current file
 nnoremap <leader>e :e<CR>
-
 " Redraw the screen
 nnoremap <leader>l :redraw<CR>
 " Open a new tab
-nnoremap <leader>t :tabedit<CR>
+nnoremap <leader>te :tabedit<CR>
 
 " Copy/paste to/from system clipboard
 vmap <leader>y "+y
 nmap <leader>y "+y
 nmap <leader>p "+p
 nmap <leader>P "+P
+
 " n<Enter> to go to line n
 " nnoremap <CR> G
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " Select the text that was just pasted
 nnoremap <leader>v V`]
-" jj to Esc
-" inoremap jj <ESC>
+
 " Split window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -492,10 +496,7 @@ xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 
 " Alternate between current and the last-active tabs
 let g:lasttab = 1
-nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
+nnoremap <leader>tl :exe "tabn ".g:lasttab<CR>
 if has('autocmd')
     au TabLeave * let g:lasttab = tabpagenr()
 endif
-
-" For Tagbar plugin
-nnoremap <leader>ct :TagbarCurrentTag s<CR>
