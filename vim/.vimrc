@@ -196,7 +196,7 @@ endif
 
 set showmode        " Display current mode in the message line
 " set relativenumber  " Display line number relative to current line
-set number          " Display absolute line number
+" set number          " Display absolute line number
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
 "set list lcs=tab:\|\   " Display Tab indent
@@ -257,7 +257,7 @@ set statusline+=%P      " Percentage in the file
 set noerrorbells visualbell t_vb=
 
 set foldenable      " Enable folding
-set foldcolumn=2
+" set foldcolumn=2  " Column to show the hints for folding
 set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " Fold based on indent level
