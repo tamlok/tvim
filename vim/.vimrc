@@ -117,10 +117,6 @@ if has("gui_running")
                             \set guioptions+=m <Bar>
                         \endif<CR>
 
-    if has('autocmd')
-        autocmd GUIEnter * set visualbell t_vb=
-    endif
-
     if has("win16") || has("win32") || has("win64") || has("win95")
         set langmenu=zh_CN.UTF-8
         language message zh_CN.UTF-8
@@ -156,10 +152,6 @@ set termencoding=UTF-8
 if has("syntax")
     syntax enable " Enable syntax processing
     syntax on
-endif
-
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 set ruler       " Display the ruler
@@ -218,10 +210,8 @@ set wrapmargin=0
 " Allow modified buffer to be hidden
 set hidden
 
-"set formatoptions-=cro " Disable auto inserting comment leader
-if has("autocmd")
-    autocmd FileType * setlocal formatoptions-=ro
-endif
+" Disable auto inserting comment leader one by one
+set formatoptions-=c formatoptions-=o formatoptions-=r
 
 " Statusline
 set laststatus=2    " Always display the statusline
@@ -249,6 +239,7 @@ set statusline+=\ \     " Two spaces
 set statusline+=%-14.(%l/%L,%c%V%)\  " Trailing space
 set statusline+=%P      " Percentage in the file
 
+" Valid in terminal. Need to set it again after GUI enter.
 set noerrorbells visualbell t_vb=
 
 set foldenable      " Enable folding
@@ -304,19 +295,8 @@ function! InsertStatuslineColor(mode)
     endif
 endfunction
 
-if has("autocmd")
-    au InsertEnter * call InsertStatuslineColor(v:insertmode)
-    au InsertChange * call InsertStatuslineColor(v:insertmode)
-    au InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
-endif
-
-" Highlihgt extra space
+" Highlihgt of extra space
 hi ExtraWhitespace ctermbg=202 guibg=orangered1
-if has("autocmd")
-    :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    :autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    :autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-endif
 
 " Define abbr for only ':' command mode
 function! CommandAbbr(abbr, cmd)
@@ -458,6 +438,31 @@ xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 " Alternate between current and the last-active tabs
 let g:lasttab = 1
 nnoremap <leader>tl :exe "tabn ".g:lasttab<CR>
+
+" Section about autocmd
 if has('autocmd')
-    au TabLeave * let g:lasttab = tabpagenr()
+    augroup other_group
+        autocmd!
+        if has("gui_running")
+            " Starting GUI will reset t_vb, so need to set it again
+            autocmd GUIEnter * set visualbell t_vb=
+        endif
+        " Disable auto inserting command leader one by one.
+        " The ftplugin may set the option, so we need to set it again.
+        autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
+        " Jump to the last position when reopening a file
+        autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+        " Remember the last-active tab
+        autocmd TabLeave * let g:lasttab = tabpagenr()
+    augroup END
+
+    augroup highlight_group
+        autocmd!
+        autocmd InsertEnter * call InsertStatuslineColor(v:insertmode)
+        autocmd InsertChange * call InsertStatuslineColor(v:insertmode)
+        autocmd InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
+        autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+        autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+        autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    augroup END
 endif
