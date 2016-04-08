@@ -10,13 +10,8 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gtags.vim'
-    "Needed by Lookupfile plugin
-    Plugin 'genutils'
-    Plugin 'lookupfile'
     Plugin 'tpope/vim-surround'
-    " Plugin 'Townk/vim-autoclose'
     Plugin 'closetag.vim'
-    " Plugin 'terryma/vim-smooth-scroll'
     Plugin 'majutsushi/tagbar'
     Plugin 'Yggdroot/LeaderF'
     call vundle#end()
@@ -300,39 +295,6 @@ if has("unix") && filereadable("/usr/bin/gtags-cscope")
     let GtagsCscope_Quiet=1
 endif
 
-" Lookupfile
-let g:LookupFile_MinPatLength=2
-let g:LookupFile_PreserveLastPattern=0
-let g:LookupFile_PreservePatternHistory=1
-let g:LookupFile_AlwaysAcceptFirst=1
-let g:LookupFile_AllowNewFiles=0
-
-" .filetags can be generated using scripts/genfiletags.sh
-if filereadable("./.filetags")
-    let g:LookupFile_TagExpr='"./.filetags"'
-endif
-
-" Case insensitive search
-function! LookupFile_IgnoreCaseFunc(pattern)
-    let _tags=&tags
-    try
-        let &tags=eval(g:LookupFile_TagExpr)
-        let newpattern='\c'.a:pattern
-        let tags=taglist(newpattern)
-    catch
-        echohl ErrorMsg | echo "Exception: ".v:exception | echohl NONE
-        return ""
-    finally
-        let &tags=_tags
-    endtry
-
-    " Show the matches for what is typed so far
-    let files=map(tags, 'v:val["filename"]')
-    return files
-endfunction
-let g:LookupFile_LookupFunc='LookupFile_IgnoreCaseFunc'
-" End lookupfile
-
 " Change StatueLine color according to the mode
 function! InsertStatuslineColor(mode)
     if a:mode == 'r'
@@ -380,11 +342,6 @@ endfunction
 call CommandAbbr('hidark', 'call ChangeDarkHighlightMode()')
 
 map <space> <leader>
-
-" For Lookupfile plugin
-call CommandAbbr('luf', 'LookupFile')
-call CommandAbbr('lub', 'LUBufs')
-call CommandAbbr('luw', 'LUWalk')
 
 " For Tagbar plugin
 call CommandAbbr('tbt', 'TagbarToggle')
