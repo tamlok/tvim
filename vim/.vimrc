@@ -455,6 +455,10 @@ nnoremap <leader>e :e<CR>
 nnoremap <leader>l :redraw<CR>
 " Open a new tab
 nnoremap <leader>te :tabedit<CR>
+" Next tab
+nnoremap <tab> :tabnext<CR>
+" Previous tab
+nnoremap <S-tab> :tabprevious<CR>
 
 " Copy/paste to/from system clipboard
 vmap <leader>y "+y
