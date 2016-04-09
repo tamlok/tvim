@@ -248,7 +248,7 @@ set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " Fold based on indent level
 set cursorline      " Highlight current line
-" set cursorcolumn    " Highlight current column
+set cursorcolumn    " Highlight current column
 
 set ttyfast             " Indicates a fast terminal connection
 
@@ -448,6 +448,29 @@ endfunction
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 
+" For better performance
+" These two functions may be called frequently
+let g:boost_performance=0
+function! BoostPerformanceOn()
+    if (g:boost_performance == 0)
+        set updatetime=500  " At first, set it larger than 500 to avoid flash
+        let g:boost_performance=1
+        setlocal nocursorline   " Just change local value
+        setlocal nocursorcolumn
+    elseif (&updatetime == 500)
+        set updatetime=300
+    endif
+endfunction
+
+function! BoostPerformanceOff()
+    if (g:boost_performance == 1)
+        set updatetime&         " Set it back to default value
+        let g:boost_performance=0
+        set cursorline<         " Set it back to global value
+        set cursorcolumn<
+    endif
+endfunction
+
 " Section about autocmd
 if has('autocmd')
     augroup other_group
@@ -473,5 +496,11 @@ if has('autocmd')
         autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
         autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
         autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    augroup END
+
+    augroup boost_group
+        autocmd!
+        autocmd CursorMoved * call BoostPerformanceOn()
+        autocmd CursorHold * call BoostPerformanceOff()
     augroup END
 endif
