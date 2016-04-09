@@ -396,6 +396,19 @@ nnoremap <leader>te :tabedit<CR>
 nnoremap <tab> :tabnext<CR>
 " Previous tab
 nnoremap <S-tab> :tabprevious<CR>
+" Alternate between current and the last-active tabs
+let g:lasttab = 1
+nnoremap <leader>tl :exe "tabn ".g:lasttab<CR>
+" Tab Navigation Using Number
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
 
 " Copy/paste to/from system clipboard
 vmap <leader>y "+y
@@ -434,10 +447,6 @@ function! s:VSetSearch()
 endfunction
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
-
-" Alternate between current and the last-active tabs
-let g:lasttab = 1
-nnoremap <leader>tl :exe "tabn ".g:lasttab<CR>
 
 " Section about autocmd
 if has('autocmd')
