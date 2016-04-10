@@ -428,8 +428,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" Set current split to 100 line width, like Zooming
-nnoremap <leader>z 100<C-w>\|
 
 " Insert an empty line before {}
 inoremap {<CR> {<CR>}<C-o>O
@@ -470,6 +468,20 @@ function! BoostPerformanceOff()
         set cursorcolumn<
     endif
 endfunction
+
+" Zoom/Restore window
+function! ZoomToggle() abort
+    if exists("t:zoomed") && t:zoomed
+        exec t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+nnoremap <silent> <leader>z :call ZoomToggle()<CR>
 
 " Section about autocmd
 if has('autocmd')
