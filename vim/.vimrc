@@ -279,7 +279,7 @@ set backspace=indent,eol,start
 " Let cscope replace ctags
 " set cscopetag
 " let CtagsCscope_Auto_Map=1
-if has("unix") && filereadable("/usr/bin/gtags-cscope")
+if executable("gtags-cscope")
     set csprg=gtags-cscope
     cs add GTAGS $PWD
     let GtagsCscope_Auto_Load=1
@@ -311,6 +311,19 @@ call CommandAbbr('fms', 'set foldmethod=syntax')
 call CommandAbbr('gta', 'Gtags')
 call CommandAbbr('gtr', 'Gtags -r')
 call CommandAbbr('csf', 'cscope find')
+
+" Update ctags and gtags
+function! UpdateTags()
+    if executable("ctags")
+        echom "Updating ctags ..."
+        call system("ctags -R")
+    endif
+    if executable("global")
+        echom "Updating gtags ..."
+        call system("global -u")
+    endif
+endfunction
+call CommandAbbr("upt", 'call UpdateTags()')
 
 " Change highlights to a darker mode
 function! ChangeDarkHighlightMode()
