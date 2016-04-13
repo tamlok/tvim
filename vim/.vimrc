@@ -411,7 +411,7 @@ nnoremap <tab> :tabnext<CR>
 nnoremap <S-tab> :tabprevious<CR>
 " Alternate between current and the last-active tabs
 let g:lasttab = 1
-nnoremap <leader>tl :exe "tabn ".g:lasttab<CR>
+nnoremap <leader>0 :exe "tabn ".g:lasttab<CR>
 " Tab Navigation Using Number
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
