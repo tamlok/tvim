@@ -464,12 +464,10 @@ xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 let g:boost_performance=0
 function! BoostPerformanceOn()
     if (g:boost_performance == 0)
-        set updatetime=500  " At first, set it larger than 500 to avoid flash
+        set updatetime=250
         let g:boost_performance=1
         setlocal nocursorline   " Just change local value
         setlocal nocursorcolumn
-    elseif (&updatetime == 500)
-        set updatetime=300
     endif
 endfunction
 
@@ -480,6 +478,25 @@ function! BoostPerformanceOff()
         set cursorline<         " Set it back to global value
         set cursorcolumn<
     endif
+endfunction
+
+let g:cursor_move_times=0
+function! CursorMoveBoostOn()
+    let l:max_times=4
+    if (g:cursor_move_times > l:max_times)
+        return
+    endif
+    set updatetime=200
+    let g:cursor_move_times = g:cursor_move_times + 1
+    if (g:cursor_move_times == l:max_times)
+        call BoostPerformanceOn()
+    endif
+endfunction
+
+function! CursorMoveBoostOff()
+    let g:cursor_move_times = 0
+    set updatetime&
+    call BoostPerformanceOff()
 endfunction
 
 " Zoom/Restore window
@@ -525,7 +542,7 @@ if has('autocmd')
 
     augroup boost_group
         autocmd!
-        autocmd CursorMoved * call BoostPerformanceOn()
-        autocmd CursorHold * call BoostPerformanceOff()
+        autocmd CursorMoved * call CursorMoveBoostOn()
+        autocmd CursorHold * call CursorMoveBoostOff()
     augroup END
 endif
