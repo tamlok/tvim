@@ -405,10 +405,6 @@ nnoremap <leader>e :e<CR>
 nnoremap <leader>l :redraw<CR>
 " Open a new tab
 nnoremap <leader>te :tabedit<CR>
-" Next tab
-nnoremap <tab> :tabnext<CR>
-" Previous tab
-nnoremap <S-tab> :tabprevious<CR>
 " Alternate between current and the last-active tabs
 let g:lasttab = 1
 nnoremap <leader>0 :exe "tabn ".g:lasttab<CR>
