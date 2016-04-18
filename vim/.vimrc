@@ -275,6 +275,9 @@ runtime macros/matchit.vim
 " Let backspace behave well in insert mode
 set backspace=indent,eol,start
 
+" Set the max height of the popup menu
+set pumheight=10
+
 " GNU GLOBAL or cscope
 " Let cscope replace ctags
 " set cscopetag
