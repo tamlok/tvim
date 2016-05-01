@@ -14,6 +14,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'closetag.vim'
     Plugin 'majutsushi/tagbar'
     Plugin 'Yggdroot/LeaderF'
+    Plugin 'easymotion/vim-easymotion'
     call vundle#end()
 endif
 
@@ -340,9 +341,17 @@ call CommandAbbr('hidark', 'call ChangeDarkHighlightMode()')
 map <space> <leader>
 
 " For Tagbar plugin
-call CommandAbbr('tbt', 'TagbarToggle')
-call CommandAbbr('tboa', 'TagbarOpenAutoClose')
+let g:tagbar_autofocus = 1
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
+nnoremap <leader>tt :TagbarToggle<CR>
+nnoremap <leader>ta :TagbarOpenAutoClose<CR>
+
+" For LeaderF plugin
+let g:Lf_ShortcutF = '<leader>lf'
+let g:Lf_ShortcutB = '<leader>lb'
+
+" For EasyMotion plugin
+map <Leader>m <Plug>(easymotion-prefix)
 
 " Buffers navigation
 nnoremap <silent> [b :bprevious<CR>
