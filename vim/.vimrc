@@ -490,6 +490,8 @@ if has('autocmd')
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
+        " Tagbar plugin, auto display current tag in statusline
+        autocmd CursorHold * TagbarCurrentTag s
     augroup END
 
     augroup highlight_group
