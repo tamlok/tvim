@@ -318,7 +318,9 @@ call CommandAbbr('noextab', 'set tabstop=8 \| set softtabstop=8 \| set shiftwidt
 call CommandAbbr('fms', 'set foldmethod=syntax')
 call CommandAbbr('gta', 'Gtags')
 call CommandAbbr('gtr', 'Gtags -r')
-call CommandAbbr('csf', 'cscope find')
+call CommandAbbr('cs', 'cscope find')
+call CommandAbbr('vcs', 'vert scscope find')
+call CommandAbbr('scs', 'scscope find')
 
 " Update ctags and gtags
 function! UpdateTags()
@@ -406,10 +408,20 @@ nnoremap [l :lprevious<CR>
 nnoremap ]l :lnext<CR>
 
 " Cscope keybindings
-nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+if has("cscope")
+    nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cgv :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ccv :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>csv :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ctv :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cgs :scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ccs :scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>css :scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cts :scs find t <C-R>=expand("<cword>")<CR><CR>
+endif
 
 " Write to file
 nnoremap <leader>w :w<CR>
