@@ -283,6 +283,10 @@ set pumheight=10
 " Let cscope replace ctags
 " set cscopetag
 " let CtagsCscope_Auto_Map=1
+if has("cscope") && has("quickfix")
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+endif
+
 if executable("gtags-cscope")
     set csprg=gtags-cscope
     cs add GTAGS $PWD
@@ -354,8 +358,8 @@ let g:Lf_ShortcutB = '<leader>lb'
 map <Leader>m <Plug>(easymotion-prefix)
 
 " Buffers navigation
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
 
 " Diff the file in current buffer with the file last saved
 function! DiffWithFileFromDisk()
@@ -388,18 +392,18 @@ endfunction
 nmap <F4> :call ToggleMouse()<cr>
 
 " Quickfix list navigation
-nnoremap <silent> [q :cprevious<CR>
-nnoremap <silent> ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
 " Close Quickfix list
 nmap <C-x> :cclose<CR>
 
 " Tags list navigation
-nnoremap <silent> [t :tprevious<CR>
-nnoremap <silent> ]t :tnext<CR>
+nnoremap [t :tprevious<CR>
+nnoremap ]t :tnext<CR>
 
 " Location list navigation
-nnoremap <silent> [l :lprevious<CR>
-nnoremap <silent> ]l :lnext<CR>
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
 
 " Cscope keybindings
 nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
