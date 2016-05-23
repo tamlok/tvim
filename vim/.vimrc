@@ -407,6 +407,10 @@ nnoremap ]t :tnext<CR>
 nnoremap [l :lprevious<CR>
 nnoremap ]l :lnext<CR>
 
+" Preview window navigation
+nnoremap [p :ptprevious<CR>
+nnoremap ]p :ptnext<CR>
+
 " Cscope keybindings
 if has("cscope")
     nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
