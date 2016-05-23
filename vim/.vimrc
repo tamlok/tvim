@@ -407,6 +407,9 @@ nnoremap ]t :tnext<CR>
 " Location list navigation
 nnoremap [l :lprevious<CR>
 nnoremap ]l :lnext<CR>
+nnoremap <leader>lc :lclose<CR>
+nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>ll :llist<CR>
 
 " Preview window navigation
 nnoremap [p :ptprevious<CR>
