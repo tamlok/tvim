@@ -394,8 +394,8 @@ endfunction
 nmap <F4> :call ToggleMouse()<cr>
 
 " Quickfix list navigation
-nnoremap [c :cprevious<CR>
-nnoremap ]c :cnext<CR>
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
 nnoremap <leader>qc :cclose<CR>
 nnoremap <leader>qo :copen<CR>
 nnoremap <leader>ql :clist<CR>
