@@ -394,10 +394,11 @@ endfunction
 nmap <F4> :call ToggleMouse()<cr>
 
 " Quickfix list navigation
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
-" Close Quickfix list
-nmap <C-x> :cclose<CR>
+nnoremap [c :cprevious<CR>
+nnoremap ]c :cnext<CR>
+nnoremap <leader>qc :cclose<CR>
+nnoremap <leader>qo :copen<CR>
+nnoremap <leader>ql :clist<CR>
 
 " Tags list navigation
 nnoremap [t :tprevious<CR>
@@ -428,13 +429,14 @@ if has("cscope")
 endif
 
 " Write to file
-nnoremap <leader>w :w<CR>
+nnoremap <leader>ww :w<CR>
 " Quit window
-nnoremap <leader>q :q<CR>
+nnoremap <leader>wq :q<CR>
 " Reload current file
-nnoremap <leader>e :e<CR>
+nnoremap <leader>we :e<CR>
 " Redraw the screen
-nnoremap <leader>l :redraw<CR>
+nnoremap <leader>wr :redraw<CR>
+
 " Open a new tab
 nnoremap <leader>te :tabedit<CR>
 " Alternate between current and the last-active tabs
