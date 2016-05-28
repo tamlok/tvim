@@ -525,7 +525,7 @@ if has('autocmd')
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
         " Tagbar plugin, auto display current tag in statusline
-        autocmd CursorHold * TagbarCurrentTag s
+        autocmd CursorHold * TagbarCurrentTag
     augroup END
 
     augroup highlight_group
