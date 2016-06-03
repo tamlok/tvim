@@ -417,18 +417,18 @@ nnoremap ]p :ptnext<CR>
 
 " Cscope keybindings
 if has("cscope")
-    nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>cgv :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>ccv :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>csv :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>ctv :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>cgs :scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>ccs :scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>css :scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>cts :scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cgc :cscope find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ccc :cscope find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>csc :cscope find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ctc :cscope find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cgv :vert scscope find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ccv :vert scscope find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>csv :vert scscope find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ctv :vert scscope find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cgs :scscope find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>ccs :scscope find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>css :scscope find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cts :scscope find t <C-R>=expand("<cword>")<CR><CR>
 endif
 
 " Write to file
