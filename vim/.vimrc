@@ -531,10 +531,9 @@ if has('autocmd')
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
         " Tagbar plugin, auto display current tag in statusline
-        try
+        if isdirectory($HOME."/.vim/bundle/tagbar") || isdirectory($HOME."/vimfiles/bundle/tagbar")
             autocmd CursorHold * TagbarCurrentTag
-        catch
-        endtry
+        endif
     augroup END
 
     augroup highlight_group
