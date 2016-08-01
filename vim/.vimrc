@@ -123,6 +123,7 @@ if has("gui_running")
         language message zh_CN.UTF-8
         set guifontset=
         set guifont=Consolas:h11
+        set guifontwide=NSimsun:h11
         " Delete and reload the menu to use UTF-8 on Wins
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
