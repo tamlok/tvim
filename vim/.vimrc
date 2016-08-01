@@ -1,13 +1,18 @@
 " Vim Configurations by tamlok
 set nocompatible
 
-if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/plugin/Vundle.vim")
+if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
     " Vundle
     " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     filetype off
 
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+    if isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
+        set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+        call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+    else
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#begin()
+    endif
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gtags.vim'
     Plugin 'tpope/vim-surround'
@@ -526,7 +531,10 @@ if has('autocmd')
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
         " Tagbar plugin, auto display current tag in statusline
-        autocmd CursorHold * TagbarCurrentTag
+        try
+            autocmd CursorHold * TagbarCurrentTag
+        catch
+        endtry
     augroup END
 
     augroup highlight_group
