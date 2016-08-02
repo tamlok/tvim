@@ -515,6 +515,15 @@ nnoremap <silent> <leader>z :call ZoomToggle()<CR>
 " Toggle cursorline and cursorcolumn
 nnoremap <silent> <leader>ci :set cursorline! \| set cursorcolumn!<CR>
 
+" Set current working directory as well as some variables derived from it to
+" current file's directory
+function! ChangeCWD()
+    cd %:h
+    set path&
+    execute "set path+=".fnameescape(getcwd()."/**")
+endfunction
+nmap <F5> :call ChangeCWD()<cr>
+
 " Section about autocmd
 if has('autocmd')
     augroup other_group
