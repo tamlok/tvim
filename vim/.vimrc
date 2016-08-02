@@ -525,6 +525,10 @@ function! ChangeCWD()
 endfunction
 nmap <F5> :call ChangeCWD()<cr>
 
+" vim-markdown plugin
+let g:markdown_enable_mappings=0
+let g:markdown_enable_spell_checking=0
+
 " Section about autocmd
 if has('autocmd')
     augroup other_group
