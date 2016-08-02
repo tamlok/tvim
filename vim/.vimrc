@@ -20,6 +20,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'majutsushi/tagbar'
     Plugin 'Yggdroot/LeaderF'
     Plugin 'easymotion/vim-easymotion'
+    Plugin 'gabrielelana/vim-markdown'
     call vundle#end()
 endif
 
