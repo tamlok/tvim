@@ -529,6 +529,34 @@ nmap <F5> :call ChangeCWD()<cr>
 let g:markdown_enable_mappings=0
 let g:markdown_enable_spell_checking=0
 
+" Add support for markdown files in tagbar. We should copy the
+" markdown2ctags.py to the proper place to make it work.
+let file_markdown2ctags='~/.vim/markdown2ctags.py'
+if has("win16") || has("win32") || has("win64") || has("win95")
+    let file_markdown2ctags='~\vimfiles\markdown2ctags.py'
+endif
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : file_markdown2ctags,
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
+" Handle markdown file type for autocmd
+function! HandleMarkdownFile()
+    " Vim-markdown plugin will change tabstop and shiftwidth to 2
+    setlocal tabstop=4 shiftwidth=4
+    silent! TagbarOpen
+endfunction
+
 " Section about autocmd
 if has('autocmd')
     augroup other_group
@@ -540,6 +568,7 @@ if has('autocmd')
         " Disable auto inserting command leader one by one.
         " The ftplugin may set the option, so we need to set it again.
         autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
+        autocmd FileType markdown call HandleMarkdownFile()
         " Jump to the last position when reopening a file
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         " Remember the last-active tab
