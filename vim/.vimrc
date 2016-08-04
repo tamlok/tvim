@@ -577,6 +577,10 @@ if has('autocmd')
         if isdirectory($HOME."/.vim/bundle/tagbar") || isdirectory($HOME."/vimfiles/bundle/tagbar")
             autocmd CursorHold * TagbarCurrentTag
         endif
+
+        " Auto enable/disable input method when in/leave insert mode
+        autocmd InsertLeave * set imdisable | set iminsert=0
+        autocmd InsertEnter * set noimdisable | set iminsert=2
     augroup END
 
     augroup highlight_group
