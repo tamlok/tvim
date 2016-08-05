@@ -528,6 +528,7 @@ nmap <F5> :call ChangeCWD()<cr>
 " vim-markdown plugin
 let g:markdown_enable_mappings=0
 let g:markdown_enable_spell_checking=0
+let g:markdown_enable_input_abbreviations=0
 
 " Add support for markdown files in tagbar. We should copy the
 " markdown2ctags.py to the proper place to make it work.
