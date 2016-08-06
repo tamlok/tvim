@@ -581,7 +581,7 @@ if has('autocmd')
 
         " Auto enable/disable input method when in/leave insert mode
         autocmd InsertLeave * set imdisable | set iminsert=0
-        autocmd InsertEnter * set noimdisable | set iminsert=2
+        autocmd InsertEnter * set noimdisable | set iminsert=0
     augroup END
 
     augroup highlight_group
