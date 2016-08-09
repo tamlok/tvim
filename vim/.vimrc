@@ -296,7 +296,7 @@ endif
 
 if executable("gtags-cscope")
     set csprg=gtags-cscope
-    cs add GTAGS $PWD
+    execute "cs add GTAGS ".fnameescape(getcwd())
     let GtagsCscope_Auto_Load=1
     let GtagsCscope_Quiet=1
 endif
@@ -522,6 +522,8 @@ function! ChangeCWD()
     cd %:h
     set path&
     execute "set path+=".fnameescape(getcwd()."/**")
+    cs kill -1
+    execute "cs add GTAGS ".fnameescape(getcwd())
 endfunction
 nmap <F5> :call ChangeCWD()<cr>
 
