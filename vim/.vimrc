@@ -325,7 +325,7 @@ call CommandAbbr('noextab', 'set tabstop=8 \| set softtabstop=8 \| set shiftwidt
 call CommandAbbr('fms', 'set foldmethod=syntax')
 call CommandAbbr('gta', 'Gtags')
 call CommandAbbr('gtr', 'Gtags -r')
-call CommandAbbr('cs', 'cscope find')
+call CommandAbbr('csf', 'cscope find')
 call CommandAbbr('vcs', 'vert scscope find')
 call CommandAbbr('scs', 'scscope find')
 
