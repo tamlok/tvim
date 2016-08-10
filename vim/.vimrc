@@ -21,6 +21,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'Yggdroot/LeaderF'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'gabrielelana/vim-markdown'
+    Plugin 'octol/vim-cpp-enhanced-highlight'
     call vundle#end()
 endif
 
@@ -559,6 +560,9 @@ function! HandleMarkdownFile()
     setlocal tabstop=4 shiftwidth=4
     silent! TagbarOpen
 endfunction
+
+" For vim-cpp-enhanced-highlight plugin
+let c_no_curly_error=1
 
 " Section about autocmd
 if has('autocmd')
