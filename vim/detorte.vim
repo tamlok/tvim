@@ -12,7 +12,7 @@ endif
 
 let g:colors_name = "detorte"
 
-hi Normal   guifg=White guibg=#3a3a3a ctermfg=255 ctermbg=237
+hi Normal   guifg=#e4e4e4 guibg=#3a3a3a ctermfg=254 ctermbg=237
 
 hi Cursor   guibg=#ffff87 guifg=#005f5f ctermbg=228 ctermfg=23
 hi VertSplit    guibg=#c2bfa5 guifg=grey50 gui=none
