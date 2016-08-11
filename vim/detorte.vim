@@ -45,6 +45,7 @@ hi StatuslineWarning    cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
 hi StatuslineBufNum ctermbg=242 ctermfg=15 cterm=bold guibg=#6c6c6c guifg=#ffffff gui=bold
 hi Directory    ctermfg=50 guifg=#00eeee
 hi CursorColumn ctermbg=239 guibg=#4e4e4e
+hi Function gui=NONE cterm=NONE ctermfg=105 guifg=#B5A1FF
 
 " Mode-aware cursor color
 hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
