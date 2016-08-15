@@ -23,6 +23,8 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'gabrielelana/vim-markdown'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'vim-ctrlspace/vim-ctrlspace'
+    Plugin 'joker1007/vim-markdown-quote-syntax'
+    Plugin 'mileszs/ack.vim'
     call vundle#end()
 endif
 
@@ -565,6 +567,15 @@ let g:CtrlSpaceSymbols={"CS": "#", "Sin": "single", "All": "all", "Vis": "visibl
 let g:CtrlSpaceSearchTiming=500
 let g:CtrlSpaceUseTabline=0
 let g:CtrlSpaceDefaultMappingKey="<leader>s"
+if executable("ag")
+    let g:CtrlSpaceGlobCommand='ag -l --nocolor -g ""'
+endif
+
+" For ack.vim plugin
+" Use ag instead of ack
+if executable("ag")
+    let g:ackprg='ag --nogroup --nocolor --column'
+endif
 
 " Section about autocmd
 if has('autocmd')
