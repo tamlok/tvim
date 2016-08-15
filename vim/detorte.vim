@@ -35,7 +35,7 @@ hi CursorLine   term=NONE cterm=NONE ctermbg=239 gui=none guibg=#4e4e4e
 hi CursorLineNr term=bold cterm=bold ctermfg=226 gui=bold guifg=#ffff00
 hi PmenuSel ctermfg=16 ctermbg=220 cterm=NONE guifg=Black guibg=#ffdf00 gui=none
 hi Pmenu    ctermfg=16 ctermbg=250 guifg=Black guibg=#bcbcbc
-hi PmenuSbar    guibg=Grey ctermbg=241
+hi PmenuSbar    guibg=#5f5f00 ctermbg=58
 hi PmenuThumb   guibg=White ctermbg=15
 hi ErrorMsg guifg=White guibg=#d70000 ctermfg=15 ctermbg=160
 hi Error    guifg=White guibg=#d70000 ctermfg=15 ctermbg=160
