@@ -22,6 +22,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'easymotion/vim-easymotion'
     Plugin 'gabrielelana/vim-markdown'
     Plugin 'octol/vim-cpp-enhanced-highlight'
+    Plugin 'vim-ctrlspace/vim-ctrlspace'
     call vundle#end()
 endif
 
@@ -356,6 +357,7 @@ map <space> <leader>
 
 " For Tagbar plugin
 let g:tagbar_autofocus = 1
+let g:tagbar_left=1
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>ta :TagbarOpenAutoClose<CR>
@@ -563,6 +565,13 @@ endfunction
 
 " For vim-cpp-enhanced-highlight plugin
 let c_no_curly_error=1
+
+" For CtrlSpace plugin
+let g:CtrlSpaceSymbols={"CS": "#", "Sin": "single", "All": "all", "Vis": "visible", "File": "file", "WLoad": "|*|",
+            \ "WSave": "[*]", "Zoom": "*", "IV": "-", "IA": "*", "IM": "+", "BM": "bookmark"}
+let g:CtrlSpaceSearchTiming=500
+let g:CtrlSpaceUseTabline=0
+let g:CtrlSpaceDefaultMappingKey="<leader>s"
 
 " Section about autocmd
 if has('autocmd')
