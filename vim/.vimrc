@@ -183,11 +183,15 @@ set wildmode=list:longest,full " Complete only up to the point of ambiguity
 
 set title           " Set the terminal title
 
-" Store temp files in a central spot. Should mkdir ~/.vim_tmp
+" Store temp files in a central spot. Should mkdir ~/.vim_tmp in Unix or
+" ~/AppData/Local/Temp in Windows.
 if has("unix")
-    set backupdir=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-    set directory=~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+    let tempdir="~/.vim_tmp,~/.tmp,~/tmp,/var/tmp,/tmp"
+else
+    let tempdir="~/AppData/Local/Temp"
 endif
+execute "set backupdir=".tempdir
+execute "set directory=".tempdir
 
 " Display tabs and trailing spaces
 " set list
