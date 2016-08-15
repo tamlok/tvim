@@ -556,13 +556,6 @@ let g:tagbar_type_markdown = {
     \ 'sort': 0,
 \ }
 
-" Handle markdown file type for autocmd
-function! HandleMarkdownFile()
-    " Vim-markdown plugin will change tabstop and shiftwidth to 2
-    setlocal tabstop=4 shiftwidth=4
-    silent! TagbarOpen
-endfunction
-
 " For vim-cpp-enhanced-highlight plugin
 let c_no_curly_error=1
 
@@ -584,7 +577,6 @@ if has('autocmd')
         " Disable auto inserting command leader one by one.
         " The ftplugin may set the option, so we need to set it again.
         autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
-        autocmd FileType markdown call HandleMarkdownFile()
         " Jump to the last position when reopening a file
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         " Remember the last-active tab
