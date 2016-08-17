@@ -26,6 +26,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'joker1007/vim-markdown-quote-syntax'
     Plugin 'mileszs/ack.vim'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'iamcco/markdown-preview.vim'
     call vundle#end()
 endif
 
@@ -589,6 +590,11 @@ endif
 if executable("ag")
     let g:ackprg='ag --nogroup --nocolor --column'
 endif
+
+" For markdown-preview.vim plugin
+let g:mkdp_path_to_chrome="chrome"
+nmap <F6> <Plug>MarkdownPreview
+nmap <F7> <Plug>StopMarkdownPreview
 
 " Section about autocmd
 if has('autocmd')
