@@ -138,6 +138,10 @@ if has("gui_running")
         " Delete and reload the menu to use UTF-8 on Wins
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
+        " Maximized initial window size
+        if has('autocmd')
+            autocmd GUIEnter * simalt ~x
+        endif
     elseif has("unix")
         set guifontset=
         set guifont=Liberation\ Mono\ 11
