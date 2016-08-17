@@ -25,6 +25,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'vim-ctrlspace/vim-ctrlspace'
     Plugin 'joker1007/vim-markdown-quote-syntax'
     Plugin 'mileszs/ack.vim'
+    Plugin 'scrooloose/nerdtree'
     call vundle#end()
 endif
 
@@ -367,6 +368,10 @@ let g:tagbar_left=1
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>ta :TagbarOpenAutoClose<CR>
+
+" For NERDTree plugin
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " For LeaderF plugin
 let g:Lf_ShortcutF = '<leader>lf'
