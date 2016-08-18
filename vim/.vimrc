@@ -577,8 +577,8 @@ let g:tagbar_type_markdown = {
 let c_no_curly_error=1
 
 " For CtrlSpace plugin
-let g:CtrlSpaceSymbols={"CS": "#", "Sin": "single", "All": "all", "Vis": "visible", "File": "file", "WLoad": "|*|",
-            \ "WSave": "[*]", "Zoom": "*", "IV": "-", "IA": "*", "IM": "+", "BM": "bookmark"}
+let g:CtrlSpaceSymbols={"CS": "CtrlSpace", "Sin": "Single", "All": "All", "Vis": "Visible", "File": "File", "WLoad": "Workspace Load",
+            \ "WSave": "Workspace Save", "Zoom": "Zoom", "IV": "-", "IA": "*", "IM": "+", "BM": "Bookmark", "Tabs": "Tab List"}
 let g:CtrlSpaceSearchTiming=500
 let g:CtrlSpaceUseTabline=0
 let g:CtrlSpaceDefaultMappingKey="<leader>s"
