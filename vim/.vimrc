@@ -538,7 +538,8 @@ nnoremap <silent> <leader>ci :set cursorline! \| set cursorcolumn!<CR>
 " Set current working directory as well as some variables derived from it to
 " current file's directory
 function! ChangeCWD()
-    cd %:h
+    cd %:p:h
+    echo "Change CWD to ".getcwd()
     set path&
     execute "set path+=".fnameescape(getcwd()."/**")
     cs kill -1
