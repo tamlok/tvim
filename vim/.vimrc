@@ -238,7 +238,7 @@ set laststatus=2    " Always display the statusline
 set statusline=
 set statusline+=%<
 set statusline+=%#StatuslineBufNum#
-set statusline+=\ #%n\    " Buffer number
+set statusline+=%-2n   " Buffer number
 set statusline+=%*
 set statusline+=%F\     " Full file path
 
@@ -253,10 +253,10 @@ set statusline+=%*
 set statusline+=%h%#Modifier#%m%*%r
 
 " set statusline+=%=    " Left/right separator
-set statusline+=\ \     " Two spaces
+set statusline+=\     " One space
+set statusline+=[%{v:register}]\ 
 " Cursor line / total lines Current column number and virtual column number
-set statusline+=%-14.(%l/%L,%c%V%)\  " Trailing space
-set statusline+=%P      " Percentage in the file
+set statusline+=%-20.(row:%l-%L\(%03P)\ col:%c%V%)
 
 " Valid in terminal. Need to set it again after GUI enter.
 set noerrorbells visualbell t_vb=
