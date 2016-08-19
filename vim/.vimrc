@@ -27,6 +27,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'mileszs/ack.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'iamcco/markdown-preview.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
     call vundle#end()
 endif
 
@@ -592,6 +593,32 @@ endif
 let g:mkdp_path_to_chrome="chrome"
 nmap <F6> <Plug>MarkdownPreview
 nmap <F7> <Plug>StopMarkdownPreview
+
+" For ctrlp plugin
+let g:ctrlp_map='<leader>cp'
+let g:ctrlp_extensions=['tag', 'buffertag']
+let g:ctrlp_match_window='order:ttb'
+let g:ctrlp_status_func={
+    \ 'main': 'CtrlP_StatusLine_1',
+    \ 'prog': 'CtrlP_StatusLine_2',
+    \ }
+" Arguments: focus, byfname, s:regexp, prv, item, nxt, marked
+function! CtrlP_StatusLine_1(...)
+    let focus='['.a:1.']'
+    let byfname='['.a:2.']'
+    let regex=a:3 ? 'regex' : ''
+    let item='{'.a:5.'}'
+    let marked = ' '.a:7.' '
+    let dir = 'CWD['.getcwd().']%=%<'
+    return focus.byfname.regex.item.marked.dir
+endfunction
+function! CtrlP_StatusLine_2(...)
+    let len='['.a:1.']'
+    let dir = 'CWD['.getcwd().']%=%<'
+    return len.dir
+endfunction
+nnoremap <leader>cpt :CtrlPTag<CR>
+nnoremap <leader>cpb :CtrlPBufTag<CR>
 
 " Section about autocmd
 if has('autocmd')
