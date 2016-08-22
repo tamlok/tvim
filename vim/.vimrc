@@ -207,8 +207,6 @@ set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
 "set list lcs=tab:\|\   " Display Tab indent
 set cc=81               " Highlight the 81th column
-" Use -1 instead of 100 to let any matching to replace this matching
-" call matchadd('ColorColumn', '\%81v', 100)
 
 set complete-=i     " Do not scan included files in completion
 
@@ -256,7 +254,7 @@ set statusline+=%h%#Modifier#%m%*%r
 set statusline+=\     " One space
 set statusline+=[%{v:register}]\ 
 " Cursor line / total lines Current column number and virtual column number
-set statusline+=%-20.(row:%l-%L\(%03P)\ col:%c%V%)
+set statusline+=%-20.(row:%l-%L\(%P)\ col:%c%V%)
 
 " Valid in terminal. Need to set it again after GUI enter.
 set noerrorbells visualbell t_vb=
@@ -370,6 +368,12 @@ let g:tagbar_left=1
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>ta :TagbarOpenAutoClose<CR>
+function! DisplayCurrentTag()
+    try
+        TagbarCurrentTag
+    catch
+    endtry
+endfunction
 
 " For NERDTree plugin
 nnoremap <leader>nt :NERDTreeToggle<CR>
@@ -591,6 +595,7 @@ endif
 
 " For markdown-preview.vim plugin
 let g:mkdp_path_to_chrome="chrome"
+let g:mkdp_auto_close=0
 nmap <F6> <Plug>MarkdownPreview
 nmap <F7> <Plug>StopMarkdownPreview
 
@@ -637,7 +642,7 @@ if has('autocmd')
         autocmd TabLeave * let g:lasttab = tabpagenr()
         " Tagbar plugin, auto display current tag in statusline
         if isdirectory($HOME."/.vim/bundle/tagbar") || isdirectory($HOME."/vimfiles/bundle/tagbar")
-            autocmd CursorHold * TagbarCurrentTag
+            autocmd CursorHold * call DisplayCurrentTag()
         endif
 
         " Auto enable/disable input method when in/leave insert mode
