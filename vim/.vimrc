@@ -599,6 +599,10 @@ let g:mkdp_auto_close=0
 nmap <F6> <Plug>MarkdownPreview
 nmap <F7> <Plug>StopMarkdownPreview
 
+function! HandleMdFile()
+    iabbr *** *************************
+endfunction
+
 " For ctrlp plugin
 let g:ctrlp_map='<leader>cp'
 let g:ctrlp_extensions=['tag', 'buffertag']
@@ -648,6 +652,9 @@ if has('autocmd')
         " Auto enable/disable input method when in/leave insert mode
         autocmd InsertLeave * set imdisable | set iminsert=0
         autocmd InsertEnter * set noimdisable | set iminsert=0
+
+        " Hanlde markdown file type
+        autocmd FileType markdown call HandleMdFile()
     augroup END
 
     augroup highlight_group
