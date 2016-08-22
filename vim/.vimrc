@@ -264,7 +264,7 @@ set foldenable      " Enable folding
 set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " Fold based on indent level
-" set cursorline      " Highlight current line
+set cursorline      " Highlight current line
 " set cursorcolumn    " Highlight current column
 
 set ttyfast             " Indicates a fast terminal connection
@@ -534,7 +534,16 @@ endfunction
 nnoremap <silent> <leader>z :call ZoomToggle()<CR>
 
 " Toggle cursorline and cursorcolumn
-nnoremap <silent> <leader>ci :set cursorline! \| set cursorcolumn!<CR>
+function! ToggleCurrentCursorInfo()
+    if &cursorline != &cursorcolumn
+        set cursorline
+        set cursorcolumn
+    else
+        set cursorline!
+        set cursorcolumn!
+    endif
+endfunction
+nnoremap <silent> <leader>ci :call ToggleCurrentCursorInfo()<CR>
 
 " Set current working directory as well as some variables derived from it to
 " current file's directory
