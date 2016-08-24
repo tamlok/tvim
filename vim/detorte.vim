@@ -31,7 +31,7 @@ hi StatusLineNC guibg=#c2bfa5 guifg=#262626 gui=none ctermbg=144 ctermfg=235 cte
 hi Title    guifg=IndianRed ctermfg=167
 hi Visual   gui=none guifg=#ffffff guibg=olivedrab cterm=none ctermfg=15 ctermbg=64
 hi WarningMsg   guifg=#ff5f87 ctermfg=204
-hi CursorLine   term=NONE cterm=NONE ctermbg=239 gui=none guibg=#4e4e4e
+hi CursorLine   term=NONE cterm=NONE ctermbg=238 gui=none guibg=#444444
 hi CursorLineNr term=bold cterm=bold ctermfg=226 gui=bold guifg=#ffff00
 hi PmenuSel ctermfg=16 ctermbg=220 cterm=NONE guifg=Black guibg=#ffdf00 gui=none
 hi Pmenu    ctermfg=16 ctermbg=250 guifg=Black guibg=#bcbcbc
@@ -39,12 +39,12 @@ hi PmenuSbar    guibg=#5f5f00 ctermbg=58
 hi PmenuThumb   guibg=White ctermbg=15
 hi ErrorMsg guifg=White guibg=#d70000 ctermfg=15 ctermbg=160
 hi Error    guifg=White guibg=#d70000 ctermfg=15 ctermbg=160
-hi ColorColumn  ctermbg=238 guibg=#444444
+hi ColorColumn  ctermbg=239 guibg=#4e4e4e
 hi Modifier cterm=inverse ctermfg=118 gui=inverse guifg=#87ff00
 hi StatuslineWarning    cterm=inverse ctermfg=210 gui=inverse guifg=#ff8787
 hi StatuslineBufNum ctermbg=242 ctermfg=15 cterm=bold guibg=#6c6c6c guifg=#ffffff gui=bold
 hi Directory    ctermfg=50 guifg=#00eeee
-hi CursorColumn ctermbg=239 guibg=#4e4e4e
+hi CursorColumn ctermbg=238 guibg=#444444
 hi Function gui=NONE cterm=NONE ctermfg=105 guifg=#B5A1FF
 
 " Mode-aware cursor color
