@@ -8,7 +8,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
 
     if isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
         set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-        call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+        call vundle#begin($HOME.'/vimfiles/bundle/')
     else
         set rtp+=~/.vim/bundle/Vundle.vim
         call vundle#begin()
