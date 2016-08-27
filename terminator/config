@@ -17,7 +17,7 @@
 [plugins]
 [profiles]
   [[default]]
-    background_color = "#303030"
+    background_color = "#3a3a3a"
     background_image = None
     copy_on_selection = True
     cursor_blink = False
