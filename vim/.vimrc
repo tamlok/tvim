@@ -305,7 +305,7 @@ endif
 
 if executable("gtags-cscope")
     set csprg=gtags-cscope
-    execute "cs add GTAGS ".fnameescape(getcwd())
+    silent! execute "cs add GTAGS ".fnameescape(getcwd())
     let GtagsCscope_Auto_Load=1
     let GtagsCscope_Quiet=1
 endif
