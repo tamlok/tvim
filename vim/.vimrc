@@ -254,7 +254,7 @@ set statusline+=%h%#Modifier#%m%*%r
 set statusline+=\     " One space
 set statusline+=[%{v:register}]\ 
 " Cursor line / total lines Current column number and virtual column number
-set statusline+=%-20.(row:%l-%L\(%P)\ col:%c%V%)
+set statusline+=%-25.(r:%l-%L\(%P)\ c:%c%V%)
 
 " Valid in terminal. Need to set it again after GUI enter.
 set noerrorbells visualbell t_vb=
