@@ -29,6 +29,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'iamcco/markdown-preview.vim'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'guns/xterm-color-table.vim'
+    Plugin 'Yggdroot/indentLine'
     call vundle#end()
 endif
 
