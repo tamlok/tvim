@@ -59,7 +59,7 @@ hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
 hi Special  ctermfg=214 guifg=#ffaf00
 hi Comment  term=bold ctermfg=138 guifg=#af8787
 hi Constant term=underline ctermfg=210 guifg=#ff8787
-hi Identifier   guifg=#00ffff gui=none ctermfg=51 cterm=none
+hi Identifier   guifg=#00dfdf gui=none ctermfg=44 cterm=none
 hi Statement    guifg=#ffdf5f gui=none ctermfg=221 cterm=none
 hi PreProc  guifg=#ff5fdf ctermfg=206
 hi Type	    guifg=#00d787 gui=none ctermfg=42 cterm=none
