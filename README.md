@@ -1,2 +1,2 @@
-# tamvim - Tamlok's Vim Configuration
+# vimconf - Tamlok's Vim Configuration
 
