@@ -1,0 +1,3 @@
+[submodule "detorte"]
+	path = detorte
+	url = https://github.com/tamlok/detorte.git
