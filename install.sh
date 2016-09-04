@@ -2,6 +2,7 @@
 echo 'Coping .vimrc'
 cp .vimrc ~/
 
+git submodule update --init --recursive
 echo 'Coping detorte colorscheme'
 cp -r detorte/colors ~/.vim/
 
