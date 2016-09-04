@@ -557,9 +557,9 @@ let g:markdown_enable_input_abbreviations=0
 
 " Add support for markdown files in tagbar. We should copy the
 " .markdown2ctags.py to the proper place to make it work.
-let file_markdown2ctags='~/.vim/.markdown2ctags.py'
+let file_markdown2ctags='~/.vim/markdown2ctags.py'
 if has("win16") || has("win32") || has("win64") || has("win95")
-    let file_markdown2ctags='~\vimfiles\.markdown2ctags.py'
+    let file_markdown2ctags='~\vimfiles\markdown2ctags.py'
 endif
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',

@@ -11,7 +11,7 @@ cp -r detorte/colors ~/.vim/
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Add support for markdown in Tagbar plugin
-echo 'Coping .markdown2ctags.py'
-cp .markdown2ctags.py ~/.vim/
+echo 'Coping markdown2ctags.py'
+cp markdown2ctags.py ~/.vim/
 
 echo 'Initialization Done. Please execute :VundleInstall in Vim for plugins.'
