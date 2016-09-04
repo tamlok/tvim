@@ -4,8 +4,9 @@ cp .vimrc ~/
 
 git submodule init
 git submodule update --recursive
+
 echo 'Coping detorte colorscheme'
-cp -r detorte/colors ~/.vim/
+cp -r detorte/colors/ ~/.vim/
 
 # Git clone Vundle.vim for plugins management
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
