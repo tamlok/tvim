@@ -45,10 +45,8 @@ function! ShortTabLine()
     let ret = ''
     for i in range(tabpagenr('$'))
         " Select the color group for highlighting active tab
-        " Or ctermbg=230
-        hi TabLineSelCus ctermfg=16 ctermbg=179 cterm=NONE
         if i + 1 == tabpagenr()
-            let ret .= '%#TabLineSelCus#'
+            let ret .= '%#TabLineSel#'
         else
             let ret .= '%#TabLine#'
         endif
@@ -110,6 +108,7 @@ if has("gui_running")
     set guioptions-=T       " Hide tool bar
     set guioptions-=L       " Hide leftside scroll bar
     set guioptions-=r       " Hide rightside scroll bar
+    set guioptions-=e       " Use terminal tab line
     set guioptions-=b       " Hide bottom scroll bar
     set guioptions+=c       " Use console dialog
 
@@ -122,7 +121,8 @@ if has("gui_running")
     set gcr+=v-ve:VisualCursor
     set guicursor+=a:blinkon0
 
-    set guitablabel=%{ShortTabLabel()}
+    " set guitablabel=%{ShortTabLabel()}
+    set tabline=%!ShortTabLine()
 
     " Map <Ctrl+F2> to toggle the menu and toolbar
     map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
