@@ -21,6 +21,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'Yggdroot/LeaderF'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'gabrielelana/vim-markdown'
+    " Plugin 'plasticboy/vim-markdown'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'vim-ctrlspace/vim-ctrlspace'
     Plugin 'joker1007/vim-markdown-quote-syntax'
