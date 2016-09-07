@@ -177,6 +177,8 @@ set scrolloff=3 " Scroll 3 lines offset when cursor is near the buttom or the to
 set autoindent
 set cindent
 set smartindent
+set ignorecase
+set smartcase
 
 set tabstop=4       " Number of visual spaces per TAB
 set softtabstop=4   " Number of spaces in tab when editing
@@ -207,7 +209,7 @@ set showmode        " Display current mode in the message line
 " set number          " Display absolute line number
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
-"set list lcs=tab:\|\   " Display Tab indent
+set list lcs=tab:\|\   " Display Tab indent
 set cc=81               " Highlight the 81th column
 
 set complete-=i     " Do not scan included files in completion
