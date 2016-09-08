@@ -31,6 +31,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'guns/xterm-color-table.vim'
     Plugin 'Yggdroot/indentLine'
+    " Plugin 'Mark'
     call vundle#end()
 endif
 
@@ -241,7 +242,7 @@ set laststatus=2    " Always display the statusline
 set statusline=
 set statusline+=%<
 set statusline+=%#StatuslineBufNum#
-set statusline+=%-2n   " Buffer number
+set statusline+=%3n   " Buffer number
 set statusline+=%*
 set statusline+=%F\     " Full file path
 
@@ -342,6 +343,7 @@ call CommandAbbr('gtr', 'Gtags -r')
 call CommandAbbr('csf', 'cscope find')
 call CommandAbbr('vcs', 'vert scscope find')
 call CommandAbbr('scs', 'scscope find')
+call CommandAbbr('ms', 'marks')
 
 " Update ctags and gtags
 function! UpdateTags()
