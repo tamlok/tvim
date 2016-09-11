@@ -217,10 +217,6 @@ endif
 execute "set backupdir=".tempdir
 execute "set directory=".tempdir
 
-" Display tabs and trailing spaces
-" set list
-" set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
-
 set showmode        " Display current mode in the message line
 " set relativenumber  " Display line number relative to current line
 " set number          " Display absolute line number
@@ -229,13 +225,9 @@ set incsearch       " Search as characters are entered
 set list lcs=tab:\|\   " Display Tab indent
 set cc=81               " Highlight the 81th column
 
-set complete-=i     " Do not scan included files in completion
+set complete-=i     " Do not scan included files in <C-P> completion
 
 set tags=./tags;/
-
-" Automatically change current working directory when opening file or
-" switching buffers.
-" set autochdir
 
 set confirm     " Ask for confirmation when handling unsaved or read-only files
 set report=0
