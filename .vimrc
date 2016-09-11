@@ -148,9 +148,24 @@ if has("gui_running")
         set guifontset=
         set guifont=Liberation\ Mono\ 11
     endif
+
+    " Change font size using <C-up> and <C-down>
+    nnoremap <C-Up> :call GuiSizeUp()<CR>
+    nnoremap <C-Down> :call GuiSizeDown()<CR>
 else
     set tabline=%!ShortTabLine()
 endif
+
+" Change font size in GUI
+function! GuiSizeUp()
+    let &guifont = substitute(
+        \ &guifont, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
+endfunction
+
+function! GuiSizeDown()
+    let &guifont = substitute(
+        \ &guifont, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
+endfunction
 
 " Colorscheme
 if &t_Co >= 256 || has("gui_running")
