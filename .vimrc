@@ -31,7 +31,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'guns/xterm-color-table.vim'
     Plugin 'Yggdroot/indentLine'
-    " Plugin 'Mark'
+    Plugin 'tamlok/vim-mark'
     call vundle#end()
 endif
 
