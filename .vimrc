@@ -643,6 +643,10 @@ endfunction
 nnoremap <leader>cpt :CtrlPTag<CR>
 nnoremap <leader>cpb :CtrlPBufTag<CR>
 
+" For IndentLine plugin
+let g:indentLine_color_term = 241
+let g:indentLine_color_gui = '#626262'
+
 " Section about autocmd
 if has('autocmd')
     augroup other_group
