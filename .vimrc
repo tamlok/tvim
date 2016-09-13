@@ -240,8 +240,7 @@ set wrapmargin=0
 " Allow modified buffer to be hidden
 set hidden
 
-" Disable auto inserting comment leader one by one
-set formatoptions-=c formatoptions-=o formatoptions-=r
+set formatoptions+=r
 
 " Statusline
 set laststatus=2    " Always display the statusline
@@ -615,6 +614,8 @@ nmap <F7> <Plug>StopMarkdownPreview
 
 function! HandleMdFile()
     iabbr *** *************************
+    " Recognize the list
+    setlocal formatoptions+=n
 endfunction
 
 " For ctrlp plugin
@@ -655,9 +656,6 @@ if has('autocmd')
             " Starting GUI will reset t_vb, so need to set it again
             autocmd GUIEnter * set visualbell t_vb=
         endif
-        " Disable auto inserting command leader one by one.
-        " The ftplugin may set the option, so we need to set it again.
-        autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
         " Jump to the last position when reopening a file
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         " Remember the last-active tab
