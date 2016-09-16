@@ -42,6 +42,10 @@ filetype indent on
 set background=dark
 set encoding=utf-8
 
+" Italic font
+set t_ZH=[3m
+set t_ZR=[23m
+
 " Short tab line for vim
 function! ShortTabLine()
     let ret = ''
