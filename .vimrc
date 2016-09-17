@@ -20,7 +20,6 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'majutsushi/tagbar'
     Plugin 'Yggdroot/LeaderF'
     Plugin 'easymotion/vim-easymotion'
-    Plugin 'gabrielelana/vim-markdown'
     " Plugin 'plasticboy/vim-markdown'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'vim-ctrlspace/vim-ctrlspace'
@@ -32,6 +31,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'guns/xterm-color-table.vim'
     Plugin 'Yggdroot/indentLine'
     Plugin 'tamlok/vim-highlight'
+    Plugin 'tamlok/vim-markdown'
     call vundle#end()
 endif
 
@@ -566,9 +566,9 @@ endfunction
 nmap <F5> :call ChangeCWD()<cr>
 
 " vim-markdown plugin
-let g:markdown_enable_mappings=0
+let g:markdown_enable_mappings=1
 let g:markdown_enable_spell_checking=0
-let g:markdown_enable_input_abbreviations=0
+let g:markdown_enable_conceal=1
 
 " Add support for markdown files in tagbar. We should copy the
 " .markdown2ctags.py to the proper place to make it work.
@@ -651,6 +651,7 @@ nnoremap <leader>cpb :CtrlPBufTag<CR>
 " For IndentLine plugin
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
+let g:indentLine_concealcursor = ''
 
 " Section about autocmd
 if has('autocmd')
