@@ -390,6 +390,10 @@ nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
 " For LeaderF plugin
+" Stop loading LeaderF while missing python support to avoid the complaining
+if !has("python") && !has("python3")
+    let g:leaderf_loaded=1
+endif
 let g:Lf_ShortcutF = '<leader>lf'
 let g:Lf_ShortcutB = '<leader>lb'
 
