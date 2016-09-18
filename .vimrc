@@ -384,6 +384,8 @@ function! DisplayCurrentTag()
 endfunction
 
 " For NERDTree plugin
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeAutoDeleteBuffer=1
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
