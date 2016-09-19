@@ -331,14 +331,11 @@ endif
 " Change StatueLine color according to the mode
 function! InsertStatuslineColor(mode)
     if a:mode == 'r'
-        hi StatusLine ctermbg=139 guibg=#af87af
+        hi! link StatusLine StatusLineReplace
     else
-        hi StatusLine ctermbg=71 guibg=#5faf5f
+        hi! link StatusLine StatusLineInsert
     endif
 endfunction
-
-" Highlihgt of extra space
-hi ExtraWhitespace ctermbg=202 guibg=orangered1
 
 " Define abbr for only ':' command mode
 function! CommandAbbr(abbr, cmd)
@@ -675,7 +672,7 @@ if has('autocmd')
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
-        " Tagbar plugin, auto display current tag in statusline
+        " Tagbar plugin, auto display current tag in command line
         if isdirectory($HOME."/.vim/bundle/tagbar") || isdirectory($HOME."/vimfiles/bundle/tagbar")
             autocmd CursorHold * call DisplayCurrentTag()
             autocmd FileType tagbar setlocal cursorline
@@ -693,8 +690,7 @@ if has('autocmd')
         autocmd!
         autocmd InsertEnter * call InsertStatuslineColor(v:insertmode)
         autocmd InsertChange * call InsertStatuslineColor(v:insertmode)
-        autocmd InsertLeave * hi StatusLine ctermbg=179 guibg=LightGoldenrod3
-        autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+        autocmd InsertLeave * hi! link StatusLine StatusLineNormal
         autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
         autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     augroup END
