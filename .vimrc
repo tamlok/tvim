@@ -42,6 +42,8 @@ filetype indent on
 set background=dark
 set encoding=utf-8
 
+let g:detorte_theme_mode = 'dark'
+
 " Italic font
 set t_ZH=[3m
 set t_ZR=[23m
@@ -623,6 +625,10 @@ nmap <F6> <Plug>MarkdownPreview
 nmap <F7> <Plug>StopMarkdownPreview
 
 function! HandleMdFile()
+    if g:colors_name == 'detorte'
+        let g:detorte_theme_mode = 'light'
+        colorscheme detorte
+    endif
     iabbr *** *************************
     " Recognize the list
     setlocal formatoptions+=n
@@ -655,8 +661,6 @@ nnoremap <leader>cpt :CtrlPTag<CR>
 nnoremap <leader>cpb :CtrlPBufTag<CR>
 
 " For IndentLine plugin
-let g:indentLine_color_term = 241
-let g:indentLine_color_gui = '#626262'
 let g:indentLine_concealcursor = ''
 
 " Section about autocmd
