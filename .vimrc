@@ -621,8 +621,8 @@ endif
 " For markdown-preview.vim plugin
 let g:mkdp_path_to_chrome="chrome"
 let g:mkdp_auto_close=0
-nmap <F6> <Plug>MarkdownPreview
-nmap <F7> <Plug>StopMarkdownPreview
+nmap <F7> <Plug>MarkdownPreview
+nmap <F8> <Plug>StopMarkdownPreview
 
 function! HandleMdFile()
     if g:colors_name == 'detorte'
