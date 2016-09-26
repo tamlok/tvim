@@ -629,6 +629,8 @@ function! HandleMdFile()
     iabbr *** *************************
     " Recognize the list
     setlocal formatoptions+=n
+    " More readable tagbar
+    hi! link TagbarScope NONE
 endfunction
 
 " For ctrlp plugin
