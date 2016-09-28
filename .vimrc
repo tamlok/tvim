@@ -32,6 +32,7 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'Yggdroot/indentLine'
     Plugin 'tamlok/vim-highlight'
     Plugin 'tamlok/vim-markdown'
+    Plugin 'will133/vim-dirdiff'
     call vundle#end()
 endif
 
