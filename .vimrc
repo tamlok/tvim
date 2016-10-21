@@ -678,7 +678,6 @@ if has('autocmd')
         " Tagbar plugin, auto display current tag in command line
         if isdirectory($HOME."/.vim/bundle/tagbar") || isdirectory($HOME."/vimfiles/bundle/tagbar")
             autocmd CursorHold * call DisplayCurrentTag()
-            autocmd FileType tagbar setlocal cursorline
         endif
 
         " Auto enable/disable input method when in/leave insert mode
