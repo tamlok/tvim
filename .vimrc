@@ -20,13 +20,10 @@ if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/
     Plugin 'majutsushi/tagbar'
     Plugin 'Yggdroot/LeaderF'
     Plugin 'easymotion/vim-easymotion'
-    " Plugin 'plasticboy/vim-markdown'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'vim-ctrlspace/vim-ctrlspace'
-    Plugin 'joker1007/vim-markdown-quote-syntax'
     Plugin 'mileszs/ack.vim'
     Plugin 'scrooloose/nerdtree'
-    Plugin 'iamcco/markdown-preview.vim'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'guns/xterm-color-table.vim'
     Plugin 'Yggdroot/indentLine'
@@ -247,7 +244,7 @@ set wrapmargin=0
 " Allow modified buffer to be hidden
 set hidden
 
-set formatoptions+=r
+set formatoptions-=c formatoptions-=o formatoptions-=r
 
 " Statusline
 set laststatus=2    " Always display the statusline
@@ -572,7 +569,7 @@ endfunction
 nmap <F5> :call ChangeCWD()<cr>
 
 " vim-markdown plugin
-let g:markdown_enable_mappings=1
+let g:markdown_enable_mappings=0
 let g:markdown_enable_spell_checking=0
 let g:markdown_enable_conceal=1
 
@@ -616,20 +613,12 @@ if executable("ag")
     let g:ackprg='ag --nogroup --nocolor --column'
 endif
 
-" For markdown-preview.vim plugin
-let g:mkdp_path_to_chrome="chrome"
-let g:mkdp_auto_close=0
-nmap <F7> <Plug>MarkdownPreview
-nmap <F8> <Plug>StopMarkdownPreview
-
 function! HandleMdFile()
     if g:colors_name == 'detorte'
         let g:detorte_theme_mode = 'light'
         colorscheme detorte
     endif
     iabbr *** *************************
-    " Recognize the list
-    setlocal formatoptions+=n
     " More readable tagbar
     hi! link TagbarScope NONE
 endfunction
@@ -671,6 +660,8 @@ if has('autocmd')
             " Starting GUI will reset t_vb, so need to set it again
             autocmd GUIEnter * set visualbell t_vb=
         endif
+        " The ftplugin may set the option, so we need to set it again
+        autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
         " Jump to the last position when reopening a file
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         " Remember the last-active tab
