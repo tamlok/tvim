@@ -688,3 +688,6 @@ if has('autocmd')
         autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     augroup END
 endif
+
+" Highlights specific to command
+hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
