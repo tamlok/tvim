@@ -191,6 +191,21 @@ if &t_Co >= 256 || has("gui_running")
             colorscheme torte
         endif
     endtry
+elseif !has("gui_running") && &term == 'win32'
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+
+    try
+        colorscheme detorte
+    catch /^Vim\%((\a\+)\)\=:E185/
+        if has("gui_running")
+            colorscheme desert
+        else
+            colorscheme torte
+        endif
+    endtry
 endif
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
