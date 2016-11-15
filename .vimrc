@@ -10,6 +10,9 @@ if isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
 elseif isdirectory($HOME."/.vim/bundle/Vundle.vim")
     let vundle_rtp = $HOME."/.vim/bundle/Vundle.vim"
     let vundle_begin = ''
+elseif isdirectory($VIM."/vimfiles/bundle/Vundle.vim")
+    let vundle_rtp = $VIM."/vimfiles/bundle/Vundle.vim/"
+    let vundle_begin = $VIM."/vimfiles/bundle/"
 endif
 
 if strlen(vundle_rtp) != 0
