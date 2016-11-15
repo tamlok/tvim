@@ -1,18 +1,24 @@
 " Vim Configurations by tamlok
 set nocompatible
 
-if isdirectory($HOME."/.vim/bundle/Vundle.vim") || isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
+let vundle_rtp = ''
+let vundle_begin = ''
+
+if isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
+    let vundle_rtp = $HOME."/vimfiles/bundle/Vundle.vim/"
+    let vundle_begin = $HOME."/vimfiles/bundle/"
+elseif isdirectory($HOME."/.vim/bundle/Vundle.vim")
+    let vundle_rtp = $HOME."/.vim/bundle/Vundle.vim"
+    let vundle_begin = ''
+endif
+
+if strlen(vundle_rtp) != 0
     " Vundle
     " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     filetype off
+    exec "set rtp+=".vundle_rtp
 
-    if isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
-        set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-        call vundle#begin($HOME.'/vimfiles/bundle/')
-    else
-        set rtp+=~/.vim/bundle/Vundle.vim
-        call vundle#begin()
-    endif
+    call vundle#begin(vundle_begin)
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gtags.vim'
     Plugin 'tpope/vim-surround'
