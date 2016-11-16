@@ -4,12 +4,12 @@ set nocompatible
 let vundle_rtp = ''
 let vundle_begin = ''
 
-if isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
-    let vundle_rtp = $HOME."/vimfiles/bundle/Vundle.vim/"
-    let vundle_begin = $HOME."/vimfiles/bundle/"
-elseif isdirectory($HOME."/.vim/bundle/Vundle.vim")
+if has('unix') && isdirectory($HOME."/.vim/bundle/Vundle.vim")
     let vundle_rtp = $HOME."/.vim/bundle/Vundle.vim"
     let vundle_begin = ''
+elseif isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
+    let vundle_rtp = $HOME."/vimfiles/bundle/Vundle.vim/"
+    let vundle_begin = $HOME."/vimfiles/bundle/"
 elseif isdirectory($VIM."/vimfiles/bundle/Vundle.vim")
     let vundle_rtp = $VIM."/vimfiles/bundle/Vundle.vim/"
     let vundle_begin = $VIM."/vimfiles/bundle/"
