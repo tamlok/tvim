@@ -21,7 +21,7 @@ if strlen(vundle_rtp) != 0
     filetype off
     exec "set rtp+=".vundle_rtp
 
-    call vundle#begin(vundle_begin)
+    exec "call vundle#begin(".vundle_begin.")"
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gtags.vim'
     Plugin 'tpope/vim-surround'
