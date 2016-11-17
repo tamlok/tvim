@@ -1,27 +1,30 @@
 " Vim Configurations by tamlok
 set nocompatible
 
-let vundle_rtp = ''
-let vundle_begin = ''
+let vundle_path = ""
+let vundle_plugins = ""
 
 if has('unix') && isdirectory($HOME."/.vim/bundle/Vundle.vim")
-    let vundle_rtp = $HOME."/.vim/bundle/Vundle.vim"
-    let vundle_begin = ''
+    let vundle_path = $HOME."/.vim/bundle/Vundle.vim"
+    let vundle_plugins = $HOME."/.vim/bundle/"
 elseif isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
-    let vundle_rtp = $HOME."/vimfiles/bundle/Vundle.vim/"
-    let vundle_begin = $HOME."/vimfiles/bundle/"
+    let vundle_path = $HOME."/vimfiles/bundle/Vundle.vim/"
+    let vundle_plugins = $HOME."/vimfiles/bundle/"
 elseif isdirectory($VIM."/vimfiles/bundle/Vundle.vim")
-    let vundle_rtp = $VIM."/vimfiles/bundle/Vundle.vim/"
-    let vundle_begin = $VIM."/vimfiles/bundle/"
+    let vundle_path = $VIM."/vimfiles/bundle/Vundle.vim/"
+    let vundle_plugins = $VIM."/vimfiles/bundle/"
 endif
 
-if strlen(vundle_rtp) != 0
+let vundle_path = fnameescape(vundle_path)
+let vundle_plugins = fnameescape(vundle_plugins)
+
+if strlen(vundle_path) != 0
     " Vundle
     " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     filetype off
-    exec "set rtp+=".vundle_rtp
+    exec "set rtp+=" . vundle_path
 
-    exec "call vundle#begin(".vundle_begin.")"
+    exec "call vundle#begin('" . vundle_plugins . "')"
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gtags.vim'
     Plugin 'tpope/vim-surround'
