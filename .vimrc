@@ -52,8 +52,6 @@ filetype indent on
 set background=dark
 set encoding=utf-8
 
-let g:detorte_theme_mode = 'dark'
-
 " Italic font
 set t_ZH=[3m
 set t_ZR=[23m
@@ -118,6 +116,35 @@ function! ShortTabLabel()
     return ret
 endfunction
 
+" Colorscheme
+let g:detorte_theme_mode = 'dark'
+if &t_Co >= 256 || has("gui_running")
+    try
+        colorscheme detorte
+    catch /^Vim\%((\a\+)\)\=:E185/
+        if has("gui_running")
+            colorscheme desert
+        else
+            colorscheme torte
+        endif
+    endtry
+elseif !has("gui_running") && &term == 'win32'
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+
+    try
+        colorscheme detorte
+    catch /^Vim\%((\a\+)\)\=:E185/
+        if has("gui_running")
+            colorscheme desert
+        else
+            colorscheme torte
+        endif
+    endtry
+endif
+
 " GUI
 if has("gui_running")
     set imcmdline
@@ -133,11 +160,13 @@ if has("gui_running")
     set guicursor=a:block
     set gcr+=o:hor50-Cursor
     set gcr+=n:Cursor
-    set gcr+=i-ci-sm:InsertCursor
-    set gcr+=r-cr:ReplaceCursor-hor20
-    set gcr+=c:CommandCursor
-    set gcr+=v-ve:VisualCursor
     set guicursor+=a:blinkon0
+    if g:colors_name == 'detorte'
+        set gcr+=i-ci-sm:InsertCursor
+        set gcr+=r-cr:ReplaceCursor-hor20
+        set gcr+=c:CommandCursor
+        set gcr+=v-ve:VisualCursor
+    endif
 
     " set guitablabel=%{ShortTabLabel()}
     set tabline=%!ShortTabLine()
@@ -182,34 +211,6 @@ function! GuiSizeDown()
     let &guifont = substitute(
         \ &guifont, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
 endfunction
-
-" Colorscheme
-if &t_Co >= 256 || has("gui_running")
-    try
-        colorscheme detorte
-    catch /^Vim\%((\a\+)\)\=:E185/
-        if has("gui_running")
-            colorscheme desert
-        else
-            colorscheme torte
-        endif
-    endtry
-elseif !has("gui_running") && &term == 'win32'
-    set term=xterm
-    set t_Co=256
-    let &t_AB="\e[48;5;%dm"
-    let &t_AF="\e[38;5;%dm"
-
-    try
-        colorscheme detorte
-    catch /^Vim\%((\a\+)\)\=:E185/
-        if has("gui_running")
-            colorscheme desert
-        else
-            colorscheme torte
-        endif
-    endtry
-endif
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
 set termencoding=UTF-8
@@ -278,7 +279,9 @@ set laststatus=2    " Always display the statusline
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P   " The default status line
 set statusline=
 set statusline+=%<
-set statusline+=%#StatuslineBufNum#
+if g:colors_name == 'detorte'
+    set statusline+=%#StatuslineBufNum#
+endif
 set statusline+=%3n   " Buffer number
 set statusline+=%*
 set statusline+=%F\     " Full file path
@@ -286,12 +289,18 @@ set statusline+=%F\     " Full file path
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
 
 " Display a warning if file format isn't unix
-set statusline+=%#StatuslineWarning#
+if g:colors_name == 'detorte'
+    set statusline+=%#StatuslineWarning#
+endif
 set statusline+=%{&ff!='unix'?'['.&ff.']':''}
 set statusline+=%*
 
 " Help file flag, modified flag, read-only flag
-set statusline+=%h%#Modifier#%m%*%r
+if g:colors_name == 'detorte'
+    set statusline+=%h%#Modifier#%m%*%r
+else
+    set statusline+=%h%m%*%r
+endif
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
@@ -354,9 +363,14 @@ if executable("gtags-cscope")
 endif
 
 " Change StatueLine color according to the mode
-function! InsertStatuslineColor(mode)
+function! ChangeStatuslineColor(mode)
+    if g:colors_name != 'detorte'
+        return
+    endif
     if a:mode == 'r'
         hi! link StatusLine StatusLineReplace
+    elseif a:mode == 'n'
+        hi! link StatusLine StatusLineNormal
     else
         hi! link StatusLine StatusLineInsert
     endif
@@ -595,6 +609,16 @@ function! ChangeCWD()
 endfunction
 nmap <F5> :call ChangeCWD()<cr>
 
+" Highlight extra whitespaces
+function! HighlightExtraWhiteSpace(insert_enter)
+    hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
+    if a:insert_enter == 1
+        match ExtraWhitespace /\s\+\%#\@<!$/
+    else
+        match ExtraWhitespace /\s\+$/
+    endif
+endfunction
+
 " vim-markdown plugin
 let g:markdown_enable_mappings=0
 let g:markdown_enable_spell_checking=0
@@ -641,10 +665,6 @@ if executable("ag")
 endif
 
 function! HandleMdFile()
-    if g:colors_name == 'detorte'
-        let g:detorte_theme_mode = 'light'
-        colorscheme detorte
-    endif
     iabbr *** *************************
     " More readable tagbar
     hi! link TagbarScope NONE
@@ -708,13 +728,10 @@ if has('autocmd')
 
     augroup highlight_group
         autocmd!
-        autocmd InsertEnter * call InsertStatuslineColor(v:insertmode)
-        autocmd InsertChange * call InsertStatuslineColor(v:insertmode)
-        autocmd InsertLeave * hi! link StatusLine StatusLineNormal
-        autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-        autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+        autocmd InsertEnter * call ChangeStatuslineColor(v:insertmode)
+        autocmd InsertChange * call ChangeStatuslineColor(v:insertmode)
+        autocmd InsertLeave * call ChangeStatuslineColor('n')
+        autocmd InsertEnter * call HighlightExtraWhiteSpace(1)
+        autocmd InsertLeave * call HighlightExtraWhiteSpace(0)
     augroup END
 endif
-
-" Highlights specific to command
-hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
