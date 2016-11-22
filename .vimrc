@@ -117,6 +117,7 @@ function! ShortTabLabel()
 endfunction
 
 " Colorscheme
+let g:colors_name = ''
 let g:detorte_theme_mode = 'dark'
 if &t_Co >= 256 || has("gui_running")
     try
