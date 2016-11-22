@@ -336,8 +336,8 @@ if has("mouse")
 endif
 
 " let vim to source local .vimrc file with secure on
-set exrc
-set secure
+" set exrc
+" set secure
 
 " Enable matchit plugin to enable % to jump between keyword like if/end
 runtime macros/matchit.vim
