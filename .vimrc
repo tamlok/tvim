@@ -30,7 +30,6 @@ if strlen(vundle_path) != 0
     Plugin 'tpope/vim-surround'
     Plugin 'closetag.vim'
     Plugin 'majutsushi/tagbar'
-    Plugin 'Yggdroot/LeaderF'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'vim-ctrlspace/vim-ctrlspace'
@@ -427,14 +426,6 @@ let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
-
-" For LeaderF plugin
-" Stop loading LeaderF while missing python support to avoid the complaining
-if !has("python") && !has("python3")
-    let g:leaderf_loaded=1
-endif
-let g:Lf_ShortcutF = '<leader>lf'
-let g:Lf_ShortcutB = '<leader>lb'
 
 " For EasyMotion plugin
 map <Leader>m <Plug>(easymotion-prefix)
