@@ -694,6 +694,30 @@ function! CtrlP_StatusLine_2(...)
     let dir = 'CWD['.getcwd().']%=%<'
     return len.dir
 endfunction
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
+" From spf13
+if executable('ag')
+    let s:ctrlp_fallback = 'ag -i --nocolor --nogroup --hidden -g "" %s'
+elseif executable('ack-grep')
+    let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+elseif executable('ack')
+    let s:ctrlp_fallback = 'ack %s --nocolor -f'
+elseif (has("win32") || has("win64") || has("win95") || has("win16"))
+    let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
+else
+    let s:ctrlp_fallback = 'find %s -type f'
+endif
+if exists("g:ctrlp_user_command")
+    unlet g:ctrlp_user_command
+endif
+let g:ctrlp_user_command = {
+            \ 'types': {
+            \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+            \ },
+            \ 'fallback': s:ctrlp_fallback
+            \ }
 nnoremap <leader>cpt :CtrlPTag<CR>
 nnoremap <leader>cpb :CtrlPBufTag<CR>
 
