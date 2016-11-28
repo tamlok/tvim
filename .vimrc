@@ -37,7 +37,6 @@ if strlen(vundle_path) != 0
     Plugin 'scrooloose/nerdtree'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'guns/xterm-color-table.vim'
-    Plugin 'Yggdroot/indentLine'
     Plugin 'tamlok/vim-highlight'
     Plugin 'tamlok/vim-markdown'
     Plugin 'will133/vim-dirdiff'
