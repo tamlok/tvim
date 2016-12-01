@@ -40,6 +40,7 @@ if strlen(vundle_path) != 0
     Plugin 'tamlok/vim-highlight'
     Plugin 'tamlok/vim-markdown'
     Plugin 'will133/vim-dirdiff'
+    Plugin 'tamlok/a.vim'
     call vundle#end()
 endif
 
@@ -713,6 +714,9 @@ nnoremap <leader>cpb :CtrlPBufTag<CR>
 
 " For IndentLine plugin
 let g:indentLine_concealcursor = ''
+
+" For a.vim plugin
+nmap <leader>ia :A<CR>
 
 " Section about autocmd
 if has('autocmd')
