@@ -665,7 +665,7 @@ endfunction
 " For ctrlp plugin
 let g:ctrlp_map='<leader>cp'
 let g:ctrlp_extensions=['tag', 'buffertag']
-let g:ctrlp_match_window='order:ttb'
+let g:ctrlp_match_window='order:ttb,results:100'
 let g:ctrlp_status_func={
     \ 'main': 'CtrlP_StatusLine_1',
     \ 'prog': 'CtrlP_StatusLine_2',
