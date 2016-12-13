@@ -710,7 +710,11 @@ let g:ctrlp_user_command = {
             \ 'fallback': s:ctrlp_fallback
             \ }
 nnoremap <leader>cpt :CtrlPTag<CR>
-nnoremap <leader>cpb :CtrlPBufTag<CR>
+nnoremap <leader>cpb :CtrlPBuffer<CR>
+nnoremap <leader>cpm :CtrlPMixed<CR>
+nnoremap <leader>cpu :CtrlPBufTagAll<CR>
+nnoremap <leader>cpc :CtrlP :pwd<CR>
+call CommandAbbr('cp', 'CtrlP')
 
 " For IndentLine plugin
 let g:indentLine_concealcursor = ''
