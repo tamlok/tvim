@@ -411,6 +411,8 @@ map <space> <leader>
 " For Tagbar plugin
 let g:tagbar_autofocus = 1
 let g:tagbar_left=1
+" Use t instead of <Space> to display the prototype of the current tag
+let g:tagbar_map_showproto="t"
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>ta :TagbarOpenAutoClose<CR>
