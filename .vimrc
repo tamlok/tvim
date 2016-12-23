@@ -686,7 +686,9 @@ function! CtrlP_StatusLine_2(...)
     return len.dir
 endfunction
 let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
+let g:ctrlp_max_depth = 50
+" Always open a new instance
+let g:ctrlp_switch_buffer = 0
 " From spf13
 if executable('ag')
     let s:ctrlp_fallback = 'ag -i --nocolor --nogroup --hidden -g "" %s'
@@ -712,7 +714,8 @@ let g:ctrlp_user_command = {
 nnoremap <leader>cpt :CtrlPTag<CR>
 nnoremap <leader>cpb :CtrlPBuffer<CR>
 nnoremap <leader>cpm :CtrlPMixed<CR>
-nnoremap <leader>cpu :CtrlPBufTagAll<CR>
+nnoremap <leader>cpu :CtrlPBufTag<CR>
+nnoremap <leader>cpa :CtrlPBufTagAll<CR>
 nnoremap <leader>cpc :CtrlP :pwd<CR>
 call CommandAbbr('cp', 'CtrlP')
 
