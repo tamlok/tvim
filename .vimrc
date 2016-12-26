@@ -604,6 +604,18 @@ function! ChangeCWD()
 endfunction
 nmap <F5> :call ChangeCWD()<cr>
 
+" Search pattern using grep in all the buffers
+function! GrepBufferF(pattern)
+    " Clear the quickfix window first
+    cexpr []
+    silent execute ":bufdo vimgrepadd ".a:pattern." %"
+    set cursorline
+    set cursorcolumn
+    copen
+endfunction
+command! -nargs=+ GrepBuffer call GrepBufferF(<f-args>)
+nnoremap <leader>gb :GrepBuffer 
+
 " Highlight extra whitespaces
 function! HighlightExtraWhiteSpace(insert_enter)
     hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
@@ -757,6 +769,9 @@ if has('autocmd')
 
         " Hanlde markdown file type
         autocmd FileType markdown call HandleMdFile()
+
+        " Disable cursorline and cursorcolumn in Quickfix window
+        autocmd BufWinEnter quickfix setlocal nocursorline nocursorcolumn
     augroup END
 
     augroup highlight_group
