@@ -41,6 +41,7 @@ if strlen(vundle_path) != 0
     Plugin 'tamlok/vim-markdown'
     Plugin 'will133/vim-dirdiff'
     Plugin 'tamlok/a.vim'
+    Plugin 'mihaifm/bufstop'
     call vundle#end()
 endif
 
@@ -726,6 +727,10 @@ let g:indentLine_concealcursor = ''
 
 " For a.vim plugin
 nmap <leader>ia :A<CR>
+
+" For Bufstop.vim plugin
+nnoremap <leader>bs :Bufstop<CR>
+nnoremap <leader>bf :BufstopFast<CR>
 
 " Section about autocmd
 if has('autocmd')
