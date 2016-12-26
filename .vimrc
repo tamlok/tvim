@@ -276,6 +276,10 @@ set hidden
 set formatoptions-=c formatoptions-=o formatoptions-=r
 
 " Statusline
+function! StatusLineFileDir()
+    return expand("%:p:h")
+endfunction
+
 set laststatus=2    " Always display the statusline
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P   " The default status line
 set statusline=
@@ -285,7 +289,13 @@ if g:colors_name == 'detorte'
 endif
 set statusline+=%3n   " Buffer number
 set statusline+=%*
-set statusline+=%F\     " Full file path
+if g:colors_name == 'detorte'
+    set statusline+=%#StatuslineFileName#
+endif
+" Trailing space
+set statusline+=\ %t\ 
+set statusline+=%*
+set statusline+=[%{StatusLineFileDir()}]
 
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
 
