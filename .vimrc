@@ -289,13 +289,13 @@ if g:colors_name == 'detorte'
 endif
 set statusline+=%3n   " Buffer number
 set statusline+=%*
+set statusline+=%{StatusLineFileDir()}\ 
 if g:colors_name == 'detorte'
     set statusline+=%#StatuslineFileName#
 endif
 " Trailing space
-set statusline+=\ %t\ 
-set statusline+=%*
-set statusline+=[%{StatusLineFileDir()}]
+set statusline+=[%t]
+set statusline+=%*\ 
 
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
 
