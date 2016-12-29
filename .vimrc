@@ -780,6 +780,8 @@ if has('autocmd')
         " Hanlde markdown file type
         autocmd FileType markdown call HandleMdFile()
 
+        " Enable cursorline and cursorcolumn in the edit window after quickfix command
+        autocmd QuickfixCmdPost * set cursorline cursorcolumn
         " Disable cursorline and cursorcolumn in Quickfix window
         autocmd BufWinEnter quickfix setlocal nocursorline nocursorcolumn
     augroup END
