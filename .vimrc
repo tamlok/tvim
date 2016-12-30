@@ -287,7 +287,7 @@ set statusline+=%<
 if g:colors_name == 'detorte'
     set statusline+=%#StatuslineBufNum#
 endif
-set statusline+=%3n   " Buffer number
+set statusline+=%-3n   " Buffer number
 set statusline+=%*
 set statusline+=%{StatusLineFileDir()}\ 
 if g:colors_name == 'detorte'
@@ -308,9 +308,9 @@ set statusline+=%*
 
 " Help file flag, modified flag, read-only flag
 if g:colors_name == 'detorte'
-    set statusline+=%h%#Modifier#%m%*%r
+    set statusline+=%h%w%#Modifier#%m%*%r
 else
-    set statusline+=%h%m%*%r
+    set statusline+=%h%w%m%*%r
 endif
 
 " set statusline+=%=    " Left/right separator
