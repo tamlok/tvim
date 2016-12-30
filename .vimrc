@@ -754,6 +754,15 @@ nmap <leader>ia :A<CR>
 nnoremap <leader>bs :Bufstop<CR>
 nnoremap <leader>bf :BufstopFast<CR>
 
+function! HandleQuickfix()
+    wincmd p
+    set cursorline
+    set cursorcolumn
+    wincmd p
+    setlocal nocursorline
+    setlocal nocursorcolumn
+endfunction
+
 " Section about autocmd
 if has('autocmd')
     augroup other_group
@@ -780,10 +789,8 @@ if has('autocmd')
         " Hanlde markdown file type
         autocmd FileType markdown call HandleMdFile()
 
-        " Enable cursorline and cursorcolumn in the edit window after quickfix command
         autocmd QuickfixCmdPost * set cursorline cursorcolumn
-        " Disable cursorline and cursorcolumn in Quickfix window
-        autocmd BufWinEnter quickfix setlocal nocursorline nocursorcolumn
+        autocmd FileType qf call HandleQuickfix()
     augroup END
 
     augroup highlight_group
