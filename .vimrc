@@ -427,12 +427,6 @@ let g:tagbar_map_showproto="t"
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>ta :TagbarOpenAutoClose<CR>
-function! DisplayCurrentTag()
-    try
-        TagbarCurrentTag
-    catch
-    endtry
-endfunction
 
 " For NERDTree plugin
 let g:NERDTreeQuitOnOpen=1
@@ -777,10 +771,6 @@ if has('autocmd')
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
-        " Tagbar plugin, auto display current tag in command line
-        if isdirectory($HOME."/.vim/bundle/tagbar") || isdirectory($HOME."/vimfiles/bundle/tagbar")
-            autocmd CursorHold * call DisplayCurrentTag()
-        endif
 
         " Auto enable/disable input method when in/leave insert mode
         autocmd InsertLeave * set imdisable | set iminsert=0
