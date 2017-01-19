@@ -630,6 +630,11 @@ function! HighlightExtraWhiteSpace(insert_enter)
     endif
 endfunction
 
+" Map Ctrl+J and Ctrl+K to navigate down and up in popup menu.
+" Ctrl+N and Ctrl+P may cause performance issue.
+inoremap <expr> <C-J> pumvisible() ? "<Down>" : "<C-J>"
+inoremap <expr> <C-K> pumvisible() ? "<Up>" : "<C-K>"
+
 " vim-markdown plugin
 let g:markdown_enable_mappings=0
 let g:markdown_enable_spell_checking=0
