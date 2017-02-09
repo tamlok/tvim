@@ -149,6 +149,7 @@ rem Make a portable version in vim_portable
 set vim_portable_folder=vim_portable
 rmdir /s /q %vim_portable_folder% 2> NUL
 set /A portable_ret=0
+set init_cmd=%vim_portable_folder%\init.cmd
 if "%1"=="portable" (
     echo Generate a portable version in directory vim_portable
     mkdir %vim_portable_folder% 2> NUL
@@ -166,6 +167,18 @@ if "%1"=="portable" (
 
     xcopy /Y /i "%vimfiles_folder%" "%vim_portable_folder%\vimfiles" /s /e > NUL
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
+
+    (echo @echo off
+     echo setlocal EnableExtensions
+     echo set dest_gvim=C:\Windows\gvim.bat
+     echo if exist "%%dest_gvim%%" EXIT /B 0
+     echo set cur_dir=%%~dp0
+     echo if /I "%%cur_dir:~-1%%" EQU "\" set cur_dir=%%cur_dir:~0,-1%%
+     echo set exe_dir=%%cur_dir%%\!vim_exe_folder!
+     echo echo @echo off ^> %%dest_gvim%%
+     echo echo start "" "%%exe_dir%%\gvim.exe" %%%%* ^>^> %%dest_gvim%%
+     echo pause
+    ) >> "%init_cmd%"
 
     if !portable_ret! NEQ 0 (
         echo Failed to generate a portable version
