@@ -67,6 +67,7 @@ if not exist %vundle_folder% (
     )
 )
 
+rem curl.exe is required by VundleSearch
 echo Check curl
 where curl > NUL 2> NUL
 if %ERRORLEVEL% NEQ 0 (
@@ -75,7 +76,7 @@ if %ERRORLEVEL% NEQ 0 (
         set /A ret=1
         goto :end
     )
-    copy /Y %win_utils_folder%\curl.exe C:\Windows\System32\ > NUL 2> NUL
+    copy /Y %win_utils_folder%\curl.exe "%vim_folder%\" > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to copy curl.exe, make sure you run this script as Administrator
         set /A ret=1
