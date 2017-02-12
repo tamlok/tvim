@@ -645,22 +645,27 @@ let g:markdown_enable_conceal=1
 " .markdown2ctags.py to the proper place to make it work.
 let file_markdown2ctags='~/.vim/markdown2ctags.py'
 if has("win16") || has("win32") || has("win64") || has("win95")
-    let file_markdown2ctags='~\vimfiles\markdown2ctags.py'
+    let file_markdown2ctags=fnameescape($VIM."\\vimfiles\\markdown2ctags.py")
+    if !filereadable(file_markdown2ctags)
+        let file_markdown2ctags='~\vimfiles\markdown2ctags.py'
+    endif
 endif
-let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : file_markdown2ctags,
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
+if executable("python")
+    let g:tagbar_type_markdown = {
+        \ 'ctagstype': 'markdown',
+        \ 'ctagsbin' : file_markdown2ctags,
+        \ 'ctagsargs' : '-f - --sort=yes',
+        \ 'kinds' : [
+            \ 's:sections',
+            \ 'i:images'
+        \ ],
+        \ 'sro' : '|',
+        \ 'kind2scope' : {
+            \ 's' : 'section',
+        \ },
+        \ 'sort': 0,
+    \ }
+endif
 
 " For vim-cpp-enhanced-highlight plugin
 let c_no_curly_error=1
