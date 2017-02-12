@@ -59,7 +59,7 @@ echo Check Vundle.vim
 set vundle_repo=https://github.com/VundleVim/Vundle.vim.git
 set vundle_folder=%vimfiles_folder%\bundle\Vundle.vim
 if not exist %vundle_folder% (
-    git -q clone %vundle_repo% %vundle_folder%
+    git clone %vundle_repo% %vundle_folder% > NUL 2> NUL
     if %ERRORLEVEL% NEQ 0 (
         echo Failed to clone Vundle.vim >&2
         set /A ret=1
@@ -195,7 +195,7 @@ EXIT /B %ret%
 set utils_repot=https://github.com/tamlok/vim-win-utils.git
 if not exist %win_utils_folder% (
     echo Clone Vim-Win-Utils
-    git clone -q %utils_repot% %win_utils_folder%
+    git clone %utils_repot% %win_utils_folder% > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to clone Vim-Win-Utils >&2
         EXIT /B 1
