@@ -32,7 +32,6 @@ if strlen(vundle_path) != 0
     Plugin 'majutsushi/tagbar'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'octol/vim-cpp-enhanced-highlight'
-    Plugin 'vim-ctrlspace/vim-ctrlspace'
     Plugin 'mileszs/ack.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'ctrlpvim/ctrlp.vim'
@@ -669,16 +668,6 @@ endif
 
 " For vim-cpp-enhanced-highlight plugin
 let c_no_curly_error=1
-
-" For CtrlSpace plugin
-let g:CtrlSpaceSymbols={"CS": "CtrlSpace", "Sin": "Single", "All": "All", "Vis": "Visible", "File": "File", "WLoad": "Workspace Load",
-            \ "WSave": "Workspace Save", "Zoom": "Zoom", "IV": "-", "IA": "*", "IM": "+", "BM": "Bookmark", "Tabs": "Tab List"}
-let g:CtrlSpaceSearchTiming=500
-let g:CtrlSpaceUseTabline=0
-let g:CtrlSpaceDefaultMappingKey="<leader>s"
-if executable("ag")
-    let g:CtrlSpaceGlobCommand='ag -l --nocolor -g ""'
-endif
 
 " For ack.vim plugin
 " Use ag instead of ack
