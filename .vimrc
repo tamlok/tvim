@@ -258,7 +258,7 @@ set incsearch       " Search as characters are entered
 set cc=81               " Highlight the 81th column
 
 set complete-=i     " Do not scan included files in <C-P> completion
-set completeopt=menuone,longest,preview
+set completeopt=menuone,preview
 
 set tags=./tags;/
 
