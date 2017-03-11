@@ -387,6 +387,18 @@ function! ChangeStatuslineColor(mode)
     endif
 endfunction
 
+" Set tab width. Disable expanding tab if zero.
+function! SetTabFn(tab_width)
+    if a:tab_width == 0
+        set noexpandtab
+    elseif a:tab_width > 0
+        execute 'set tabstop=' . a:tab_width . ' softtabstop=' . a:tab_width . ' shiftwidth=' . a:tab_width . ' expandtab'
+    else
+        echom "warning: arg equal to 0 will disable expanding tab, larger than 0 will set the tab stop."
+    endif
+endfunction
+command! -nargs=1 SetTab call SetTabFn(<f-args>)
+
 " Define abbr for only ':' command mode
 function! CommandAbbr(abbr, cmd)
     exec "cabbr <expr> " . a:abbr . " getcmdtype() == ':' ? '" . a:cmd . "' : '" . a:abbr . "'"
