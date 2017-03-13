@@ -70,7 +70,6 @@ if not exist %vundle_folder% (
 rem curl.exe is required by VundleSearch
 echo Check curl
 if not exist "%vim_folder%\curl.exe" (
-if %ERRORLEVEL% NEQ 0 (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
