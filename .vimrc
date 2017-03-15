@@ -145,15 +145,19 @@ elseif &term == 'win32'
     endtry
 elseif &term == 'xterm'
     set term=xterm-256color
-    try
-        colorscheme detorte
-    catch /^Vim\%((\a\+)\)\=:E185/
-        if has("gui_running")
-            colorscheme desert
-        else
-            colorscheme torte
-        endif
-    endtry
+    if &t_col == 256
+        try
+            colorscheme detorte
+        catch /^Vim\%((\a\+)\)\=:E185/
+            if has("gui_running")
+                colorscheme desert
+            else
+                colorscheme torte
+            endif
+        endtry
+    else
+        set term=xterm
+    endif
 endif
 
 " GUI
