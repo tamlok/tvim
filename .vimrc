@@ -41,6 +41,7 @@ if strlen(vundle_path) != 0
     Plugin 'will133/vim-dirdiff'
     Plugin 'tamlok/a.vim'
     Plugin 'mihaifm/bufstop'
+    Plugin 'mzlogin/vim-markdown-toc'
     call vundle#end()
 endif
 
