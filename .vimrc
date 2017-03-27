@@ -584,16 +584,6 @@ function! RecoverCR()
 endfunction
 call CommandAbbr('noclo', 'call RecoverCR()')
 
-" Search for selected text
-function! s:VSetSearch()
-    let temp = @s
-    norm! gv"sy
-    let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
-    let @s = temp
-endfunction
-xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
-
 " Zoom/Restore window
 function! ZoomToggle() abort
     if exists("t:zoomed") && t:zoomed
