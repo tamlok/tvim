@@ -420,10 +420,6 @@ function! CommandAbbr(abbr, cmd)
     exec "cabbr <expr> " . a:abbr . " getcmdtype() == ':' ? '" . a:cmd . "' : '" . a:abbr . "'"
 endfunction
 
-" Abbr to change to expanding tab with 4 spaces
-call CommandAbbr('extab', 'set tabstop=4 \| set softtabstop=4 \| set shiftwidth=4 \| set expandtab')
-call CommandAbbr('noextab', 'set tabstop=8 \| set softtabstop=8 \| set shiftwidth=8 \| set noexpandtab')
-
 call CommandAbbr('fms', 'set foldmethod=syntax')
 call CommandAbbr('gta', 'Gtags')
 call CommandAbbr('gtr', 'Gtags -r')
