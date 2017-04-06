@@ -40,6 +40,7 @@ if strlen(vundle_path) != 0
     Plugin 'tamlok/vim-markdown'
     Plugin 'will133/vim-dirdiff'
     Plugin 'mzlogin/vim-markdown-toc'
+    Plugin 'derekwyatt/vim-fswitch'
     call vundle#end()
 endif
 
@@ -752,6 +753,12 @@ call CommandAbbr('cp', 'CtrlP')
 
 " For IndentLine plugin
 let g:indentLine_concealcursor = ''
+
+" For FSwitch plugin
+let g:fsnonewfiles = 1
+nnoremap <silent> <Leader>fs :FSHere<CR>
+nnoremap <silent> <Leader>fr :FSSplitRight<CR>
+nnoremap <silent> <Leader>fa :FSSplitAbove<CR>
 
 function! HandleQuickfix()
     wincmd p
