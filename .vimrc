@@ -39,7 +39,6 @@ if strlen(vundle_path) != 0
     Plugin 'tamlok/vim-highlight'
     Plugin 'tamlok/vim-markdown'
     Plugin 'will133/vim-dirdiff'
-    Plugin 'tamlok/a.vim'
     Plugin 'mzlogin/vim-markdown-toc'
     call vundle#end()
 endif
@@ -753,9 +752,6 @@ call CommandAbbr('cp', 'CtrlP')
 
 " For IndentLine plugin
 let g:indentLine_concealcursor = ''
-
-" For a.vim plugin
-nmap <leader>ia :A<CR>
 
 function! HandleQuickfix()
     wincmd p
