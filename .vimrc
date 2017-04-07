@@ -456,6 +456,8 @@ let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
+" Trailing space needed
+nnoremap <leader>nb :NERDTreeFromBookmark 
 
 " For EasyMotion plugin
 map <Leader>m <Plug>(easymotion-prefix)
