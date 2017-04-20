@@ -332,7 +332,11 @@ endif
 set statusline+=\     " One space
 set statusline+=[%{v:register}]\ 
 " Cursor line / total lines Current column number and virtual column number
-set statusline+=%-25.(r:%l-%L\(%P)\ c:%c%V%)
+if g:colors_name == 'detorte'
+    set statusline+=%-25.(r:%#StatuslineLineNumber#%l%*-%L\(%P)\ c:%c%V%)
+else
+    set statusline+=%-25.(r:%l-%L\(%P)\ c:%c%V%)
+endif
 
 " Valid in terminal. Need to set it again after GUI enter.
 set noerrorbells visualbell t_vb=
