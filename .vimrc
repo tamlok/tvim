@@ -615,6 +615,15 @@ function! ToggleCurrentCursorInfo()
 endfunction
 nnoremap <silent> <leader>ci :call ToggleCurrentCursorInfo()<CR>
 
+" Flash cursorline and cursorcolumn
+function! FlashCursor()
+    set cursorline cursorcolumn
+    redraw
+    sleep 200m
+    set nocursorline nocursorcolumn
+endfunction
+nnoremap <silent> <leader>cf :call FlashCursor()<CR>
+
 " Set current working directory as well as some variables derived from it to
 " current file's directory
 function! ChangeCWD()
@@ -766,15 +775,6 @@ nnoremap <silent> <Leader>fs :FSHere<CR>
 nnoremap <silent> <Leader>fr :FSSplitRight<CR>
 nnoremap <silent> <Leader>fa :FSSplitAbove<CR>
 
-function! HandleQuickfix()
-    wincmd p
-    set cursorline
-    set cursorcolumn
-    wincmd p
-    setlocal nocursorline
-    setlocal nocursorcolumn
-endfunction
-
 " Section about autocmd
 if has('autocmd')
     augroup other_group
@@ -796,9 +796,6 @@ if has('autocmd')
 
         " Hanlde markdown file type
         autocmd FileType markdown call HandleMdFile()
-
-        autocmd QuickfixCmdPost * set cursorline cursorcolumn
-        autocmd FileType qf call HandleQuickfix()
     augroup END
 
     augroup highlight_group
