@@ -265,7 +265,11 @@ execute "set backupdir=".tempdir
 execute "set directory=".tempdir
 
 set showmode        " Display current mode in the message line
-" set relativenumber  " Display line number relative to current line
+
+if has("gui_running")
+    set relativenumber  " Display line number relative to current line
+endif
+
 " set number          " Display absolute line number
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
