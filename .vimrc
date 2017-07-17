@@ -670,7 +670,7 @@ inoremap <expr> <C-K> pumvisible() ? "<Up>" : "<C-K>"
 " vim-markdown plugin
 let g:markdown_enable_mappings=0
 let g:markdown_enable_spell_checking=0
-let g:markdown_enable_conceal=1
+let g:markdown_enable_conceal=0
 
 " Add support for markdown files in tagbar. We should copy the
 " .markdown2ctags.py to the proper place to make it work.
@@ -708,7 +708,6 @@ if executable("ag")
 endif
 
 function! HandleMdFile()
-    iabbr *** *************************
     " More readable tagbar
     hi! link TagbarScope NONE
 endfunction
