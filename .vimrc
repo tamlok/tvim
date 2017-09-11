@@ -37,7 +37,6 @@ if strlen(vundle_path) != 0
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'guns/xterm-color-table.vim'
     Plugin 'tamlok/vim-highlight'
-    Plugin 'tamlok/vim-markdown'
     Plugin 'will133/vim-dirdiff'
     Plugin 'mzlogin/vim-markdown-toc'
     Plugin 'derekwyatt/vim-fswitch'
@@ -666,11 +665,6 @@ endfunction
 " Ctrl+N and Ctrl+P may cause performance issue.
 inoremap <expr> <C-J> pumvisible() ? "<Down>" : "<C-J>"
 inoremap <expr> <C-K> pumvisible() ? "<Up>" : "<C-K>"
-
-" vim-markdown plugin
-let g:markdown_enable_mappings=0
-let g:markdown_enable_spell_checking=0
-let g:markdown_enable_conceal=0
 
 " Add support for markdown files in tagbar. We should copy the
 " .markdown2ctags.py to the proper place to make it work.
