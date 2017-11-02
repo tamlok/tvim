@@ -265,11 +265,8 @@ execute "set directory=".tempdir
 
 set showmode        " Display current mode in the message line
 
-if has("gui_running")
-    set relativenumber  " Display line number relative to current line
-endif
-
 " set number          " Display absolute line number
+set relativenumber  " Display line number relative to current line
 set hlsearch        " Highlight matches
 set incsearch       " Search as characters are entered
 " set list lcs=tab:\|\   " Display Tab indent
