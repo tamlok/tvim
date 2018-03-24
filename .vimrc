@@ -144,7 +144,7 @@ elseif &term == 'win32'
     endtry
 elseif &term == 'xterm'
     set term=xterm-256color
-    if &t_col == 256
+    if &t_Co == 256
         try
             colorscheme detorte
         catch /^Vim\%((\a\+)\)\=:E185/
