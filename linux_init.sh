@@ -1,12 +1,14 @@
 #!/bin/sh
 echo 'Coping .vimrc'
-cp .vimrc ~/
+cp .vimrc ~/.vimrc
 
 echo 'Coping detorte colorscheme'
-cp -r detorte/colors/ ~/.vim/
+mkdir ~/.vim/colors
+cp -r detorte/colors ~/.vim/colors
 
-# Git clone Vundle.vim for plugins management
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo 'Coping plug.vim'
+mkdir ~/.vim/autoload
+cp -f plug.vim ~/.vim/autoload/plug.vim
 
 # Add support for markdown in Tagbar plugin
 echo 'Coping markdown2ctags.py'

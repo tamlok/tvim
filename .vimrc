@@ -1,51 +1,33 @@
 " Vim Configurations by tamlok
 set nocompatible
 
-let vundle_path = ""
-let vundle_plugins = ""
+let plug_plugins = ""
 
-if has('unix') && isdirectory($HOME."/.vim/bundle/Vundle.vim")
-    let vundle_path = $HOME."/.vim/bundle/Vundle.vim"
-    let vundle_plugins = $HOME."/.vim/bundle/"
-elseif isdirectory($HOME."/vimfiles/bundle/Vundle.vim")
-    let vundle_path = $HOME."/vimfiles/bundle/Vundle.vim/"
-    let vundle_plugins = $HOME."/vimfiles/bundle/"
-elseif isdirectory($VIM."/vimfiles/bundle/Vundle.vim")
-    let vundle_path = $VIM."/vimfiles/bundle/Vundle.vim/"
-    let vundle_plugins = $VIM."/vimfiles/bundle/"
+if has('unix') && filereadable($HOME."/.vim/auotload/plug.vim")
+    let plug_plugins = $HOME."/.vim/plugged"
+elseif filereadable($HOME."/vimfiles/autoload/plug.vim")
+    let plug_plugins = $HOME."/vimfiles/plugged"
+elseif filereadable($VIM."/vimfiles/autoload/plug.vim")
+    let plug_plugins = $VIM."/vimfiles/plugged"
 endif
 
-let vundle_path = fnameescape(vundle_path)
-let vundle_plugins = fnameescape(vundle_plugins)
+let plug_plugins = fnameescape(plug_plugins)
 
-if strlen(vundle_path) != 0
-    " Vundle
-    " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    filetype off
-    exec "set rtp+=" . vundle_path
-
-    exec "call vundle#begin('" . vundle_plugins . "')"
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'gtags.vim'
-    Plugin 'tpope/vim-surround'
-    Plugin 'closetag.vim'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'easymotion/vim-easymotion'
-    Plugin 'octol/vim-cpp-enhanced-highlight'
-    Plugin 'mileszs/ack.vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'ctrlpvim/ctrlp.vim'
-    Plugin 'guns/xterm-color-table.vim'
-    Plugin 'tamlok/vim-highlight'
-    Plugin 'will133/vim-dirdiff'
-    Plugin 'mzlogin/vim-markdown-toc'
-    Plugin 'derekwyatt/vim-fswitch'
-    call vundle#end()
-endif
-
-filetype on
-filetype plugin on
-filetype indent on
+exec "call plug#begin('" . plug_plugins . "')"
+Plug 'vim-scripts/gtags.vim'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/closetag.vim'
+Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFromBookmark'] }
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
+Plug 'tamlok/vim-highlight'
+Plug 'will133/vim-dirdiff'
+Plug 'derekwyatt/vim-fswitch'
+call plug#end()
 
 set background=dark
 set encoding=utf-8

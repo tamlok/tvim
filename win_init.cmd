@@ -55,19 +55,18 @@ if %ERRORLEVEL% NEQ 0 (
     goto :end
 )
 
-echo Check Vundle.vim
-set vundle_repo=https://github.com/VundleVim/Vundle.vim.git
-set vundle_folder=%vimfiles_folder%\bundle\Vundle.vim
-if not exist %vundle_folder% (
-    git clone %vundle_repo% %vundle_folder% > NUL 2> NUL
-    if %ERRORLEVEL% NEQ 0 (
-        echo Failed to clone Vundle.vim >&2
+echo Check plug.vim
+set plug_file=%vimfiles_folder%\autoload\plug.vim
+if not exist %plug_file% (
+    md "%vimfiles_folder%\autoload"
+    copy /Y plug.vim "%plug_file%" > NUL 2> NUL
+    if !ERRORLEVEL! NEQ 0 (
+        echo Failed to clone plug.vim >&2
         set /A ret=1
         goto :end
     )
 )
 
-rem curl.exe is required by VundleSearch
 echo Check curl
 if not exist "%vim_folder%\curl.exe" (
     call :clone_win_utils
