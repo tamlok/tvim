@@ -21,7 +21,6 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFromBookmark'] }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
 Plug 'tamlok/vim-highlight'
@@ -404,7 +403,7 @@ function! SetTabFn(tab_width)
         echom "warning: arg equal to 0 will disable expanding tab, larger than 0 will set the tab stop."
     endif
 endfunction
-command! -nargs=1 SetTab call SetTabFn(<f-args>)
+command! -nargs=1 settab call SetTabFn(<f-args>)
 
 " Define abbr for only ':' command mode
 function! CommandAbbr(abbr, cmd)
@@ -446,14 +445,6 @@ let g:tagbar_map_showproto="t"
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>ta :TagbarOpenAutoClose<CR>
-
-" For NERDTree plugin
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeAutoDeleteBuffer=1
-nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
-" Trailing space needed
-nnoremap <leader>nb :NERDTreeFromBookmark 
 
 " For EasyMotion plugin
 map <Leader>m <Plug>(easymotion-prefix)
