@@ -27,6 +27,8 @@ Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
 Plug 'tamlok/vim-highlight'
 Plug 'will133/vim-dirdiff'
 Plug 'derekwyatt/vim-fswitch'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 set background=dark
@@ -257,7 +259,7 @@ set cc=81               " Highlight the 81th column
 set complete-=i     " Do not scan included files in <C-P> completion
 set completeopt=menuone,preview
 
-set tags=./tags;/
+set tags=./tags;,tags
 
 set confirm     " Ask for confirmation when handling unsaved or read-only files
 set report=0
@@ -309,6 +311,10 @@ if g:colors_name == 'detorte'
 else
     set statusline+=%h%w%m%*%r
 endif
+
+" Statues of Gutentags plugin
+set statusline+=\     " One space
+set statusline+=%{gutentags#statusline()}
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
@@ -413,15 +419,19 @@ call CommandAbbr('vcs', 'vert scscope find')
 call CommandAbbr('scs', 'scscope find')
 call CommandAbbr('ms', 'marks')
 
-" Update ctags and gtags
+" Update gtags asynchronously
 function! UpdateTags()
-    if executable("ctags")
-        echom "Updating ctags ..."
-        call system("ctags -R")
-    endif
     if executable("global")
-        echom "Updating gtags ..."
-        call system("global -u")
+        let gtags_file = getcwd() . '/GTAGS'
+        if filereadable(fnameescape(gtags_file))
+            AsyncRun global -u
+        else
+            echom "Creating GTAGS"
+            call system("gtags")
+            cs kill -1
+            execute "cs add GTAGS ".fnameescape(getcwd())
+            echom "GTAGS created"
+        endif
     endif
 endfunction
 call CommandAbbr("upt", 'call UpdateTags()')
@@ -750,6 +760,25 @@ let g:fsnonewfiles = 1
 nnoremap <silent> <Leader>fs :FSHere<CR>
 nnoremap <silent> <Leader>fr :FSSplitRight<CR>
 nnoremap <silent> <Leader>fa :FSSplitAbove<CR>
+
+" For Gutentags plugin
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj']
+let g:gutentags_ctags_tagfile = 'tags'
+let s:vim_tags = expand('~/.cache/tags')
+if !isdirectory(s:vim_tags)
+    silent! call mkdir(s:vim_tags, 'p')
+endif
+let g:gutentags_cache_dir = s:vim_tags
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+if executable("gtags-cscope")
+    let g:gutentags_cscope_executable="gtags-cscope"
+endif
+
+" For AsyncRun plugin
+let g:asyncrun_open = 6
+let g:asyncrun_bell = 1
 
 " Section about autocmd
 if has('autocmd')
