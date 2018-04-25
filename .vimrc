@@ -16,18 +16,21 @@ let plug_plugins = fnameescape(plug_plugins)
 exec "call plug#begin('" . plug_plugins . "')"
 Plug 'vim-scripts/gtags.vim'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/closetag.vim'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'mileszs/ack.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
 Plug 'tamlok/vim-highlight'
 Plug 'will133/vim-dirdiff'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/asyncrun.vim'
+if has('python') || has('python3')
+    Plug 'Yggdroot/LeaderF'
+else
+    Plug 'ctrlpvim/ctrlp.vim'
+endif
 call plug#end()
 
 set background=dark
@@ -311,9 +314,12 @@ else
     set statusline+=%h%w%m%*%r
 endif
 
-" Statues of Gutentags plugin
-set statusline+=\     " One space
-set statusline+=%{gutentags#statusline()}
+" Status of Gutentags plugin
+try
+    set statusline+=\     " One space
+    set statusline+=%{gutentags#statusline()}
+catch /^Vim\%((\a\+)\)\=:E/
+endtry
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
@@ -403,7 +409,7 @@ function! SetTabFn(tab_width)
         echom "warning: arg equal to 0 will disable expanding tab, larger than 0 will set the tab stop."
     endif
 endfunction
-command! -nargs=1 settab call SetTabFn(<f-args>)
+command! -nargs=1 STab call SetTabFn(<f-args>)
 
 " Define abbr for only ':' command mode
 function! CommandAbbr(abbr, cmd)
@@ -623,7 +629,7 @@ nmap <F5> :call ChangeCWD()<cr>
 function! GrepBufferF(pattern)
     " Clear the quickfix window first
     cexpr []
-    silent execute ":bufdo vimgrepadd ".a:pattern." %"
+    silent execute ":bufdo vimgrepadd ".a:pattern." %:p"
     set cursorline
     set cursorcolumn
     copen
@@ -735,13 +741,30 @@ let g:ctrlp_user_command = {
             \ },
             \ 'fallback': s:ctrlp_fallback
             \ }
-nnoremap <leader>cpt :CtrlPTag<CR>
-nnoremap <leader>cpb :CtrlPBuffer<CR>
-nnoremap <leader>cpm :CtrlPMixed<CR>
-nnoremap <leader>cpu :CtrlPBufTag<CR>
-nnoremap <leader>cpa :CtrlPBufTagAll<CR>
-nnoremap <leader>cpc :CtrlP :pwd<CR>
-call CommandAbbr('cp', 'CtrlP')
+
+" For LeaderF plugin
+if has('python') || has('python3')
+    let g:Lf_PreviewResult = { 'BufTag': 0, 'Function': 0 }
+    let g:Lf_WorkingDirectoryMode = 'a'
+    let g:Lf_ShortcutF = '<leader>cp'
+    let g:Lf_ShortcutB = '<leader>cpb'
+    nnoremap <leader>cpc :execute 'LeaderfFile' getcwd()<CR>
+    nnoremap <leader>cpm :LeaderfMru<CR>
+    nnoremap <leader>cpt :LeaderfTag<CR>
+    nnoremap <leader>cpu :LeaderfBufTag<CR>
+    nnoremap <leader>cpa :LeaderfBufTagAll<CR>
+    nnoremap <leader>cpw :LeaderfBufTagAllCword<CR>
+    nnoremap <leader>cpf :LeaderfFunction<CR>
+    nnoremap <leader>cpe :LeaderfFunctionAll<CR>
+else
+    nnoremap <leader>cpt :CtrlPTag<CR>
+    nnoremap <leader>cpb :CtrlPBuffer<CR>
+    nnoremap <leader>cpm :CtrlPMixed<CR>
+    nnoremap <leader>cpu :CtrlPBufTag<CR>
+    nnoremap <leader>cpa :CtrlPBufTagAll<CR>
+    nnoremap <leader>cpc :CtrlP :pwd<CR>
+    call CommandAbbr('cp', 'CtrlP')
+endif
 
 " For IndentLine plugin
 let g:indentLine_concealcursor = ''
@@ -753,6 +776,7 @@ nnoremap <silent> <Leader>fr :FSSplitRight<CR>
 nnoremap <silent> <Leader>fa :FSSplitAbove<CR>
 
 " For Gutentags plugin
+let g:gutentags_generate_on_empty_buffer = 1
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj']
 let g:gutentags_ctags_tagfile = 'tags'
 let s:vim_tags = expand('~/.cache/tags')
@@ -763,6 +787,7 @@ let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_modules=['ctags', 'gtags_cscope']
 if executable("gtags-cscope")
     let g:gutentags_cscope_executable="gtags-cscope"
 endif
