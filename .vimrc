@@ -314,12 +314,17 @@ else
     set statusline+=%h%w%m%*%r
 endif
 
+function! StatusLineGutentags()
+    if exists('*gutentags#statusline')
+        return gutentags#statusline('(', ')')
+    else
+        return ''
+    endif
+endfunction
+
 " Status of Gutentags plugin
-try
-    set statusline+=\     " One space
-    set statusline+=%{gutentags#statusline()}
-catch /^Vim\%((\a\+)\)\=:E/
-endtry
+set statusline+=\     " One space
+set statusline+=%{StatusLineGutentags()}
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
@@ -776,7 +781,7 @@ nnoremap <silent> <Leader>fr :FSSplitRight<CR>
 nnoremap <silent> <Leader>fa :FSSplitAbove<CR>
 
 " For Gutentags plugin
-let g:gutentags_generate_on_empty_buffer = 1
+let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj']
 let g:gutentags_ctags_tagfile = 'tags'
 let s:vim_tags = expand('~/.cache/tags')
