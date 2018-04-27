@@ -3,7 +3,7 @@ set nocompatible
 
 let plug_plugins = ""
 
-if has('unix') && filereadable($HOME."/.vim/auotload/plug.vim")
+if has('unix') && filereadable($HOME."/.vim/autoload/plug.vim")
     let plug_plugins = $HOME."/.vim/plugged"
 elseif filereadable($HOME."/vimfiles/autoload/plug.vim")
     let plug_plugins = $HOME."/vimfiles/plugged"
