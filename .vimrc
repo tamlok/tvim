@@ -792,8 +792,8 @@ let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_modules=['ctags', 'gtags_cscope']
 if executable("gtags-cscope")
+    let g:gutentags_modules=['ctags', 'gtags_cscope']
     let g:gutentags_cscope_executable="gtags-cscope"
 endif
 
