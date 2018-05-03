@@ -759,7 +759,7 @@ if has('python') || has('python3')
     nnoremap <leader>cpu :LeaderfBufTag<CR>
     nnoremap <leader>cpa :LeaderfBufTagAll<CR>
     nnoremap <leader>cpw :LeaderfBufTagAllCword<CR>
-    nnoremap <leader>cpf :LeaderfFunction<CR>
+    nnoremap <leader>cpf :LeaderfFunction!<CR>
     nnoremap <leader>cpe :LeaderfFunctionAll<CR>
 else
     nnoremap <leader>cpt :CtrlPTag<CR>
