@@ -314,18 +314,6 @@ else
     set statusline+=%h%w%m%*%r
 endif
 
-function! StatusLineGutentags()
-    if exists('*gutentags#statusline')
-        return gutentags#statusline('(', ')')
-    else
-        return ''
-    endif
-endfunction
-
-" Status of Gutentags plugin
-set statusline+=\     " One space
-set statusline+=%{StatusLineGutentags()}
-
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
 set statusline+=[%{v:register}]\ 
@@ -625,8 +613,6 @@ function! ChangeCWD()
     echo "Change CWD to ".getcwd()
     set path&
     execute "set path+=".fnameescape(getcwd()."/**")
-    cs kill -1
-    execute "cs add GTAGS ".fnameescape(getcwd())
 endfunction
 nmap <F5> :call ChangeCWD()<cr>
 
