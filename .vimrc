@@ -24,13 +24,19 @@ Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
 Plug 'tamlok/vim-highlight'
 Plug 'will133/vim-dirdiff'
 Plug 'derekwyatt/vim-fswitch'
-Plug 'ludovicchabant/vim-gutentags'
+
+if executable("ctags") || executable("gtags-cscope")
+    Plug 'ludovicchabant/vim-gutentags'
+endif
+
 Plug 'skywind3000/asyncrun.vim'
+
 if has('python') || has('python3')
     Plug 'Yggdroot/LeaderF'
 else
     Plug 'ctrlpvim/ctrlp.vim'
 endif
+
 call plug#end()
 
 set background=dark
@@ -778,8 +784,13 @@ let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_modules = []
+if executable("ctags")
+    let g:gutentags_modules += ['ctags']
+endif
+
 if executable("gtags-cscope")
-    let g:gutentags_modules=['ctags', 'gtags_cscope']
+    let g:gutentags_modules += ['gtags_cscope']
     let g:gutentags_cscope_executable="gtags-cscope"
 endif
 
