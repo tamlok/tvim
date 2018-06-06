@@ -24,6 +24,7 @@ Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
 Plug 'tamlok/vim-highlight'
 Plug 'will133/vim-dirdiff'
 Plug 'derekwyatt/vim-fswitch'
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFromBookmark'] }
 
 if executable("ctags") || executable("gtags-cscope")
     Plug 'ludovicchabant/vim-gutentags'
@@ -450,6 +451,14 @@ let g:tagbar_map_showproto="t"
 nnoremap <leader>tc :TagbarCurrentTag s<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>ta :TagbarOpenAutoClose<CR>
+
+" For NERDTree plugin
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeAutoDeleteBuffer=1
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+" Trailing space needed
+nnoremap <leader>nb :NERDTreeFromBookmark 
 
 " For EasyMotion plugin
 map <Leader>m <Plug>(easymotion-prefix)
