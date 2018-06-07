@@ -227,9 +227,10 @@ if has("syntax")
     syntax on
 endif
 
+set previewheight=20 " Preview window height
 set ruler       " Display the ruler
 set showcmd     " Show the input command
-set scrolloff=3 " Scroll 3 lines offset when cursor is near the buttom or the top
+" set scrolloff=3 " Scroll 3 lines offset when cursor is near the buttom or the top
 set autoindent
 set cindent
 set smartindent
