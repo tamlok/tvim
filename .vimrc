@@ -13,7 +13,7 @@ endif
 
 let plug_plugins = fnameescape(plug_plugins)
 
-exec "call plug#begin('" . plug_plugins . "')"
+exec "silent! call plug#begin('" . plug_plugins . "')"
 Plug 'vim-scripts/gtags.vim'
 Plug 'tpope/vim-surround'
 Plug 'majutsushi/tagbar'
