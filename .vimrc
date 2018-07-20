@@ -16,6 +16,8 @@ endif
 
 let plug_plugins = fnameescape(plug_plugins)
 
+let s:gutentags_loaded = 0
+
 exec "silent! call plug#begin('" . plug_plugins . "')"
 Plug 'vim-scripts/gtags.vim'
 Plug 'tpope/vim-surround'
@@ -31,6 +33,7 @@ Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeF
 
 if executable("ctags") || executable("gtags-cscope")
     Plug 'ludovicchabant/vim-gutentags'
+    let s:gutentags_loaded = 1
 endif
 
 Plug 'skywind3000/asyncrun.vim'
@@ -501,6 +504,9 @@ function! ToggleMouse()
 endfunction
 nmap <F4> :call ToggleMouse()<cr>
 
+" Close preview window
+nnoremap <leader>ac :pclose<CR>
+
 " Quickfix list navigation
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
@@ -786,11 +792,16 @@ nnoremap <silent> <Leader>fr :FSSplitRight<CR>
 nnoremap <silent> <Leader>fa :FSSplitAbove<CR>
 
 " For Gutentags plugin
+if has('autocmd')
+    let g:gutentags_generate_on_new = 0
+    let g:gutentags_generate_on_missing = 0
+endif
+
 let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj']
 let g:gutentags_ctags_tagfile = 'tags'
 let s:vim_tags = expand('~/.cache/tags')
-if !isdirectory(s:vim_tags)
+if s:gutentags_loaded == 1 && !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
 let g:gutentags_cache_dir = s:vim_tags
@@ -806,6 +817,29 @@ if executable("gtags-cscope")
     let g:gutentags_modules += ['gtags_cscope']
     let g:gutentags_cscope_executable="gtags-cscope"
 endif
+
+function! EnableGutentags(timerId)
+    if g:gutentags_generate_on_new == 1
+        return
+    endif
+
+    let g:gutentags_generate_on_new = 1
+    let g:gutentags_generate_on_missing = 1
+
+    silent! GutentagsUpdate
+endfunction
+
+function! EnableGutentagsOnStartup()
+    if s:gutentags_loaded == 0 || g:gutentags_generate_on_new == 1
+        return
+    endif
+
+    if has('timers')
+        let timer = timer_start(1000, 'EnableGutentags')
+    else
+        EnableGutentags(0)
+    endif
+endfunction
 
 " For AsyncRun plugin
 let g:asyncrun_open = 6
@@ -825,6 +859,7 @@ if has('autocmd')
         autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
         " Jump to the last position when reopening a file
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+        autocmd BufReadPost * call EnableGutentagsOnStartup()
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
 
