@@ -1,4 +1,7 @@
-" Vim Configurations by tamlok
+" Vim Configurations
+" Le Tan (tamlokveer at gmail.com)
+" https://github.com/tamlok/vimconf
+
 set nocompatible
 
 let plug_plugins = ""
@@ -807,6 +810,8 @@ endif
 " For AsyncRun plugin
 let g:asyncrun_open = 6
 let g:asyncrun_bell = 1
+" Trailing space is needed
+nnoremap <leader>ar :AsyncRun 
 
 " Section about autocmd
 if has('autocmd')

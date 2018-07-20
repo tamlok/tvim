@@ -1,4 +1,8 @@
 @echo off
+rem Vim Configurations for Windows Initialization
+rem Le Tan (tamlokveer at gmail.com)
+rem https://github.com/tamlok/vimconf
+
 rem Require Administrator permission
 
 setlocal EnableExtensions EnableDelayedExpansion
@@ -156,6 +160,9 @@ if "%1"=="portable" (
     copy /Y .vimrc %vim_portable_folder%\_vimrc > NUL
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
 
+    copy /Y README.md %vim_portable_folder%\README.md > NUL
+    set /A portable_ret=!portable_ret!+!ERRORLEVEL!
+
     call :get_file_name "%vim_folder%" vim_exe_folder
     xcopy /Y /i "%vim_folder%" "%vim_portable_folder%\!vim_exe_folder!" /s /e > NUL
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
@@ -168,6 +175,7 @@ if "%1"=="portable" (
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
 
     (echo @echo off
+     echo echo Vim Configurations by Le Tan [https://github.com/tamlok/vimconf]
      echo setlocal EnableExtensions
      echo set dest_gvim=C:\Windows\gvim.bat
      echo if exist "%%dest_gvim%%" EXIT /B 0
