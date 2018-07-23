@@ -52,7 +52,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo Copy detorte colorscheme
 set detorte_folder=%vimfiles_folder%\colors
-xcopy /Y /i detorte\colors %detorte_folder% /s /e > NUL 2> NUL
+xcopy /Y /i detorte\colors %detorte_folder% /e > NUL 2> NUL
 if %ERRORLEVEL% NEQ 0 (
     echo Failed to copy detorte colorscheme, make sure you run this script as Administrator
     set /A ret=1
@@ -131,6 +131,21 @@ if not exist "%vim_folder%\gtags.exe" (
     )
 )
 
+echo Check Cppcheck
+if not exist "%vim_folder%\cppcheck.exe" (
+    call :clone_win_utils
+    if !ERRORLEVEL! NEQ 0 (
+        set /A ret=1
+        goto :end
+    )
+    xcopy /Y /i %win_utils_folder%\cppcheck "%vim_folder%" /e > NUL 2> NUL
+    if !ERRORLEVEL! NEQ 0 (
+        echo Failed to copy Cppcheck, make sure you run this script as Administrator
+        set /A ret=1
+        goto :end
+    )
+)
+
 echo Copy markdown2ctags.py
 copy /Y markdown2ctags.py %vimfiles_folder%\ > NUL 2> NUL
 if %ERRORLEVEL% NEQ 0 (
@@ -164,14 +179,14 @@ if "%1"=="portable" (
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
 
     call :get_file_name "%vim_folder%" vim_exe_folder
-    xcopy /Y /i "%vim_folder%" "%vim_portable_folder%\!vim_exe_folder!" /s /e > NUL
+    xcopy /Y /i "%vim_folder%" "%vim_portable_folder%\!vim_exe_folder!" /e > NUL
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
 
     call :get_parent_dir "%vim_folder%" vim_install_folder
-    xcopy /Y /i "!vim_install_folder!\vimfiles" "%vim_portable_folder%\vimfiles" /s /e > NUL
+    xcopy /Y /i "!vim_install_folder!\vimfiles" "%vim_portable_folder%\vimfiles" /e > NUL
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
 
-    xcopy /Y /i "%vimfiles_folder%" "%vim_portable_folder%\vimfiles" /s /e > NUL
+    xcopy /Y /i "%vimfiles_folder%" "%vim_portable_folder%\vimfiles" /e > NUL
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
 
     (echo @echo off

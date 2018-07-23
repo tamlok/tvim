@@ -44,6 +44,7 @@ else
     Plug 'ctrlpvim/ctrlp.vim'
 endif
 
+Plug 'w0rp/ale'
 call plug#end()
 
 set background=dark
@@ -846,6 +847,18 @@ let g:asyncrun_open = 6
 let g:asyncrun_bell = 1
 " Trailing space is needed
 nnoremap <leader>ar :AsyncRun 
+
+" For ALE plugin
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%](%severity%) %s'
+nnoremap [a :ALEPreviousWrap<CR>
+nnoremap ]a :ALENextWrap<CR>
+nnoremap <leader>ad :ALEDetail<CR>
+let g:ale_lint_delay = 500
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 0
 
 " Section about autocmd
 if has('autocmd')
