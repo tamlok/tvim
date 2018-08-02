@@ -219,11 +219,15 @@ endif
 function! GuiSizeUp()
     let &guifont = substitute(
         \ &guifont, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
+    let &guifontwide = substitute(
+        \ &guifontwide, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
 endfunction
 
 function! GuiSizeDown()
     let &guifont = substitute(
         \ &guifont, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
+    let &guifontwide = substitute(
+        \ &guifontwide, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
 endfunction
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
