@@ -198,14 +198,14 @@ if has("gui_running")
         set langmenu=zh_CN.UTF-8
         language message zh_CN.UTF-8
         set guifontset=
-        set guifont=Consolas:h11
-        set guifontwide=NSimsun:h11
+        set guifont=Consolas:h12
+        set guifontwide=NSimsun:h12
         " Delete and reload the menu to use UTF-8 on Wins
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
     elseif has("unix")
         set guifontset=
-        set guifont=Liberation\ Mono\ 11
+        set guifont=Liberation\ Mono\ 12
     endif
 
     " Change font size using <C-up> and <C-down>
