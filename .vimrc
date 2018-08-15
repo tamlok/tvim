@@ -803,7 +803,7 @@ if has('autocmd')
 endif
 
 let g:gutentags_generate_on_empty_buffer = 0
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj']
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj', 'dirs']
 let g:gutentags_ctags_tagfile = 'tags'
 let s:vim_tags = expand('~/.cache/tags')
 if s:gutentags_loaded == 1 && !isdirectory(s:vim_tags)
