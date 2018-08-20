@@ -303,18 +303,19 @@ endfunction
 set laststatus=2    " Always display the statusline
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P   " The default status line
 set statusline=
-set statusline+=%<
 if g:colors_name == 'detorte'
     set statusline+=%#StatuslineBufNum#
 endif
 set statusline+=%-3n   " Buffer number
 set statusline+=%*
+set statusline+=%<     " Where to truncate line if too long
 set statusline+=%{StatusLineFileDir()}\ 
 if g:colors_name == 'detorte'
     set statusline+=%#StatuslineFileName#
 endif
-" Trailing space
 set statusline+=[%t]
+
+" Trailing space
 set statusline+=%*\ 
 
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
