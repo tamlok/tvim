@@ -45,6 +45,7 @@ else
 endif
 
 Plug 'w0rp/ale'
+Plug 'skywind3000/vim-preview'
 call plug#end()
 
 set background=dark
@@ -510,9 +511,6 @@ function! ToggleMouse()
 endfunction
 nmap <F4> :call ToggleMouse()<cr>
 
-" Close preview window
-nnoremap <leader>ac :pclose<CR>
-
 " Quickfix list navigation
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
@@ -864,6 +862,11 @@ let g:ale_lint_delay = 500
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_enter = 0
+
+" For vim-preview plugin
+nnoremap <leader>tp :PreviewTag<CR>
+nnoremap <leader>tg :PreviewGoto edit<CR>
+nnoremap <leader>ts :PreviewSignature!<CR>
 
 " Section about autocmd
 if has('autocmd')
