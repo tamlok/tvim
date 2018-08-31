@@ -256,6 +256,7 @@ set expandtab     " convert tabs to spaces
 
 set wildmenu        " Visual autocomplete for command menu
 set wildmode=list:longest,full " Complete only up to the point of ambiguity
+set wildignore=*.o,*.obj,*.bin,*.dll,*.exe
 
 set title           " Set the terminal title
 
@@ -812,7 +813,7 @@ let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 let g:gutentags_modules = []
 if executable("ctags")
     let g:gutentags_modules += ['ctags']
