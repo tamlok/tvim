@@ -12,6 +12,11 @@ mkdir tmp 2> NUL
 set /A ret=0
 set vimfiles_folder=%USERPROFILE%\vimfiles
 set win_utils_folder=tmp\vim-win-utils.git
+set force_update=0
+if "%1"=="update" (
+    set force_update=1
+    echo Force update.
+)
 
 where gvim > NUL 2> NUL
 if %ERRORLEVEL% NEQ 0 (
@@ -61,7 +66,9 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo Check plug.vim
 set plug_file=%vimfiles_folder%\autoload\plug.vim
-if not exist %plug_file% (
+set copy_file=%force_update%
+if not exist "%plug_file%" set copy_file=1
+if "%copy_file%" == "1" (
     md "%vimfiles_folder%\autoload"
     copy /Y plug.vim "%plug_file%" > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
@@ -72,7 +79,9 @@ if not exist %plug_file% (
 )
 
 echo Check curl
-if not exist "%vim_folder%\curl.exe" (
+set copy_file=%force_update%
+if not exist "%vim_folder%\curl.exe" set copy_file=1
+if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
@@ -87,7 +96,9 @@ if not exist "%vim_folder%\curl.exe" (
 )
 
 echo Check ag
-if not exist "%vim_folder%\ag.exe" (
+set copy_file=%force_update%
+if not exist "%vim_folder%\ag.exe" set copy_file=1
+if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
@@ -102,7 +113,9 @@ if not exist "%vim_folder%\ag.exe" (
 )
 
 echo Check ctags
-if not exist "%vim_folder%\ctags.exe" (
+set copy_file=%force_update%
+if not exist "%vim_folder%\ctags.exe" set copy_file=1
+if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
@@ -117,7 +130,9 @@ if not exist "%vim_folder%\ctags.exe" (
 )
 
 echo Check GNU Global
-if not exist "%vim_folder%\gtags.exe" (
+set copy_file=%force_update%
+if not exist "%vim_folder%\gtags.exe" set copy_file=1
+if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
@@ -132,7 +147,9 @@ if not exist "%vim_folder%\gtags.exe" (
 )
 
 echo Check Cppcheck
-if not exist "%vim_folder%\cppcheck.exe" (
+set copy_file=%force_update%
+if not exist "%vim_folder%\cppcheck.exe" set copy_file=1
+if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
