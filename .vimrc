@@ -1,6 +1,6 @@
 " Vim Configurations
 " Le Tan (tamlokveer at gmail.com)
-" https://github.com/tamlok/vimconf
+" https://github.com/tamlok/tvim
 
 set nocompatible
 

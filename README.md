@@ -1,2 +1,4 @@
-# vimconf - Tamlok's Vim Configuration
-[Github](https://github.com/tamlok/vimconf)
+# tvim
+Vim configuration from work and study.
+
+[Github](https://github.com/tamlok/tvim)

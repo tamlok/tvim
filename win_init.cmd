@@ -1,7 +1,7 @@
 @echo off
 rem Vim Configurations for Windows Initialization
 rem Le Tan (tamlokveer at gmail.com)
-rem https://github.com/tamlok/vimconf
+rem https://github.com/tamlok/tvim
 
 rem Require Administrator permission
 
@@ -207,7 +207,7 @@ if "%1"=="portable" (
     set /A portable_ret=!portable_ret!+!ERRORLEVEL!
 
     (echo @echo off
-     echo echo Vim Configurations by Le Tan [https://github.com/tamlok/vimconf]
+     echo echo Vim Configurations by Le Tan [https://github.com/tamlok/tvim]
      echo setlocal EnableExtensions
      echo set dest_gvim=C:\Windows\gvim.bat
      echo if exist "%%dest_gvim%%" EXIT /B 0
