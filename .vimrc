@@ -92,7 +92,7 @@ function! ShortTabLine()
     endfor
 
     " after the last tab fill with TabLineFill and reset tab page #
-    let ret .= '%#TabLineFill#%T'
+    let ret .= '%#TabLineFill#'
     return ret
 endfunction
 
@@ -117,7 +117,7 @@ endfunction
 
 " Colorscheme
 let g:colors_name = ''
-let g:detorte_theme_mode = 'dark'
+let g:detorte_theme_mode = 'light'
 if &t_Co >= 256 || has("gui_running")
     try
         colorscheme detorte
@@ -305,16 +305,10 @@ endfunction
 set laststatus=2    " Always display the statusline
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P   " The default status line
 set statusline=
-if g:colors_name == 'detorte'
-    set statusline+=%#StatuslineBufNum#
-endif
 set statusline+=%-3n   " Buffer number
 set statusline+=%*
 set statusline+=%<     " Where to truncate line if too long
 set statusline+=%{StatusLineFileDir()}\ 
-if g:colors_name == 'detorte'
-    set statusline+=%#StatuslineFileName#
-endif
 set statusline+=[%t]
 
 " Trailing space
@@ -323,28 +317,17 @@ set statusline+=%*\
 set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ 
 
 " Display a warning if file format isn't unix
-if g:colors_name == 'detorte'
-    set statusline+=%#StatuslineWarning#
-endif
 set statusline+=%{&ff!='unix'?'['.&ff.']':''}
 set statusline+=%*
 
 " Help file flag, modified flag, read-only flag
-if g:colors_name == 'detorte'
-    set statusline+=%h%w%#Modifier#%m%*%r
-else
-    set statusline+=%h%w%m%*%r
-endif
+set statusline+=%h%w%m%*%r
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
 set statusline+=[%{v:register}]\ 
 " Cursor line / total lines Current column number and virtual column number
-if g:colors_name == 'detorte'
-    set statusline+=%-25.(r:%#StatuslineLineNumber#%l%*-%L\(%P)\ c:%c%V%)
-else
-    set statusline+=%-25.(r:%l-%L\(%P)\ c:%c%V%)
-endif
+set statusline+=%-25.(r:%l-%L\(%P)\ c:%c%V%)
 
 " Valid in terminal. Need to set it again after GUI enter.
 set noerrorbells visualbell t_vb=
