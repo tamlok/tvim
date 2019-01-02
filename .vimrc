@@ -321,7 +321,7 @@ set statusline+=%{&ff!='unix'?'['.&ff.']':''}
 set statusline+=%*
 
 " Help file flag, modified flag, read-only flag
-set statusline+=%h%w%m%*%r
+set statusline+=%h%w%#WarningMsg#%m%*%r
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
