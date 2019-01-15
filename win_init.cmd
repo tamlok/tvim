@@ -185,27 +185,9 @@ if "%copy_file%" == "1" (
     )
 )
 
-echo Check Python 2
-set copy_file=%force_update%
-if not exist "%vim_utils_folder%\python27_32\python.exe" set copy_file=1
-if "%copy_file%" == "1" (
-    call :clone_win_utils
-    if !ERRORLEVEL! NEQ 0 (
-        set /A ret=1
-        goto :end
-    )
-
-    xcopy /Y /i %win_utils_folder%\python27_32 "%vim_utils_folder%\python27_32" /e > NUL 2> NUL
-    if !ERRORLEVEL! NEQ 0 (
-        echo Failed to copy Python 2, make sure you run this script as Administrator
-        set /A ret=1
-        goto :end
-    )
-)
-
 echo Check Python 3
 set copy_file=%force_update%
-if not exist "%vim_utils_folder%\python37_32\python.exe" set copy_file=1
+if not exist "%vim_utils_folder%\python35_32\python.exe" set copy_file=1
 if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
@@ -213,7 +195,7 @@ if "%copy_file%" == "1" (
         goto :end
     )
 
-    xcopy /Y /i %win_utils_folder%\python37_32 "%vim_utils_folder%\python37_32" /e > NUL 2> NUL
+    xcopy /Y /i %win_utils_folder%\python35_embed_win32 "%vim_utils_folder%\python35_32" /e > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to copy Python 3, make sure you run this script as Administrator
         set /A ret=1
