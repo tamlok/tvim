@@ -4,6 +4,20 @@
 
 set nocompatible
 
+if has("win16") || has("win32") || has("win64") || has("win95")
+    let tvim_utils_folder = $VIMRUNTIME . "\\tvim_utils"
+    let $PATH .= ";" . tvim_utils_folder
+    let $PATH .= ";" . tvim_utils_folder . "\\cppcheck"
+    let $PATH .= ";" . tvim_utils_folder . "\\global"
+
+    let python27_folder = tvim_utils_folder . "\\python27_32"
+    let python37_folder = tvim_utils_folder . "\\python37_32"
+    let $PATH .= ";" . python27_folder
+    let $PATH .= ";" . python37_folder
+    execute "set pythondll=" . fnameescape(python27_folder . "\\python27.dll")
+    execute "set pythonthreedll=" . fnameescape(python37_folder . "\\python37.dll")
+endif
+
 let plug_plugins = ""
 
 if has('unix') && filereadable($HOME."/.vim/autoload/plug.vim")

@@ -39,6 +39,9 @@ if not exist "%vim_folder%\gvim.exe" (
 )
 echo Found GVim in %vim_folder%
 
+set vim_utils_folder=%vim_folder%\tvim_utils
+mkdir "%vim_utils_folder%" 2> NUL
+
 echo Check git
 where git > NUL 2> NUL
 if %ERRORLEVEL% NEQ 0 (
@@ -80,14 +83,14 @@ if "%copy_file%" == "1" (
 
 echo Check curl
 set copy_file=%force_update%
-if not exist "%vim_folder%\curl.exe" set copy_file=1
+if not exist "%vim_utils_folder%\curl.exe" set copy_file=1
 if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
         goto :end
     )
-    copy /Y %win_utils_folder%\curl.exe "%vim_folder%\" > NUL 2> NUL
+    copy /Y %win_utils_folder%\curl.exe "%vim_utils_folder%\" > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to copy curl.exe, make sure you run this script as Administrator
         set /A ret=1
@@ -97,14 +100,14 @@ if "%copy_file%" == "1" (
 
 echo Check ag
 set copy_file=%force_update%
-if not exist "%vim_folder%\ag.exe" set copy_file=1
+if not exist "%vim_utils_folder%\ag.exe" set copy_file=1
 if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
         goto :end
     )
-    copy /Y %win_utils_folder%\ag.exe "%vim_folder%\" > NUL 2> NUL
+    copy /Y %win_utils_folder%\ag.exe "%vim_utils_folder%\" > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to copy ag.exe, make sure you run this script as Administrator
         set /A ret=1
@@ -114,14 +117,14 @@ if "%copy_file%" == "1" (
 
 echo Check ctags
 set copy_file=%force_update%
-if not exist "%vim_folder%\ctags.exe" set copy_file=1
+if not exist "%vim_utils_folder%\ctags.exe" set copy_file=1
 if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
         goto :end
     )
-    copy /Y %win_utils_folder%\ctags.exe "%vim_folder%\" > NUL 2> NUL
+    copy /Y %win_utils_folder%\ctags.exe "%vim_utils_folder%\" > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to copy ctags.exe, make sure you run this script as Administrator
         set /A ret=1
@@ -129,16 +132,34 @@ if "%copy_file%" == "1" (
     )
 )
 
-echo Check GNU Global
+echo Check rg
 set copy_file=%force_update%
-if not exist "%vim_folder%\gtags.exe" set copy_file=1
+if not exist "%vim_utils_folder%\rg.exe" set copy_file=1
 if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
         goto :end
     )
-    copy /Y %win_utils_folder%\global\ "%vim_folder%\" > NUL 2> NUL
+    copy /Y %win_utils_folder%\rg.exe "%vim_utils_folder%\" > NUL 2> NUL
+    if !ERRORLEVEL! NEQ 0 (
+        echo Failed to copy rg.exe, make sure you run this script as Administrator
+        set /A ret=1
+        goto :end
+    )
+)
+
+echo Check GNU Global
+set copy_file=%force_update%
+if not exist "%vim_utils_folder%\global\gtags.exe" set copy_file=1
+if "%copy_file%" == "1" (
+    call :clone_win_utils
+    if !ERRORLEVEL! NEQ 0 (
+        set /A ret=1
+        goto :end
+    )
+
+    xcopy /Y /i %win_utils_folder%\global "%vim_utils_folder%\global" /e > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to copy GNU Global, make sure you run this script as Administrator
         set /A ret=1
@@ -148,16 +169,53 @@ if "%copy_file%" == "1" (
 
 echo Check Cppcheck
 set copy_file=%force_update%
-if not exist "%vim_folder%\cppcheck.exe" set copy_file=1
+if not exist "%vim_utils_folder%\cppcheck\cppcheck.exe" set copy_file=1
 if "%copy_file%" == "1" (
     call :clone_win_utils
     if !ERRORLEVEL! NEQ 0 (
         set /A ret=1
         goto :end
     )
-    xcopy /Y /i %win_utils_folder%\cppcheck "%vim_folder%" /e > NUL 2> NUL
+
+    xcopy /Y /i %win_utils_folder%\cppcheck "%vim_utils_folder%\cppcheck" /e > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to copy Cppcheck, make sure you run this script as Administrator
+        set /A ret=1
+        goto :end
+    )
+)
+
+echo Check Python 2
+set copy_file=%force_update%
+if not exist "%vim_utils_folder%\python27_32\python.exe" set copy_file=1
+if "%copy_file%" == "1" (
+    call :clone_win_utils
+    if !ERRORLEVEL! NEQ 0 (
+        set /A ret=1
+        goto :end
+    )
+
+    xcopy /Y /i %win_utils_folder%\python27_32 "%vim_utils_folder%\python27_32" /e > NUL 2> NUL
+    if !ERRORLEVEL! NEQ 0 (
+        echo Failed to copy Python 2, make sure you run this script as Administrator
+        set /A ret=1
+        goto :end
+    )
+)
+
+echo Check Python 3
+set copy_file=%force_update%
+if not exist "%vim_utils_folder%\python37_32\python.exe" set copy_file=1
+if "%copy_file%" == "1" (
+    call :clone_win_utils
+    if !ERRORLEVEL! NEQ 0 (
+        set /A ret=1
+        goto :end
+    )
+
+    xcopy /Y /i %win_utils_folder%\python37_32 "%vim_utils_folder%\python37_32" /e > NUL 2> NUL
+    if !ERRORLEVEL! NEQ 0 (
+        echo Failed to copy Python 3, make sure you run this script as Administrator
         set /A ret=1
         goto :end
     )
@@ -234,7 +292,7 @@ EXIT /B %ret%
 set utils_repot=https://github.com/tamlok/vim-win-utils.git
 if not exist %win_utils_folder% (
     echo Clone Vim-Win-Utils
-    git clone %utils_repot% %win_utils_folder% > NUL 2> NUL
+    git clone --depth 1 %utils_repot% %win_utils_folder% > NUL 2> NUL
     if !ERRORLEVEL! NEQ 0 (
         echo Failed to clone Vim-Win-Utils >&2
         EXIT /B 1
