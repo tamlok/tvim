@@ -791,10 +791,8 @@ nnoremap <silent> <Leader>fr :FSSplitRight<CR>
 nnoremap <silent> <Leader>fa :FSSplitAbove<CR>
 
 " For Gutentags plugin
-if has('autocmd')
-    let g:gutentags_generate_on_new = 0
-    let g:gutentags_generate_on_missing = 0
-endif
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
 
 let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj', 'dirs']
@@ -808,6 +806,12 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+let tag_common_exclude = ['*.json', '*.md', '*.obj', '*.pdb', '*.ini', '*.log', '*.txt', '*.vcxproj', '*.proj', '*.vimrc']
+let g:gutentags_ctags_exclude = tag_common_exclude
+let g:gutentags_ctags_exclude += ['*.css', '*.html', '*.js']
+let g:gutentags_exclude_filetypes = tag_common_exclude
+
 let g:gutentags_modules = []
 if executable("ctags")
     let g:gutentags_modules += ['ctags']
@@ -828,6 +832,7 @@ function! EnableGutentags(timerId)
     silent! GutentagsUpdate
 endfunction
 
+" Not in use for now
 function! EnableGutentagsOnStartup()
     if s:gutentags_loaded == 0 || g:gutentags_generate_on_new == 1
         return
@@ -876,7 +881,7 @@ if has('autocmd')
         autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
         " Jump to the last position when reopening a file
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-        autocmd BufReadPost * call EnableGutentagsOnStartup()
+        " autocmd BufReadPost * call EnableGutentagsOnStartup()
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
 
