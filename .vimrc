@@ -432,6 +432,8 @@ call CommandAbbr('csf', 'cscope find')
 call CommandAbbr('vcs', 'vert scscope find')
 call CommandAbbr('scs', 'scscope find')
 call CommandAbbr('ms', 'marks')
+" Clean up trailing spaces
+call CommandAbbr('cts', '%s/\s\+$//')
 
 " Update gtags asynchronously
 function! UpdateTags()
