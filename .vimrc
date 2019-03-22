@@ -6,13 +6,15 @@ set nocompatible
 
 if has("win16") || has("win32") || has("win64") || has("win95")
     let tvim_utils_folder = $VIMRUNTIME . "\\tvim_utils"
-    let $PATH .= ";" . tvim_utils_folder
-    let $PATH .= ";" . tvim_utils_folder . "\\cppcheck"
-    let $PATH .= ";" . tvim_utils_folder . "\\global"
+    if filereadable(tvim_utils_folder)
+        let $PATH .= ";" . tvim_utils_folder
+        let $PATH .= ";" . tvim_utils_folder . "\\cppcheck"
+        let $PATH .= ";" . tvim_utils_folder . "\\global"
 
-    let python3_folder = tvim_utils_folder . "\\python35_32"
-    let $PATH .= ";" . python3_folder
-    execute "set pythonthreedll=" . fnameescape(python3_folder . "\\python35.dll")
+        let python3_folder = tvim_utils_folder . "\\python35_32"
+        let $PATH .= ";" . python3_folder
+        execute "set pythonthreedll=" . fnameescape(python3_folder . "\\python35.dll")
+    endif
 endif
 
 let plug_plugins = ""
@@ -25,39 +27,41 @@ elseif filereadable($VIM."/vimfiles/autoload/plug.vim")
     let plug_plugins = $VIM."/vimfiles/plugged"
 endif
 
-let plug_plugins = fnameescape(plug_plugins)
+if filereadable(plug_plugins)
+    let plug_plugins = fnameescape(plug_plugins)
 
-let s:gutentags_loaded = 0
+    let s:gutentags_loaded = 0
 
-exec "silent! call plug#begin('" . plug_plugins . "')"
-Plug 'vim-scripts/gtags.vim'
-Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
-Plug 'easymotion/vim-easymotion'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'mileszs/ack.vim'
-Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
-Plug 'tamlok/vim-highlight'
-Plug 'will133/vim-dirdiff'
-Plug 'derekwyatt/vim-fswitch'
-Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFromBookmark'] }
+    exec "silent! call plug#begin('" . plug_plugins . "')"
+    Plug 'vim-scripts/gtags.vim'
+    Plug 'tpope/vim-surround'
+    Plug 'majutsushi/tagbar'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'mileszs/ack.vim'
+    Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
+    Plug 'tamlok/vim-highlight'
+    Plug 'will133/vim-dirdiff'
+    Plug 'derekwyatt/vim-fswitch'
+    Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFromBookmark'] }
 
-if executable("ctags") || executable("gtags-cscope")
-    Plug 'ludovicchabant/vim-gutentags'
-    let s:gutentags_loaded = 1
+    if executable("ctags") || executable("gtags-cscope")
+        Plug 'ludovicchabant/vim-gutentags'
+        let s:gutentags_loaded = 1
+    endif
+
+    Plug 'skywind3000/asyncrun.vim'
+
+    if has('python') || has('python3')
+        Plug 'Yggdroot/LeaderF'
+    else
+        Plug 'ctrlpvim/ctrlp.vim'
+    endif
+
+    Plug 'w0rp/ale'
+    Plug 'skywind3000/vim-preview'
+    call plug#end()
 endif
-
-Plug 'skywind3000/asyncrun.vim'
-
-if has('python') || has('python3')
-    Plug 'Yggdroot/LeaderF'
-else
-    Plug 'ctrlpvim/ctrlp.vim'
-endif
-
-Plug 'w0rp/ale'
-Plug 'skywind3000/vim-preview'
-call plug#end()
 
 set background=dark
 set encoding=utf-8
