@@ -27,10 +27,10 @@ elseif filereadable($VIM."/vimfiles/autoload/plug.vim")
     let plug_plugins = $VIM."/vimfiles/plugged"
 endif
 
-if filereadable(plug_plugins)
-    let plug_plugins = fnameescape(plug_plugins)
+let s:gutentags_loaded = 0
 
-    let s:gutentags_loaded = 0
+if plug_plugins != ""
+    let plug_plugins = fnameescape(plug_plugins)
 
     exec "silent! call plug#begin('" . plug_plugins . "')"
     Plug 'vim-scripts/gtags.vim'
