@@ -6,7 +6,7 @@ set nocompatible
 
 if has("win16") || has("win32") || has("win64") || has("win95")
     let tvim_utils_folder = $VIMRUNTIME . "\\tvim_utils"
-    if filereadable(tvim_utils_folder)
+    if isdirectory(tvim_utils_folder)
         let $PATH .= ";" . tvim_utils_folder
         let $PATH .= ";" . tvim_utils_folder . "\\cppcheck"
         let $PATH .= ";" . tvim_utils_folder . "\\global"
