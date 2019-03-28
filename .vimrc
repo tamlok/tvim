@@ -4,35 +4,64 @@
 
 set nocompatible
 
-if has("win16") || has("win32") || has("win64") || has("win95")
-    let tvim_utils_folder = $VIMRUNTIME . "\\tvim_utils"
-    if isdirectory(tvim_utils_folder)
-        let $PATH .= ";" . tvim_utils_folder
-        let $PATH .= ";" . tvim_utils_folder . "\\cppcheck"
-        let $PATH .= ";" . tvim_utils_folder . "\\global"
+" Variables of tvim
+" s: for script-scope variables
+let s:tvim_os = 'unix' " Including win32unix
+if has('win16') || has('win32') || has('win64') || has('win95')
+    let s:tvim_os = 'win'
+elseif has('mac') || has('macunix')
+    let s:tvim_os = 'mac'
+endif
 
-        let python3_folder = tvim_utils_folder . "\\python35_32"
-        let $PATH .= ";" . python3_folder
-        execute "set pythonthreedll=" . fnameescape(python3_folder . "\\python35.dll")
+" Detect tvim_utils for win
+if s:tvim_os == 'win'
+    let s:tvim_utils_folder = $VIMRUNTIME . '\tvim_utils'
+    if isdirectory(s:tvim_utils_folder)
+        let $PATH .= ';' . s:tvim_utils_folder
+        let $PATH .= ';' . s:tvim_utils_folder . '\cppcheck'
+        let $PATH .= ';' . s:tvim_utils_folder . '\global'
+
+        let python3_folder = s:tvim_utils_folder . '\python35_32'
+        let $PATH .= ';' . python3_folder
+
+        if has('nvim')
+            " pip3 install pynvim
+            let g:python3_host_prog = fnameescape(python3_folder . '\python')
+        else
+            execute 'set pythonthreedll=' . fnameescape(python3_folder . '\python35.dll')
+        endif
     endif
 endif
 
-let plug_plugins = ""
-
-if has('unix') && filereadable($HOME."/.vim/autoload/plug.vim")
-    let plug_plugins = $HOME."/.vim/plugged"
-elseif filereadable($HOME."/vimfiles/autoload/plug.vim")
-    let plug_plugins = $HOME."/vimfiles/plugged"
-elseif filereadable($VIM."/vimfiles/autoload/plug.vim")
-    let plug_plugins = $VIM."/vimfiles/plugged"
+" Plug for plugins
+let s:plug_plugins = ''
+if s:tvim_os == 'win'
+    if has('nvim')
+        if filereadable($HOME . '\AppData\Local\nvim\autoload\plug.vim')
+            let s:plug_plugins = $HOME . '\AppData\Local\nvim\plugged'
+        elseif filereadable($VIM . '\vimfiles\autoload\plug.vim')
+            let &runtimepath .= ',' . $VIM . '\vimfiles'
+            let s:plug_plugins = $VIM . '\vimfiles\plugged'
+        endif
+    else
+        if filereadable($HOME . '\vimfiles\autoload\plug.vim')
+            let s:plug_plugins = $HOME . '\vimfiles\plugged'
+        elseif filereadable($VIM . '\vimfiles\autoload\plug.vim')
+            let s:plug_plugins = $VIM . '\vimfiles\plugged'
+        endif
+    endif
+else
+    if filereadable($HOME."/.vim/autoload/plug.vim")
+        let s:plug_plugins = $HOME."/.vim/plugged"
+    endif
 endif
 
 let s:gutentags_loaded = 0
 
-if plug_plugins != ""
-    let plug_plugins = fnameescape(plug_plugins)
+if s:plug_plugins != ""
+    let s:plug_plugins = fnameescape(s:plug_plugins)
 
-    exec "silent! call plug#begin('" . plug_plugins . "')"
+    exec "silent! call plug#begin('" . s:plug_plugins . "')"
     Plug 'vim-scripts/gtags.vim'
     Plug 'tpope/vim-surround'
     Plug 'majutsushi/tagbar'
@@ -176,7 +205,8 @@ elseif &term == 'xterm'
 endif
 
 " GUI
-if has("gui_running")
+" gui_running is 0 in nvim, so we copy this part to ginit.vim, too
+if has('gui_running')
     set imcmdline
 
     set guioptions-=m       " Hide menu bar
@@ -188,17 +218,16 @@ if has("gui_running")
     set guioptions+=c       " Use console dialog
 
     set guicursor=a:block
-    set gcr+=o:hor50-Cursor
-    set gcr+=n:Cursor
+    set guicursor+=o:hor50-Cursor
+    set guicursor+=n:Cursor
     set guicursor+=a:blinkon0
     if g:colors_name == 'detorte'
-        set gcr+=i-ci-sm:InsertCursor
-        set gcr+=r-cr:ReplaceCursor-hor20
-        set gcr+=c:CommandCursor
-        set gcr+=v-ve:VisualCursor
+        set guicursor+=i-ci-sm:InsertCursor
+        set guicursor+=r-cr:ReplaceCursor-hor20
+        set guicursor+=c:CommandCursor
+        set guicursor+=v-ve:VisualCursor
     endif
 
-    " set guitablabel=%{ShortTabLabel()}
     set tabline=%!ShortTabLine()
 
     " Map <Ctrl+F2> to toggle the menu and toolbar
@@ -210,7 +239,7 @@ if has("gui_running")
                             \set guioptions+=m <Bar>
                         \endif<CR>
 
-    if has("win16") || has("win32") || has("win64") || has("win95")
+    if s:tvim_os == 'win'
         set langmenu=zh_CN.UTF-8
         language message zh_CN.UTF-8
         set guifontset=
@@ -219,7 +248,7 @@ if has("gui_running")
         " Delete and reload the menu to use UTF-8 on Wins
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
-    elseif has("unix")
+    else
         set guifontset=
         set guifont=Liberation\ Mono\ 12
     endif
@@ -233,17 +262,47 @@ endif
 
 " Change font size in GUI
 function! GuiSizeUp()
-    let &guifont = substitute(
-        \ &guifont, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
-    let &guifontwide = substitute(
-        \ &guifontwide, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
+    if has('nvim')
+        let l:font = g:GuiFont
+        let l:fontwide = ''
+    else
+        let l:font = &guifont
+        let l:fontwide = &guifontwide
+    endif
+
+    let l:font = substitute(
+        \ l:font, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
+    let l:fontwide = substitute(
+        \ l:fontwide, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
+
+    if has('nvim')
+        execute 'GuiFont ' . l:font
+    else
+        let &guifont = l:font
+        let &guifontwide = l:fontwide
+    endif
 endfunction
 
 function! GuiSizeDown()
-    let &guifont = substitute(
-        \ &guifont, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
-    let &guifontwide = substitute(
-        \ &guifontwide, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
+    if has('nvim')
+        let l:font = g:GuiFont
+        let l:fontwide = ''
+    else
+        let l:font = &guifont
+        let l:fontwide = &guifontwide
+    endif
+
+    let l:font = substitute(
+        \ l:font, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
+    let l:fontwide = substitute(
+        \ l:fontwide, ':h\zs\d\+', '\=eval(submatch(0) - 1)', '')
+
+    if has('nvim')
+        execute 'GuiFont ' . l:font
+    else
+        let &guifont = l:font
+        let &guifontwide = l:fontwide
+    endif
 endfunction
 
 set fileencodings=UCS-BOM,UTF-8,Chinese
@@ -838,19 +897,6 @@ function! EnableGutentags(timerId)
     silent! GutentagsUpdate
 endfunction
 
-" Not in use for now
-function! EnableGutentagsOnStartup()
-    if s:gutentags_loaded == 0 || g:gutentags_generate_on_new == 1
-        return
-    endif
-
-    if has('timers')
-        let timer = timer_start(1000, 'EnableGutentags')
-    else
-        EnableGutentags(0)
-    endif
-endfunction
-
 " For AsyncRun plugin
 let g:asyncrun_open = 6
 let g:asyncrun_bell = 1
@@ -883,17 +929,24 @@ if has('autocmd')
             " Starting GUI will reset t_vb, so need to set it again
             autocmd GUIEnter * set visualbell t_vb=
         endif
+
         " The ftplugin may set the option, so we need to set it again
         autocmd FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
+
         " Jump to the last position when reopening a file
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-        " autocmd BufReadPost * call EnableGutentagsOnStartup()
+
         " Remember the last-active tab
         autocmd TabLeave * let g:lasttab = tabpagenr()
 
         " Auto enable/disable input method when in/leave insert mode
         autocmd InsertLeave * set imdisable | set iminsert=0
-        autocmd InsertEnter * set noimdisable | set iminsert=0
+        if !has('nvim')
+            autocmd InsertEnter * set noimdisable | set iminsert=2
+        else
+            " No effect in Neovim
+            autocmd InsertEnter * set noimdisable | set iminsert=0
+        endif
 
         " Hanlde markdown file type
         autocmd FileType markdown call HandleMdFile()
