@@ -517,6 +517,10 @@ call CommandAbbr("upt", 'call UpdateTags()')
 
 map <space> <leader>
 
+if has('nvim')
+    nnoremap <C-6> <C-^>
+endif
+
 " For Tagbar plugin
 let g:tagbar_autofocus = 1
 let g:tagbar_left=1
