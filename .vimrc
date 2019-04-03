@@ -945,12 +945,7 @@ if has('autocmd')
 
         " Auto enable/disable input method when in/leave insert mode
         autocmd InsertLeave * set imdisable | set iminsert=0
-        if !has('nvim')
-            autocmd InsertEnter * set noimdisable | set iminsert=2
-        else
-            " No effect in Neovim
-            autocmd InsertEnter * set noimdisable | set iminsert=0
-        endif
+        autocmd InsertEnter * set noimdisable | set iminsert=0
 
         " Hanlde markdown file type
         autocmd FileType markdown call HandleMdFile()
