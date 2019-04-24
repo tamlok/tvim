@@ -247,6 +247,11 @@ function Check-Git
 function Get-GVim-Folder
 {
     $gvim = Get-Command 'gvim' -ErrorAction SilentlyContinue
+    if ($gvim -eq $null) {
+        Write-Host "Fail to locate GVim"
+        exit -1
+    }
+
     if ($gvim.Path.EndsWith('.bat')) {
         $reg = 'set VIM_EXE_DIR=(.+)'
         $bat = Get-Content $gvim.Path
@@ -269,6 +274,11 @@ function Get-GVim-Folder
 function Get-Neovim-Folder
 {
     $nvim = Get-Command 'nvim' -ErrorAction SilentlyContinue
+    if ($nvim -eq $null) {
+        Write-Host "Fail to locate Neovim"
+        exit -1
+    }
+
     $nvimFolder = (Get-Item $nvim.Path).Directory.FullName
 
     Write-Host "Neovim is found in $nvimFolder"
