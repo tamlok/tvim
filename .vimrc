@@ -21,7 +21,7 @@ if s:tvim_os == 'win'
         let $PATH .= ';' . s:tvim_utils_folder . '\cppcheck'
         let $PATH .= ';' . s:tvim_utils_folder . '\global'
 
-        let python3_folder = s:tvim_utils_folder . '\python35_32'
+        let python3_folder = s:tvim_utils_folder . '\python35_embed_win32'
         let $PATH .= ';' . python3_folder
 
         if has('nvim')
@@ -89,6 +89,7 @@ if s:plug_plugins != ""
 
     Plug 'w0rp/ale'
     Plug 'skywind3000/vim-preview'
+    Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
     call plug#end()
 endif
 
