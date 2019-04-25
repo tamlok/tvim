@@ -1,11 +1,15 @@
 GuiTabline 0
 GuiPopupmenu 0
 
+let s:gui_font_size = '13'
+
 if has('unix')
-    GuiFont Liberation\ Mono:h12
+    execute 'GuiFont! Liberation Mono:h' . s:gui_font_size
 else
-    GuiFont Consolas:h12
+    execute 'GuiFont! Consolas:h' . s:gui_font_size
 endif
+
+execute 'GuiFont! Source Code Pro:h' . s:gui_font_size
 
 set guicursor=a:block
 set guicursor+=o:hor50-Cursor

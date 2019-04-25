@@ -240,18 +240,20 @@ if has('gui_running')
                             \set guioptions+=m <Bar>
                         \endif<CR>
 
+    let s:gui_font_size = '13'
     if s:tvim_os == 'win'
         set langmenu=zh_CN.UTF-8
         language message zh_CN.UTF-8
         set guifontset=
-        set guifont=Consolas:h12
-        set guifontwide=NSimsun:h12
+        execute 'set guifont=Source\ Code\ Pro:h' . s:gui_font_size . ',Consolas:h' . s:gui_font_size
+        execute 'set guifontwide=Microsoft\ Yahei:h' . s:gui_font_size . ',NSimsun:h' . s:gui_font_size
         " Delete and reload the menu to use UTF-8 on Wins
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
     else
         set guifontset=
-        set guifont=Liberation\ Mono\ 12
+        execute 'set guifont=Source\ Code\ Pro\ ' . s:gui_font_size . ',Liberation\ Mono\ ' . s:gui_font_size . ',Courier\ New\ ' . s:gui_font_size
+        execute 'set guifontwide=Microsoft\ Yahei\ ' . s:gui_font_size . ',WenQuanYi\ Micro\ Hei\ ' . s:gui_font_size
     endif
 
     " Change font size using <C-up> and <C-down>
@@ -272,9 +274,9 @@ function! GuiSizeUp()
     endif
 
     let l:font = substitute(
-        \ l:font, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
+        \ l:font, ':h\zs\d\+', '\=eval(submatch(0) + 1)', 'g')
     let l:fontwide = substitute(
-        \ l:fontwide, ':h\zs\d\+', '\=eval(submatch(0) + 1)', '')
+        \ l:fontwide, ':h\zs\d\+', '\=eval(submatch(0) + 1)', 'g')
 
     if has('nvim')
         execute 'GuiFont ' . l:font
@@ -740,7 +742,7 @@ inoremap <expr> <C-K> pumvisible() ? "<Up>" : "<C-K>"
 " Add support for markdown files in tagbar. We should copy the
 " .markdown2ctags.py to the proper place to make it work.
 let file_markdown2ctags='~/.vim/markdown2ctags.py'
-if has("win16") || has("win32") || has("win64") || has("win95")
+if s:tvim_os == 'win'
     let file_markdown2ctags=fnameescape($VIM."\\vimfiles\\markdown2ctags.py")
     if !filereadable(file_markdown2ctags)
         let file_markdown2ctags='~\vimfiles\markdown2ctags.py'
@@ -811,7 +813,7 @@ elseif executable('ack-grep')
     let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
 elseif executable('ack')
     let s:ctrlp_fallback = 'ack %s --nocolor -f'
-elseif (has("win32") || has("win64") || has("win95") || has("win16"))
+elseif s:tvim_os == 'win'
     let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
 else
     let s:ctrlp_fallback = 'find %s -type f'
