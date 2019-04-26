@@ -18,6 +18,8 @@ function Main
 
     Print-Usage
 
+    . '.\install_font.ps1'
+
     $action = Get-Action
 
     switch ($action) {
@@ -298,6 +300,8 @@ function Do-Setup-Vim
     Check-Markdown2Ctags $filesFolder
 
     Check-Vimrc
+
+    Check-Fonts (Get-Item '.\fonts').FullName
 }
 
 function Do-Setup-Neovim
@@ -313,6 +317,8 @@ function Do-Setup-Neovim
     Check-Markdown2Ctags $filesFolder
 
     Check-Init_Vim $filesFolder
+
+    Check-Fonts (Get-Item '.\fonts').FullName
 }
 
 function Check-TVim-Utils
@@ -558,6 +564,13 @@ function Write-Vim-Init_BAT
     $content += "pause"
 
     Out-File -Encoding ascii -LiteralPath $batFile -InputObject $content
+}
+
+function Check-Fonts
+{
+    param([string]$fontFolder)
+
+    Install-Font "$fontFolder"
 }
 
 Main
