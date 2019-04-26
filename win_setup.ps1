@@ -28,6 +28,7 @@ function Main
         3 { Setup-Vim }
         4 { Pack-Neovim }
         5 { Pack-Vim }
+        6 { Install-Fonts }
         9 { Write-Host 'Bye!'; exit 0 }
         default {Write-Error 'Invalid action'; exit -1}
     }
@@ -49,14 +50,11 @@ function Get-Action
     Write-Host '3. Setup Vim'
     Write-Host '4. Pack Neovim'
     Write-Host '5. Pack Vim'
+    Write-Host '6. Install fonts'
     Write-Host '9. Exit'
     Write-Host ''
 
     $action = Read-Host -Prompt 'Please choose the right action to perform'
-
-    if (!($action -match '^[123459]$')) {
-        Write-Error 'Invalid action'
-    }
 
     return $action
 }
@@ -300,8 +298,6 @@ function Do-Setup-Vim
     Check-Markdown2Ctags $filesFolder
 
     Check-Vimrc
-
-    Check-Fonts (Get-Item '.\fonts').FullName
 }
 
 function Do-Setup-Neovim
@@ -317,8 +313,6 @@ function Do-Setup-Neovim
     Check-Markdown2Ctags $filesFolder
 
     Check-Init_Vim $filesFolder
-
-    Check-Fonts (Get-Item '.\fonts').FullName
 }
 
 function Check-TVim-Utils
@@ -566,10 +560,9 @@ function Write-Vim-Init_BAT
     Out-File -Encoding ascii -LiteralPath $batFile -InputObject $content
 }
 
-function Check-Fonts
+function Install-Fonts
 {
-    param([string]$fontFolder)
-
+    $fontFolder = (Get-Item '.\fonts').FullName
     Install-Font "$fontFolder"
 }
 
