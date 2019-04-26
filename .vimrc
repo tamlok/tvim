@@ -90,6 +90,8 @@ if s:plug_plugins != ""
     Plug 'w0rp/ale'
     Plug 'skywind3000/vim-preview'
     Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+    Plug 'junegunn/gv.vim'
+    Plug 'jiangmiao/auto-pairs'
     call plug#end()
 endif
 
@@ -927,6 +929,14 @@ nnoremap <leader>tp :PreviewTag<CR>
 nnoremap <leader>tg :PreviewGoto edit<CR>
 nnoremap <leader>ts :PreviewSignature!<CR>
 nnoremap <leader>tq :PreviewQuickfix<CR>
+
+" For auto-paris plugin
+let g:AutoPairsMultilineClose = 0
+let g:AutoPairsMoveCharacter = ''
+let g:AutoPairsMapSpace = 0
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutToggle = ''
 
 " Section about autocmd
 if has('autocmd')
