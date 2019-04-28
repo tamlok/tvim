@@ -20,6 +20,8 @@ function Main
 
     . '.\install_font.ps1'
 
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
     $action = Get-Action
 
     switch ($action) {
