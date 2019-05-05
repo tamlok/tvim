@@ -94,6 +94,15 @@ if s:plug_plugins != ""
     Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
     Plug 'junegunn/gv.vim'
     Plug 'jiangmiao/auto-pairs'
+
+    Plug 'yatli/coc-powershell', {'do': { -> coc#powershell#install()} }
+    Plug 'neoclide/coc-json'
+    Plug 'neoclide/tsserver'
+    if s:tvim_os == 'win'
+        Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'install.cmd'}
+    else
+        Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+    endif
     call plug#end()
 endif
 
@@ -403,6 +412,22 @@ set statusline+=%*
 
 " Help file flag, modified flag, read-only flag
 set statusline+=%h%w%#WarningMsg#%m%*%r
+
+function! CocStatus()
+    if g:coc_enabled == 0
+        return ''
+    endif
+
+    let status = coc#status()
+    if status == ''
+        return ''
+    else
+        return '[' . status . ']'
+    endif
+endfunction
+
+" Coc status
+set statusline+=%{CocStatus()}
 
 " set statusline+=%=    " Left/right separator
 set statusline+=\     " One space
@@ -930,6 +955,7 @@ let g:ale_lint_delay = 500
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_enter = 0
+let g:ale_linters_ignore = ['ccls']
 
 " For vim-preview plugin
 nnoremap <leader>tp :PreviewTag<CR>
@@ -944,6 +970,20 @@ let g:AutoPairsMapSpace = 0
 let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutJump = ''
 let g:AutoPairsShortcutToggle = ''
+
+" For coc.vim plugin
+if executable('ccls')
+    autocmd User CocNvimInit call coc#config('languageserver.ccls.enable', v:true)
+endif
+nnoremap [d :call CocAction('diagnosticPrevious')<CR>
+nnoremap ]d :call CocAction('diagnosticNext')<CR>
+nnoremap [c :CocPrev<CR>
+nnoremap ]c :CocNext<CR>
+" Do not use nnoremap
+nmap <leader>xd <Plug>(coc-definition)
+nmap <leader>xt <Plug>(coc-type-definition)
+nmap <leader>xi <Plug>(coc-implementation)
+nmap <leader>xr <Plug>(coc-references)
 
 " Section about autocmd
 if has('autocmd')
