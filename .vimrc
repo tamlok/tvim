@@ -57,6 +57,7 @@ else
 endif
 
 let s:gutentags_loaded = 0
+let s:leaderf_loaded = 0
 
 if s:plug_plugins != ""
     let s:plug_plugins = fnameescape(s:plug_plugins)
@@ -83,6 +84,7 @@ if s:plug_plugins != ""
 
     if has('python') || has('python3')
         Plug 'Yggdroot/LeaderF'
+        let s:leaderf_loaded = 1
     else
         Plug 'ctrlpvim/ctrlp.vim'
     endif
@@ -832,11 +834,16 @@ let g:ctrlp_user_command = {
             \ }
 
 " For LeaderF plugin
-if has('python') || has('python3')
+if s:leaderf_loaded == 1
     let g:Lf_PreviewResult = { 'BufTag': 0, 'Function': 0 }
     let g:Lf_WorkingDirectoryMode = 'a'
     let g:Lf_ShortcutF = '<leader>cp'
     let g:Lf_ShortcutB = '<leader>cpb'
+    let g:Lf_UseVersionControlTool = 0
+    let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn', '.git', '.hg'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]', '*.cov.*.report']
+            \}
     nnoremap <leader>cpc :execute 'LeaderfFile' getcwd()<CR>
     nnoremap <leader>cpm :LeaderfMru<CR>
     nnoremap <leader>cpt :LeaderfTag<CR>
