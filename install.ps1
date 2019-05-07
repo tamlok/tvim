@@ -299,7 +299,11 @@ function Do-Setup-Vim
 
     Check-Markdown2Ctags $filesFolder
 
+    Check-Coc-Settings $filesFolder
+
     Check-Vimrc
+
+    Check-Scripts $filesFolder
 }
 
 function Do-Setup-Neovim
@@ -314,7 +318,11 @@ function Do-Setup-Neovim
 
     Check-Markdown2Ctags $filesFolder
 
+    Check-Coc-Settings $filesFolder
+
     Check-Init_Vim $filesFolder
+
+    Check-Scripts $filesFolder
 }
 
 function Check-TVim-Utils
@@ -376,7 +384,7 @@ function Check-Plug
 
     $plugFolder = "$filesFolder\autoload"
     Write-Host "Check Plug in $plugFolder"
-    xcopy /Y /i .\plug.vim "$plugFolder\" > $null 2> $null
+    xcopy /Y /i .\utils\plug.vim "$plugFolder\" > $null 2> $null
 }
 
 function Check-Markdown2Ctags
@@ -384,15 +392,23 @@ function Check-Markdown2Ctags
     param([string]$filesFolder)
 
     Write-Host "Check markdown2ctags.py in $filesFolder"
-    xcopy /Y /i .\markdown2ctags.py "$filesFolder\" > $null 2> $null
+    xcopy /Y /i .\utils\markdown2ctags.py "$filesFolder\" > $null 2> $null
+}
+
+function Check-Coc-Settings
+{
+    param([string]$filesFolder)
+
+    Write-Host "Check coc-settings.json in $filesFolder"
+    xcopy /Y /i .\utils\coc-settings.json "$filesFolder\" > $null 2> $null
 }
 
 function Check-Vimrc
 {
     $userFolder = $env:USERPROFILE
     Write-Host "Check _vimrc and .vimrc in $userFolder"
-    xcopy /Y /i .\.vimrc "$userFolder\" > $null 2> $null
-    copy .\.vimrc "$userFolder\_vimrc" > $null 2> $null
+    xcopy /Y /i .\vimrc "$userFolder\" > $null 2> $null
+    copy .\vimrc "$userFolder\_vimrc" > $null 2> $null
 }
 
 function Check-Init_Vim
@@ -400,8 +416,22 @@ function Check-Init_Vim
     param([string]$filesFolder)
 
     Write-Host "Check init.vim and ginit.vim in $filesFolder"
-    copy .\.vimrc "$filesFolder\init.vim" > $null 2> $null
+    copy .\vimrc "$filesFolder\init.vim" > $null 2> $null
     copy .\ginit.vim "$filesFolder\ginit.vim" > $null 2> $null
+}
+
+function Check-Scripts
+{
+    param([string]$filesFolder)
+
+    $scriptsFolder = "$filesFolder\scripts"
+    Write-Host "Check scripts in $scriptsFolder"
+
+    if (Test-Path -Path "$scriptsFolder") {
+        Remove-Directory-Recursively $scriptsFolder
+    }
+
+    robocopy ".\scripts" "$scriptsFolder" /E /MT > $null
 }
 
 function Pack-Neovim
@@ -452,7 +482,10 @@ function Do-Pack-Vim
 
     $binParentFolder = (Get-Item "$binFolder").Parent.FullName
     xcopy /Y /i /e "$binParentFolder\vimfiles" "$portableFolder\vimfiles\" > $null
-    xcopy /Y /i /e "$filesFolder" "$portableFolder\vimfiles\" > $null
+
+    # Ignore coc.nvim since it does not work properly.
+    $ignoredFolders = "$filesFolder\plugged\coc.nvim"
+    robocopy "$filesFolder" "$portableFolder\vimfiles" /E /MT /XD "$ignoredFolders" > $null
 
     Write-Vim-Init_BAT $portableFolder
 
@@ -535,6 +568,8 @@ function Write-Neovim-Init_BAT
     $content += 'mkdir "%userVimFiles%"' + "`r`n"
     $content += 'copy "%vimfiles%\init.vim" "%userVimFiles%\init.vim"' + "`r`n"
     $content += 'copy "%vimfiles%\ginit.vim" "%userVimFiles%\ginit.vim"' + "`r`n"
+    $content += 'copy "%vimfiles%\coc-settings.json" "%userVimFiles%\coc-settings.json"' + "`r`n"
+    $content += 'robocopy "%vimfiles%\scripts" "%userVimFiles%\scripts" /E /MT' + "`r`n"
     $content += '@echo off' + "`r`n"
     $content += "pause"
 
@@ -552,10 +587,16 @@ function Write-Vim-Init_BAT
     $content += "set cur_dir=%~dp0`r`n"
     $content += 'if /I "%cur_dir:~-1%" EQU "\" set cur_dir=%cur_dir:~0,-1%' + "`r`n"
     $content += 'set vimrc=%cur_dir%\_vimrc' + "`r`n"
+    $content += 'set cocsettings=%cur_dir%\vimfiles\coc-settings.json' + "`r`n"
+    $content += 'set scripts=%cur_dir%\vimfiles\scripts' + "`r`n"
     $content += 'set userFolder=%USERPROFILE%' + "`r`n"
+    $content += 'set userVimFiles=%USERPROFILE%\vimfiles' + "`r`n"
     $content += '@echo on' + "`r`n"
+    $content += 'mkdir "%userVimFiles%"' + "`r`n"
     $content += 'copy "%vimrc%" "%userFolder%\_vimrc"' + "`r`n"
     $content += 'copy "%vimrc%" "%userFolder%\.vimrc"' + "`r`n"
+    $content += 'copy "%cocsettings%" "%userVimFiles%\coc-settings.json"' + "`r`n"
+    $content += 'robocopy "%scripts%" "%userVimFiles%\scripts" /E /MT' + "`r`n"
     $content += '@echo off' + "`r`n"
     $content += "pause"
 

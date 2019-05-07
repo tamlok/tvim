@@ -25,5 +25,7 @@ endif
 set tabline=%!ShortTabLine()
 
 " Change font size using <C-up> and <C-down>
-nnoremap <C-Up> :call GuiSizeUp()<CR>
-nnoremap <C-Down> :call GuiSizeDown()<CR>
+call AddKeyBinding('nnoremap <C-Up> :call IncreaseGuiFontSize()<CR>',
+                   \ 'Increase GUI font size')
+call AddKeyBinding('nnoremap <C-Down> :call DecreaseGuiFontSize()<CR>',
+                   \ 'Decrease GUI font size')
