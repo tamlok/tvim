@@ -70,7 +70,7 @@ set foldenable
 " Open most folds by default
 set foldlevelstart=10
 " 10 nested fold max
-set foldnestmax=20
+set foldnestmax=10
 " Fold based on indent level
 set foldmethod=indent
 

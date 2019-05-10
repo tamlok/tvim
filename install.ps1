@@ -73,7 +73,7 @@ function Install-Neovim
 
 
     $release = Get-Neovim-Latest-Release
-    Write-Host 'Downloading latest Neovim' $release.Tag '...'
+    Write-Host 'Downloading latest Neovim...'
 
     $targetZipFile = $env:TEMP + '\tvim_' + $release.File
     Invoke-WebRequest -Uri $release.Url -OutFile $targetZipFile
@@ -103,7 +103,7 @@ function Install-Neovim
 function Get-Neovim-Latest-Release
 {
     $file = 'nvim-win64.zip'
-    $regularExp = '"browser_download_url":"(https://github.com/neovim/neovim/releases/download/(v\d\.\d\.\d)/' + $file + ')"'
+    $regularExp = '"browser_download_url":"(https://github.com/neovim/neovim/releases/[^"]+/' + $file + ')"'
     $url = 'https://api.github.com/repos/neovim/neovim/releases/latest'
     $content = Invoke-WebRequest -Uri $url
     $match = $content -match $regularExp
@@ -112,9 +112,8 @@ function Get-Neovim-Latest-Release
         exit -1
     }
 
-    $release = New-Object PSObject | Select-Object Url, Tag, File
+    $release = New-Object PSObject | Select-Object Url, File
     $release.Url = $Matches[1]
-    $release.Tag = $Matches[2]
     $release.File = $file
 
     return $release
