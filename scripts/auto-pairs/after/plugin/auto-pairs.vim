@@ -1,1 +1,3 @@
-let g:AutoPairs['<'] = '>'
+if exists('g:AutoPairs')
+    let g:AutoPairs['<'] = '>'
+endif
