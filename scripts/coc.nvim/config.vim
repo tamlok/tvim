@@ -25,10 +25,7 @@ call AddKeyBinding('nmap <leader>xt <Plug>(coc-type-definition)', 'Goto type def
 call AddKeyBinding('nmap <leader>xi <Plug>(coc-implementation)', 'Goto implementation')
 call AddKeyBinding('nmap <leader>xr <Plug>(coc-references)', 'Goto all references')
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-call AddKeyBinding('inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"',
-                   \ 'Enter to confirm completion in popup menu')
+call AddKeyBinding('inoremap <silent><expr> <c-space> coc#refresh()', 'Trigger completion')
 
 function! CocStatuslineInfo()
     if !exists('g:coc_enabled') || g:coc_enabled == 0

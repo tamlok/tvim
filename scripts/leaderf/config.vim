@@ -8,6 +8,7 @@ if g:tvim_plug_leaderf_loaded == 1
             \ 'dir': ['.svn', '.git', '.hg'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]', '*.cov.*.report']
             \}
+    let g:Lf_ShowHidden = 1
 
     call AddKeyBinding('nnoremap <leader>cpc :execute "LeaderfFile" getcwd()<CR>',
                        \ 'Find in current working directory')
