@@ -1,5 +1,7 @@
 " ==Commands==
 command! -nargs=1 TTab call SetTabStopWidth(<f-args>)
+command! -nargs=0 TKeys call ShowKeyBindings()
+command! -nargs=0 TAbbrs call ShowCommandAbbrs()
 
 " ==Key bindings==
 call AddKeyBinding('map <space> <leader>', 'Use <space> as leader key')
