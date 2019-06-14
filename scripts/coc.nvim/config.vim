@@ -1,7 +1,12 @@
-if has('autocmd') && executable('ccls')
+if has('autocmd')
     augroup coc_group
         autocmd!
-        autocmd User CocNvimInit call coc#config('languageserver.ccls.enable', v:true)
+        if executable('clangd')
+            autocmd User CocNvimInit call coc#config('languageserver.clangd.enable', v:true)
+        elseif executable('ccls')
+            " CCLS will always make Vim fail to save files.
+            " autocmd User CocNvimInit call coc#config('languageserver.ccls.enable', v:true)
+        endif
     augroup END
 endif
 

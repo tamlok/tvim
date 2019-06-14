@@ -14,6 +14,12 @@
                     "comments": 0
                 }
             }
+        },
+        "clangd": {
+            "enable": false,
+            "command": "clangd",
+            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"]
         }
     },
     "suggest.autoTrigger": "none"
