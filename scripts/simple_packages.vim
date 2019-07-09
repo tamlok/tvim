@@ -4,3 +4,4 @@ Plug 'tamlok/vim-highlight'
 Plug 'will133/vim-dirdiff'
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'junegunn/gv.vim'
+Plug 'leafgarland/typescript-vim'
