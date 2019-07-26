@@ -34,7 +34,7 @@ if g:tvim_plug_ctrlp_loaded == 1
         let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
     elseif executable('ack')
         let s:ctrlp_fallback = 'ack %s --nocolor -f'
-    elseif s:tvim_os == 'win'
+    elseif g:tvim_os == 'win'
         let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
     else
         let s:ctrlp_fallback = 'find %s -type f'
