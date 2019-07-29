@@ -51,6 +51,11 @@ if g:tvim_plug_ctrlp_loaded == 1
         \ 'fallback': s:ctrlp_fallback
     \ }
 
+    let g:ctrlp_custom_ignore = {
+            \ 'dir': '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(exe|so|dll|o|py|pyco|report)$'
+            \ }
+
     call AddKeyBinding('nnoremap <leader>cpt :CtrlPTag<CR>', '')
     call AddKeyBinding('nnoremap <leader>cpb :CtrlPBuffer<CR>', '')
     call AddKeyBinding('nnoremap <leader>cpm :CtrlPMixed<CR>', '')
