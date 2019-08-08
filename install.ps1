@@ -302,6 +302,8 @@ function Do-Setup-Vim
 
     Check-Vimrc
 
+    Check-Ftdetect $filesFolder
+
     Check-Scripts $filesFolder
 }
 
@@ -320,6 +322,8 @@ function Do-Setup-Neovim
     Check-Coc-Settings $filesFolder
 
     Check-Init_Vim $filesFolder
+
+    Check-Ftdetect $filesFolder
 
     Check-Scripts $filesFolder
 }
@@ -417,6 +421,20 @@ function Check-Init_Vim
     Write-Host "Check init.vim and ginit.vim in $filesFolder"
     copy .\vimrc "$filesFolder\init.vim" > $null 2> $null
     copy .\ginit.vim "$filesFolder\ginit.vim" > $null 2> $null
+}
+
+function Check-Ftdetect
+{
+    param([string]$filesFolder)
+
+    $ftdetectFolder = "$filesFolder\ftdetect"
+    Write-Host "Check ftdetect in $ftdetectFolder"
+
+    if (Test-Path -Path "$ftdetectFolder") {
+        Remove-Directory-Recursively $ftdetectFolder
+    }
+
+    robocopy ".\ftdetect" "$ftdetectFolder" /E /MT > $null
 }
 
 function Check-Scripts

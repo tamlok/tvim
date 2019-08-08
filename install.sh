@@ -41,6 +41,13 @@ check_vimrc() {
     cp -f ./vimrc "$home_folder/.vimrc"
 }
 
+check_ftdetect() {
+    local vim_files_folder=$1
+    echo "Check ftdetect in $vim_files_folder"
+    rm -rf "$vim_files_folder/ftdetect" 2> /dev/null
+    cp -r -f ./ftdetect "$vim_files_folder/"
+}
+
 check_scripts() {
     local vim_files_folder=$1
     echo "Check scripts in $vim_files_folder"
@@ -59,6 +66,7 @@ setup_vim() {
     check_markdowntoctags $vim_files_folder
     check_coc_settings $vim_files_folder
     check_vimrc
+    check_ftdetect $vim_files_folder
     check_scripts $vim_files_folder
 }
 
