@@ -1,3 +1,5 @@
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 if g:tvim_os == 'win'
     Plug 'yatli/coc-powershell', {'do': { -> coc#powershell#install()} }
 else
@@ -6,8 +8,3 @@ endif
 
 Plug 'neoclide/coc-json'
 Plug 'neoclide/coc-tsserver'
-if g:tvim_os == 'win'
-    Plug 'neoclide/coc.nvim', {'do': 'install.cmd'}
-else
-    Plug 'neoclide/coc.nvim', {'do': './install.sh'}
-endif
