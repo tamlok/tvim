@@ -21,7 +21,3 @@ if s:markdown2ctags_file != '' && has("python3")
         \ 'sort': 0,
     \ }
 endif
-
-call AddKeyBinding('nnoremap <leader>tc :TagbarCurrentTag s<CR>', 'Display current tag')
-call AddKeyBinding('nnoremap <leader>tt :TagbarToggle<CR>', 'Toggle Tagbar')
-call AddKeyBinding('nnoremap <leader>ta :TagbarOpenAutoClose<CR>', 'Open Tagbar and auto close it')

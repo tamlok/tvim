@@ -16,7 +16,7 @@ if g:tvim_plug_ctrlp_loaded == 1
         return len.dir
     endfunction
 
-    let g:ctrlp_map='<leader>cp'
+    let g:ctrlp_map='<leader>f'
     let g:ctrlp_extensions=['tag', 'buffertag']
     let g:ctrlp_match_window='order:ttb,results:100'
     let g:ctrlp_status_func={
@@ -55,13 +55,4 @@ if g:tvim_plug_ctrlp_loaded == 1
             \ 'dir': '\v[\/]\.(git|hg|svn)$',
             \ 'file': '\v\.(exe|so|dll|o|py|pyco|report)$'
             \ }
-
-    call AddKeyBinding('nnoremap <leader>cpt :CtrlPTag<CR>', '')
-    call AddKeyBinding('nnoremap <leader>cpb :CtrlPBuffer<CR>', '')
-    call AddKeyBinding('nnoremap <leader>cpm :CtrlPMixed<CR>', '')
-    call AddKeyBinding('nnoremap <leader>cpu :CtrlPBufTag<CR>', '')
-    call AddKeyBinding('nnoremap <leader>cpa :CtrlPBufTagAll<CR>', '')
-    call AddKeyBinding('nnoremap <leader>cpc :CtrlP :pwd<CR>', '')
-
-    call AddCommandAbbr('cp', 'CtrlP', 'CtrlP')
 endif
