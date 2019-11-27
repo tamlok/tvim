@@ -113,6 +113,7 @@ call AddKeyBinding('nmap <F5> :call ChangeCwdToCurrentFile()<cr>',
 " [s] for cscope
 " <C-F2>: Toggle GUI menu and toolbar
 " <F4>: Toggle mouse mode
+" [h] is assigned to vim-highlight
 
 " ==Key bindings of plugins==
 " {ALE}
@@ -232,10 +233,10 @@ call AddKeyBinding('nnoremap <leader>ta :TagbarOpenAutoClose<CR>', '{Tagbar} Ope
 call AddKeyBinding('nmap <Leader>m <Plug>(easymotion-prefix)', '{EasyMotion} EasyMotion prefix')
 
 " {FSwitch}
-" [h]
-call AddKeyBinding('nnoremap <silent> <Leader>hs :FSHere<CR>', '{FSWitch} Switch to header/implementation file')
-call AddKeyBinding('nnoremap <silent> <Leader>hr :FSSplitRight<CR>', '{FSWitch} Switch to header/implementation file at a right split')
-call AddKeyBinding('nnoremap <silent> <Leader>ht :FSSplitAbove<CR>', '{FSWitch} Switch to header/implementation file at a split above')
+" [g]
+call AddKeyBinding('nnoremap <silent> <Leader>gs :FSHere<CR>', '{FSWitch} Switch to header/implementation file')
+call AddKeyBinding('nnoremap <silent> <Leader>gr :FSSplitRight<CR>', '{FSWitch} Switch to header/implementation file at a right split')
+call AddKeyBinding('nnoremap <silent> <Leader>gt :FSSplitAbove<CR>', '{FSWitch} Switch to header/implementation file at a split above')
 
 " {Vim-Preview}
 " [t]
