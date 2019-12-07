@@ -178,7 +178,7 @@ if g:tvim_plug_leaderf_loaded == 1
                        \ '{LeaderF} Search for a tag within current buffer')
     call AddKeyBinding('nnoremap <leader>fa :LeaderfBufTagAll<CR>',
                        \ '{LeaderF} Search for a tag within all listed buffers')
-    call AddKeyBinding('nnoremap <leader>ff :LeaderfFunction!<CR>',
+    call AddKeyBinding('nnoremap <leader>ff :LeaderfFunction<CR>',
                        \ '{LeaderF} Search for a function within current buffer')
     call AddKeyBinding('nnoremap <leader>fe :LeaderfFunctionAll<CR>',
                        \ '{LeaderF} Search for a function within all listed buffers')
@@ -195,7 +195,7 @@ if g:tvim_plug_leaderf_loaded == 1
                        \ '{LeaderF} Search for a tag within current buffer using word under cursor')
     call AddKeyBinding('nnoremap <leader>fwa :LeaderfBufTagAllCword<CR>',
                        \ '{LeaderF} Search for a tag within all listed buffers using word under cursor')
-    call AddKeyBinding('nnoremap <leader>fwf :LeaderfFunctionCword!<CR>',
+    call AddKeyBinding('nnoremap <leader>fwf :LeaderfFunctionCword<CR>',
                        \ '{LeaderF} Search for a function within current buffer using word under cursor')
     call AddKeyBinding('nnoremap <leader>fwe :LeaderfFunctionAllCword<CR>',
                        \ '{LeaderF} Search for a function within all listed buffers using word under cursor')
@@ -209,7 +209,7 @@ if g:tvim_plug_leaderf_loaded == 1
                        \ '{LeaderF} Recall last search for a tag within current buffer')
     call AddKeyBinding('nnoremap <leader>fla :LeaderfBufTagAll<CR>',
                        \ '{LeaderF} Recall last search for a tag within all listed buffers')
-    call AddKeyBinding('nnoremap <leader>flf :LeaderfFunction!<CR>',
+    call AddKeyBinding('nnoremap <leader>flf :LeaderfFunction<CR>',
                        \ '{LeaderF} Recall last search for a function within current buffer')
     call AddKeyBinding('nnoremap <leader>fle :LeaderfFunctionAll<CR>',
                        \ '{LeaderF} Recall last search for a function within all listed buffers')
