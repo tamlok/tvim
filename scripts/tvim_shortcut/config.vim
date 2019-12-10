@@ -108,7 +108,6 @@ call AddKeyBinding('nmap <F5> :call ChangeCwdToCurrentFile()<cr>',
 " ==Key bindings defined outside==
 " <C-Up>: Increase GUI font size
 " <C-Down>: Decrease GUI font size
-" [f]
 " <leader>fg: Grep all buffers
 " [s] for cscope
 " <C-F2>: Toggle GUI menu and toolbar
@@ -125,13 +124,13 @@ call AddKeyBinding('nnoremap ]A :ALELast<CR>', '{ALE} Jump to last lint error')
 call AddKeyBinding('nnoremap <leader>al :ALEDetail<CR>', '{ALE} Show all lint details')
 call AddKeyBinding('nnoremap <leader>ad :ALEGoToDefinition<CR>', '{ALE} Go to definition')
 call AddKeyBinding('nnoremap <leader>ar :ALEFindReferences<CR>', '{ALE} Find references')
-call AddKeyBinding('nnoremap <leader>as :ALESymbolSearch <C-R>=expand("<cword>")<CR><CR>', '{ALE} Search symbol using current cursor word')
+call AddKeyBinding('nnoremap <leader>as :ALESymbolSearch <C-R>=expand("<cword>")<CR><CR>', '{ALE} Search symbol using word under cursor')
 call AddKeyBinding('nnoremap <leader>ai :ALEHover<CR>', '{ALE} Print brief information about the symbol under the cursor')
 
 " {Coc}
 " [c]
-call AddKeyBinding('nnoremap [c :CocPrev<CR>', '{Coc} Previous item in Cos list')
-call AddKeyBinding('nnoremap ]c :CocNext<CR>', '{Coc} Next item in Cos list')
+call AddKeyBinding('nnoremap [o :CocPrev<CR>', '{Coc} Previous item in Coc list')
+call AddKeyBinding('nnoremap ]o :CocNext<CR>', '{Coc} Next item in Coc list')
 call AddKeyBinding('nnoremap [d :call CocAction("diagnosticPrevious")<CR>',
                    \ '{Coc} Previous diagnostic information')
 call AddKeyBinding('nnoremap ]d :call CocAction("diagnosticNext")<CR>',
@@ -244,6 +243,14 @@ call AddKeyBinding('nnoremap <leader>tp :PreviewTag<CR>', '{Vim-Preview} Preview
 call AddKeyBinding('nnoremap <leader>tg :PreviewGoto edit<CR>', '{Vim-Preview} Open the previewed file in a normal window')
 call AddKeyBinding('nnoremap <leader>ts :PreviewSignature!<CR>', '{Vim-Preview} Preview the function signature circularly at the command line')
 call AddKeyBinding('nnoremap <leader>tc :PreviewQuickfix<CR>', '{Vim-Preview} Preview current file in quickfix window')
+
+" {Ack}
+" [fs]
+call AddKeyBinding('nnoremap <leader>fs :Ack ', '{Ack} Ack search')
+call AddKeyBinding('nnoremap <leader>fss :AckFromSearch<CR>', '{Ack} Ack search using previous search pattern')
+call AddKeyBinding('nnoremap <leader>fsc :Ack --cpp ', '{Ack} Ack search C++ files')
+call AddKeyBinding('nnoremap <leader>fsw :Ack <cword><CR>', '{Ack} Ack search using word under cursor')
+call AddKeyBinding('nnoremap <leader>fswc :Ack --cpp <cword><CR>', '{Ack} Ack search C++ files using word under cursor')
 
 
 " ==Abbreviations==
