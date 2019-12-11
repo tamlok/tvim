@@ -75,8 +75,10 @@ call AddKeyBinding('nnoremap <leader>9 9gt', 'Go to tab 9')
 " Register
 " [p]
 call AddKeyBinding('nnoremap <leader>p "+', "Use selection register '+' (system clipboard)")
+call AddKeyBinding('vnoremap <leader>p "+', "Use selection register '+' (system clipboard)")
 " [o]
 call AddKeyBinding('nnoremap <leader>o "_', "Use black hole register '_'")
+call AddKeyBinding('vnoremap <leader>o "_', "Use black hole register '_'")
 
 " [<space>]
 call AddKeyBinding('nnoremap <leader><space> :nohlsearch<CR>', 'Clear search highlight')
