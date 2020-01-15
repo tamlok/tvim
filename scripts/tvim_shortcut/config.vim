@@ -33,10 +33,10 @@ call AddKeyBinding('nnoremap [T :tfirst<CR>', 'First tag')
 call AddKeyBinding('nnoremap ]T :tlast<CR>', 'Last tag')
 
 " Preview tag
-call AddKeyBinding('nnoremap [p :ptprevious<CR>', 'Preview previous tag')
-call AddKeyBinding('nnoremap ]p :ptnext<CR>', 'Preview next tag')
-call AddKeyBinding('nnoremap [P :ptfirst<CR>', 'Preview first tag')
-call AddKeyBinding('nnoremap ]P :ptlast<CR>', 'Preview last tag')
+call AddKeyBinding('nnoremap [r :ptprevious<CR>', 'Preview previous tag')
+call AddKeyBinding('nnoremap ]r :ptnext<CR>', 'Preview next tag')
+call AddKeyBinding('nnoremap [R :ptfirst<CR>', 'Preview first tag')
+call AddKeyBinding('nnoremap ]R :ptlast<CR>', 'Preview last tag')
 
 " Location
 call AddKeyBinding('nnoremap [l :lprevious<CR>', 'Previous location')
