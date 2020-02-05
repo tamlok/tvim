@@ -115,6 +115,27 @@ function! BufferCmd(cmd)
     endif
 endfunction
 
+function! ToggleSaveMode()
+    if !exists('g:tvim_saveMode')
+        let g:tvim_saveMode = 1
+    else
+        let g:tvim_saveMode = !g:tvim_saveMode
+    endif
+
+    " Disable COC.
+    if g:tvim_saveMode
+        silent CocDisable
+    else
+        silent CocEnable
+    endif
+
+    " Disable Gutentags.
+    let g:gutentags_enabled = !g:tvim_saveMode
+
+    " Disable ALE.
+    let g:ale_enabled = !g:tvim_saveMode
+endfunction
+
 function! DiffBufferWithDisk()
     let l:currentFile = expand('%')
     let l:filename = expand('%:t')

@@ -3,6 +3,7 @@ command! -nargs=1 TTab call SetTabStopWidth(<f-args>)
 command! -nargs=0 TKeys call ShowKeyBindings()
 command! -nargs=0 TAbbrs call ShowCommandAbbrs()
 command! -nargs=1 TCmd call BufferCmd(<f-args>)
+command! -nargs=0 TSaveMode call ToggleSaveMode()
 
 " ==Key bindings==
 call AddKeyBinding('map <space> <leader>', 'Use <space> as leader key')
