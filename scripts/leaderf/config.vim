@@ -9,4 +9,5 @@ if g:tvim_plug_leaderf_loaded == 1
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]', '*.cov.*.report']
             \}
     let g:Lf_ShowHidden = 1
+    let g:Lf_ShowDevIcons = 0
 endif
