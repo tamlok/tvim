@@ -10,4 +10,5 @@ if g:tvim_plug_leaderf_loaded == 1
             \}
     let g:Lf_ShowHidden = 1
     let g:Lf_ShowDevIcons = 0
+    let g:Lf_JumpToExistingWindow = 0
 endif
