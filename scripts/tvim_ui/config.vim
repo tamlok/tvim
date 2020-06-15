@@ -287,5 +287,5 @@ set relativenumber
 " Display Tab indent
 " set list lcs=tab:\|\
 
-" Highlight the 81th column
-set cc=81
+" Highlight the 101th column
+set colorcolumn=101
