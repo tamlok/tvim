@@ -1,6 +1,8 @@
 if executable('node')
     let node_version = system('node --version')
-    if node_version > 'v6.0.0'
+    " v12.0.1
+    let major = matchstr(node_version, '\d*', 1)
+    if major > 5
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
         if g:tvim_os == 'win'
