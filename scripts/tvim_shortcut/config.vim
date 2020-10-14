@@ -107,6 +107,8 @@ call AddKeyBinding('nmap <F2> :call DiffBufferWithDisk()<CR>',
 call AddKeyBinding('nmap <F3> :set paste!<CR>', 'Toggle paste mode')
 call AddKeyBinding('nmap <F5> :call ChangeCwdToCurrentFile()<cr>',
                    \ 'Change CWD and path to current file')
+call AddKeyBinding('nmap <F6> :syntax sync fromstart<cr>',
+                   \ 'Always do syntax highlight from start')
 
 " ==Key bindings defined outside==
 " <C-Up>: Increase GUI font size
