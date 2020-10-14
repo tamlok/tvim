@@ -22,5 +22,6 @@
             "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"]
         }
     },
-    "suggest.autoTrigger": "none"
+    "suggest.autoTrigger": "none",
+    "diagnostic.displayByAle": true
 }
