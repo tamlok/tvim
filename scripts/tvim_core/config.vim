@@ -85,6 +85,9 @@ runtime macros/matchit.vim
 " Let backspace behave well in insert mode
 set backspace=indent,eol,start
 
+" Always get a exact syntax highlight
+syntax sync fromstart
+
 let g:tvim_last_active_tab = 1
 
 if has('autocmd')

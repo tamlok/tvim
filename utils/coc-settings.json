@@ -13,13 +13,15 @@
                     "threads": 2,
                     "comments": 0
                 }
-            }
+            },
+            "disableDiagnostics": true
         },
         "clangd": {
             "enable": false,
             "command": "clangd",
             "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"]
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "disableDiagnostics": true
         }
     },
     "suggest.autoTrigger": "none",
