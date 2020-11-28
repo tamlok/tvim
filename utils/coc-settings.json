@@ -25,5 +25,5 @@
         }
     },
     "suggest.autoTrigger": "none",
-    "diagnostic.displayByAle": true
+    "diagnostic.displayByAle": false
 }

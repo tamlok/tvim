@@ -14,9 +14,9 @@ if g:tvim_plug_gutentags_loaded == 1
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
     " Used for Universal Ctags
     " let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-    let tag_common_exclude = ['*.json', '*.md', '*.obj', '*.pdb', '*.ini', '*.log', '*.txt', '*.vcxproj', '*.proj', '*.vimrc']
+    let tag_common_exclude = ['*.json', '*.md', '*.obj', '*.pdb', '*.ini', '*.log', '*.txt', '*.vcxproj', '*.proj', '*.vimrc', '*.csv']
     let g:gutentags_ctags_exclude = tag_common_exclude
-    let g:gutentags_ctags_exclude += ['*.css', '*.html', '*.js']
+    let g:gutentags_ctags_exclude += ['*.css', '*.html', '*.js', '*.ts']
     let g:gutentags_exclude_filetypes = tag_common_exclude
     let g:gutentags_modules = []
     if executable("ctags")
