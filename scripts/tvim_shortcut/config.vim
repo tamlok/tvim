@@ -7,9 +7,8 @@ command! -nargs=0 TSaveMode call ToggleSaveMode()
 
 " ==Key bindings==
 call AddKeyBinding('map <space> <leader>', 'Use <space> as leader key')
-if has('nvim')
-    call AddKeyBinding('nnoremap <C-6> <C-^>', 'Map <C-6> to alternate between buffers')
-endif
+" nvim and macvim do not map <c-6> automatically
+call AddKeyBinding('nnoremap <C-6> <C-^>', 'Map <C-6> to alternate between buffers')
 
 " Buffer
 call AddKeyBinding('nnoremap [b :bprevious<CR>', 'Previous buffer')
