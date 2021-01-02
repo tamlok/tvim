@@ -140,14 +140,14 @@ if has('gui_running') && !has('nvim')
         set langmenu=zh_CN.UTF-8
         language message zh_CN.UTF-8
         set guifontset=
-        execute 'set guifont=Source\ Code\ Pro:h' . s:gui_font_size . ',Consolas:h' . s:gui_font_size
+        execute 'set guifont=Source\ Code\ Pro:h' . s:gui_font_size . ',Consolas:h' . s:gui_font_size . ',Courier\ ' . s:gui_font_size
         execute 'set guifontwide=Microsoft\ Yahei:h' . s:gui_font_size . ',NSimsun:h' . s:gui_font_size
         " Delete and reload the menu to use UTF-8 on Windows
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
     else
         set guifontset=
-        execute 'set guifont=Source\ Code\ Pro\ ' . s:gui_font_size . ',Liberation\ Mono\ ' . s:gui_font_size . ',Courier\ New\ ' . s:gui_font_size
+        execute 'set guifont=Liberation\ Mono\ ' . s:gui_font_size . ',Courier\ New\ ' . s:gui_font_size . ',Courier\ ' . s:gui_font_size
         execute 'set guifontwide=Microsoft\ Yahei\ ' . s:gui_font_size . ',WenQuanYi\ Micro\ Hei\ ' . s:gui_font_size
     endif
 
