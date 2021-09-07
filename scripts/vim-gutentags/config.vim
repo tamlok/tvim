@@ -1,7 +1,13 @@
 if g:tvim_plug_gutentags_loaded == 1
+    let g:gutentags_define_advanced_commands = 1
+    " Disable it by default for large project
+    let g:gutentags_enabled = 0
+
     let g:gutentags_generate_on_new = 1
     let g:gutentags_generate_on_missing = 1
     let g:gutentags_generate_on_empty_buffer = 0
+    let g:gutentags_generate_on_write = 1
+
     let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', 'dirs.proj', 'dirs']
     let g:gutentags_ctags_tagfile = 'tags'
     let s:vim_tags = expand('~/.cache/tags')

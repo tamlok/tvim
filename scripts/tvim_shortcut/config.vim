@@ -134,18 +134,20 @@ call AddKeyBinding('nnoremap <leader>ai :ALEHover<CR>', '{ALE} Print brief infor
 
 " {Coc}
 " [c]
-call AddKeyBinding('nnoremap [o :CocPrev<CR>', '{Coc} Previous item in Coc list')
-call AddKeyBinding('nnoremap ]o :CocNext<CR>', '{Coc} Next item in Coc list')
-call AddKeyBinding('nnoremap [d :call CocAction("diagnosticPrevious")<CR>',
-                   \ '{Coc} Previous diagnostic information')
-call AddKeyBinding('nnoremap ]d :call CocAction("diagnosticNext")<CR>',
-                   \ '{Coc} Next diagnostic information')
-" Do not use nnoremap
-call AddKeyBinding('nmap <leader>cd <Plug>(coc-definition)', '{Coc} Goto definition')
-call AddKeyBinding('nmap <leader>ct <Plug>(coc-type-definition)', '{Coc} Goto type definition')
-call AddKeyBinding('nmap <leader>ci <Plug>(coc-implementation)', '{Coc} Goto implementation')
-call AddKeyBinding('nmap <leader>cr <Plug>(coc-references)', '{Coc} Goto all references')
-call AddKeyBinding('inoremap <silent><expr> <c-space> coc#refresh()', '{Coc} Trigger completion')
+if g:tvim_plug_coc_loaded == 1
+    call AddKeyBinding('nnoremap [o :CocPrev<CR>', '{Coc} Previous item in Coc list')
+    call AddKeyBinding('nnoremap ]o :CocNext<CR>', '{Coc} Next item in Coc list')
+    call AddKeyBinding('nnoremap [d :call CocAction("diagnosticPrevious")<CR>',
+                       \ '{Coc} Previous diagnostic information')
+    call AddKeyBinding('nnoremap ]d :call CocAction("diagnosticNext")<CR>',
+                       \ '{Coc} Next diagnostic information')
+    " Do not use nnoremap
+    call AddKeyBinding('nmap <leader>cd <Plug>(coc-definition)', '{Coc} Goto definition')
+    call AddKeyBinding('nmap <leader>ct <Plug>(coc-type-definition)', '{Coc} Goto type definition')
+    call AddKeyBinding('nmap <leader>ci <Plug>(coc-implementation)', '{Coc} Goto implementation')
+    call AddKeyBinding('nmap <leader>cr <Plug>(coc-references)', '{Coc} Goto all references')
+    call AddKeyBinding('inoremap <silent><expr> <c-space> coc#refresh()', '{Coc} Trigger completion')
+endif
 
 " {AsyncRun}
 " [a]

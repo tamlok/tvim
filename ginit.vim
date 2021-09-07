@@ -3,13 +3,13 @@ GuiPopupmenu 0
 
 let s:gui_font_size = '13'
 
+" Select this font if available. Could not detect it dynamically.
+" execute 'GuiFont! Source Code Pro:h' . s:gui_font_size
 if has('unix')
     execute 'GuiFont! Liberation Mono:h' . s:gui_font_size
 else
     execute 'GuiFont! Consolas:h' . s:gui_font_size
 endif
-
-execute 'GuiFont! Source Code Pro:h' . s:gui_font_size
 
 set guicursor=a:block
 set guicursor+=o:hor50-Cursor

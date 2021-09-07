@@ -1,3 +1,4 @@
+let g:tvim_plug_coc_loaded = 0
 if executable('node')
     let node_version = system('node --version')
     " v12.0.1
@@ -13,5 +14,7 @@ if executable('node')
 
         Plug 'neoclide/coc-json'
         Plug 'neoclide/coc-tsserver'
+
+        let g:tvim_plug_coc_loaded = 1
     endif
 endif
