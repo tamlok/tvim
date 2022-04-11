@@ -76,7 +76,7 @@ function Install-Neovim
     Write-Host 'Downloading latest Neovim...'
 
     $targetZipFile = $env:TEMP + '\tvim_' + $release.File
-    Invoke-WebRequest -Uri $release.Url -OutFile $targetZipFile
+    Invoke-WebRequest -Uri $release.Url -OutFile $targetZipFile -UseBasicParsing 
 
     $targetFolder = $targetLocation + '\Neovim'
     if (Test-Path -Path $targetFolder) {
@@ -105,7 +105,7 @@ function Get-Neovim-Latest-Release
     $file = 'nvim-win64.zip'
     $regularExp = '"browser_download_url":"(https://github.com/neovim/neovim/releases/[^"]+/' + $file + ')"'
     $url = 'https://api.github.com/repos/neovim/neovim/releases/latest'
-    $content = Invoke-WebRequest -Uri $url
+    $content = Invoke-WebRequest -Uri $url -UseBasicParsing
     $match = $content -match $regularExp
     if (!$match) {
         Write-Error "Fail to fetch information of Neovim releases"
@@ -360,7 +360,7 @@ function Get-TVim-Utils
 
     $targetName = 'vim-win-utils-master'
     $targetZipFile = "$tempFolder\$targetName.zip"
-    Invoke-WebRequest -Uri $url -OutFile $targetZipFile
+    Invoke-WebRequest -Uri $url -OutFile $targetZipFile -UseBasicParsing
 
     Expand-Archive $targetZipFile -DestinationPath $tempFolder
 
