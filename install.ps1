@@ -93,7 +93,7 @@ function Install-Neovim
 
     Remove-Item $targetZipFile -Force
 
-    Add-Nvim-Qt-Bat $targetFolder
+    Add-Nvim-Bat $targetFolder
 
     Add-Neovim-To-Path $targetFolder
 
@@ -126,13 +126,16 @@ function Unzip-Neovim
     return $true
 }
 
-function Add-Nvim-Qt-Bat
+function Add-Nvim-Bat
 {
     Param([string]$nvimFolder)
 
     $cmd = '@start nvim-qt.exe %*'
     $destinationFile = "$nvimFolder\bin\qvim.bat"
+    Out-File -Encoding ascii -LiteralPath $destinationFile -InputObject $cmd
 
+    $cmd = 'if exist .vimrc.user (nvim.exe -u .vimrc.user) else (nvim.exe)'
+    $destinationFile = "$nvimFolder\bin\tvim.bat"
     Out-File -Encoding ascii -LiteralPath $destinationFile -InputObject $cmd
 }
 
